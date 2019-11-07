@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ofile_unmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 12:34:46 by mmonier           #+#    #+#             */
-/*   Updated: 2019/11/07 15:16:46 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/10/28 19:34:12 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/11/04 22:47:39 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_nm.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+void		ofile_unmap(t_nm *nm_t, t_ofile *of)
 {
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && n > 0 && s1[i])
-	{
-		i++;
-		n--;
-	}
-	return ((n == 0) ? 0 : (unsigned char)s1[i] - (unsigned char)s2[i]);
+	(void)nm_t;
+	if (of->file_addr)
+		munmap(of->file_addr, of->file_size);
+	if (of->file_name)
+		free(of->file_name);
+	ft_memset(of, '\0', sizeof(t_ofile));
 }

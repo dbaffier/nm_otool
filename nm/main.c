@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 00:35:15 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/10/26 00:28:16 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/07 16:57:10 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int ac, char **av)
 	nm_t.target = ac > 1 ? av[i] : "a.out";
 	while (nm_t.target)
 	{
-		err = ofile_process(&nm_t);
+		err = ofile_create(&nm_t);
 		i++;
 		nm_t.target = av[i];
 	}

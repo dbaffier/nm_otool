@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_routine.c                                       :+:      :+:    :+:   */
+/*   ft_archive.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 00:28:07 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/04 22:26:18 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/10/28 18:58:20 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/11/07 16:57:11 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-#include <mach-o/fat.h>
-#include <ar.h>
 
-
-int		nm_routine(t_nm *nm_t, void *addr)
+int		ft_archive(t_ofile *of, void *addr, uint32_t magic, enum byte_sex e)
 {
-	uint32_t	magic;
-
-	(void)nm_t;
-	magic = *(uint32_t *)addr;
-	if (magic == FAT_MAGIC || magic == FAT_CIGAM)
+	(void)e;
+	(void)magic;
+	if (of->file_size >= SARMAG && strncmp(addr, ARMAG, SARMAG) == 0)
 	{
-		addr += ft_fat(t_nm *nm_t, addr);
-		magic = *(uint32_t *)addr;
+		of->file_type = OFILE_ARCHIVE;
+		of->object_addr = addr;
 	}
-	ft_printf("%#x\n", magic);
 	return (0);
+}
+
+int		process_archive(t_nm *nm_t, t_ofile *of)
+{
+	(void)nm_t;
+	if (ofile_first_member(of) == 0)
+	{
+		ofile_member_debug(of);
+		nm_t->processor(of, NULL, cookie);
+	}
+	return (1);
 }

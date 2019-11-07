@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_round.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 12:34:46 by mmonier           #+#    #+#             */
-/*   Updated: 2019/11/07 15:16:46 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/11/03 22:17:22 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/11/03 22:17:54 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+long		ft_round(long v, unsigned long r)
 {
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && n > 0 && s1[i])
-	{
-		i++;
-		n--;
-	}
-	return ((n == 0) ? 0 : (unsigned char)s1[i] - (unsigned char)s2[i]);
+	r--;
+	v += r;
+	v &= ~(long)r;
+	return (v);
 }

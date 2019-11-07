@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_routine.c                                       :+:      :+:    :+:   */
+/*   member_debug.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 00:28:07 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/04 22:26:18 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/11/07 15:22:17 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/11/07 16:46:17 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-#include <mach-o/fat.h>
-#include <ar.h>
 
-
-int		nm_routine(t_nm *nm_t, void *addr)
+void	ofile_member_debug(t_ofile *of)
 {
-	uint32_t	magic;
+	ft_printf("File addr : %p\n", of->file_addr);
+	ft_printf("Member addr [%p]\n", of->member_addr);
+	ft_printf("\toffset : [%u]\n", of->member_offset);
+	ft_printf("\tsize : [%u]\n", of->member_size);
+	ft_printf("\ttype : [%d]\n", of->member_type);
+	ft_printf("\ttype : [%d] == [%d]\n", of->member_type, OFILE_Mach_O);
 
-	(void)nm_t;
-	magic = *(uint32_t *)addr;
-	if (magic == FAT_MAGIC || magic == FAT_CIGAM)
-	{
-		addr += ft_fat(t_nm *nm_t, addr);
-		magic = *(uint32_t *)addr;
-	}
-	ft_printf("%#x\n", magic);
-	return (0);
 }

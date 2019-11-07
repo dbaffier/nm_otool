@@ -6,7 +6,7 @@
 #    By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 00:18:28 by dbaffier          #+#    #+#              #
-#    Updated: 2019/10/26 21:38:39 by dbaffier         ###   ########.fr        #
+#    Updated: 2019/11/07 15:24:01 by dbaffier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,19 @@ OBJS_OT = $(addprefix $(OBJS_OT_DIR), $(SRCS:.c=.o))
 SRCS_NM_DIR = nm/
 SRCS_NM = main.c					\
 		  ofile_process.c			\
+		  ofile_member.c			\
+		  ofile_member_clear.c		\
+		  ofile_unmap.c				\
+		  member_tools.c			\
 		  err_file.c				\
-		  nm_routine.c				\
+		  ft_archive.c				\
+		  ft_mach_o.c				\
 		  ft_fat.c					\
 		  swap_bytes.c				\
+		  print_fat.c				\
+		  swap_header.c				\
+		  byte_sex.c				\
+		  member_debug.c			\
 
 SRCS_OT_DIR = otool/
 SRCS_OT = 

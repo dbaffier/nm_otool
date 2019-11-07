@@ -1,0 +1,158 @@
+Mmain	nm/main.c	/^int main(int ac, char **av)$/
+Mnm	nm.c	/^main($/
+apply_flag	libft/ft_parse.c	/^void			apply_flag(t_format *data)$/
+archive_error	ofile.c	/^archive_error($/
+archive_member_error	ofile.c	/^archive_member_error($/
+check_type	ofile.c	/^enum check_type {$/
+cmd_flags	nm.c	/^struct cmd_flags {$/
+cnt_line	libft/get_next_line.c	/^int			cnt_line(char *s)$/
+compare	nm.c	/^compare($/
+count_dec	libft/ft_itoa.c	/^static int		count_dec(int *n, int *sign)$/
+elect_symbol	nm.c	/^select_symbol($/
+file_first_arch	ofile.c	/^ofile_first_arch($/
+file_first_member	ofile.c	/^ofile_first_member($/
+file_first_module	ofile.c	/^ofile_first_module($/
+file_next_arch	ofile.c	/^ofile_next_arch($/
+file_next_member	ofile.c	/^ofile_next_member($/
+file_next_module	ofile.c	/^ofile_next_module($/
+file_specific_arch	ofile.c	/^ofile_specific_arch($/
+file_specific_member	ofile.c	/^ofile_specific_member($/
+file_specific_module	ofile.c	/^ofile_specific_module($/
+free_lst	libft/ft_printf.c	/^void		free_lst(t_va_list *head)$/
+ft_ar_name	nm/byte_sex.c	/^int					ft_ar_name(struct ar_hdr *hdr, char **name/
+ft_archive	nm/ft_archive.c	/^int		ft_archive(t_ofile *of, void *addr, uint32_t /
+ft_atoi	libft/ft_atoi.c	/^int		ft_atoi(const char *str)$/
+ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/
+ft_count_occ	libft/ft_count_occ.c	/^int		ft_count_occ(char *s, char c)$/
+ft_count_word	libft/ft_count_word.c	/^int		ft_count_word(char *str)$/
+ft_count_words	libft/ft_strsplit.c	/^static int			ft_count_words(const char *s, char c)/
+ft_dprintf	libft/ft_dprintf.c	/^int			ft_dprintf(int fd, const char *str, ...)$/
+ft_dprintf_buff	libft/ft_dprintf.c	/^static void	ft_dprintf_buff(t_format *data)$/
+ft_fat	nm/ft_fat.c	/^int	ft_fat(t_ofile *of, void *addr, uint32_t magic/
+ft_intcmp_void	libft/ft_intcmp_void.c	/^int		ft_intcmp_void(void *a, void *b)$/
+ft_isalnum	libft/ft_isalnum.c	/^int		ft_isalnum(int c)$/
+ft_isalpha	libft/ft_isalpha.c	/^int		ft_isalpha(int c)$/
+ft_isascii	libft/ft_isascii.c	/^int		ft_isascii(int c)$/
+ft_isdigit	libft/ft_isdigit.c	/^int		ft_isdigit(int c)$/
+ft_isnumber	libft/ft_isnumber.c	/^int		ft_isnumber(char *str)$/
+ft_isprint	libft/ft_isprint.c	/^int		ft_isprint(int c)$/
+ft_isspace	libft/ft_isspace.c	/^int		ft_isspace(int c)$/
+ft_itoa	libft/ft_itoa.c	/^char			*ft_itoa(int n)$/
+ft_lstadd	libft/ft_lstadd.c	/^void	ft_lstadd(t_list **alst, t_list *new)$/
+ft_lstdel	libft/ft_lstdel.c	/^void	ft_lstdel(t_list **alst, void (*del)(void*, s/
+ft_lstdelone	libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list **alst, void (*del)(void /
+ft_lstiter	libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(t_list *ele/
+ft_lstmap	libft/ft_lstmap.c	/^t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_lis/
+ft_lstnew	libft/ft_lstnew.c	/^t_list		*ft_lstnew(void const *content, size_t con/
+ft_mach_o	nm/ft_mach_o.c	/^int		ft_mach_o(t_ofile *of, void *addr, uint32_t m/
+ft_mallocd2	libft/ft_strsplit.c	/^char				*ft_mallocd2(const char *s, char c, int *i/
+ft_memalloc	libft/ft_memalloc.c	/^void	*ft_memalloc(size_t size)$/
+ft_memccpy	libft/ft_memccpy.c	/^void	*ft_memccpy(void *dst, const void *src, int c/
+ft_memchr	libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/
+ft_memcmp	libft/ft_memcmp.c	/^int		ft_memcmp(const void *s1, const void *s2, siz/
+ft_memcpy	libft/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *src, size_t/
+ft_memdel	libft/ft_memdel.c	/^void	ft_memdel(void **ap)$/
+ft_memmove	libft/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_/
+ft_memset	libft/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/
+ft_parse	libft/ft_parse.c	/^void			ft_parse(t_format *data)$/
+ft_preparse	libft/ft_parse.c	/^void			ft_preparse(t_format *data)$/
+ft_print_buff	libft/ft_printf.c	/^static void	ft_print_buff(t_format *data)$/
+ft_printf	libft/ft_printf.c	/^int			ft_printf(const char *str, ...)$/
+ft_putchar	libft/ft_putchar.c	/^void	ft_putchar(char c)$/
+ft_putchar_fd	libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/
+ft_putendl	libft/ft_putendl.c	/^void	ft_putendl(char const *s)$/
+ft_putendl_fd	libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char const *s, int fd)$/
+ft_putnbr	libft/ft_putnbr.c	/^void	ft_putnbr(int nb)$/
+ft_putnbr_fd	libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/
+ft_putsnbr	libft/ft_putsnbr.c	/^void	ft_putsnbr(char *s, int n)$/
+ft_putstr	libft/ft_putstr.c	/^void	ft_putstr(char const *s)$/
+ft_putstr_fd	libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char const *s, int fd)$/
+ft_puttab	libft/ft_puttab.c	/^void	ft_puttab(char **tab)$/
+ft_rand	libft/ft_rand.c	/^int			ft_rand(int min, int max, void *random)$/
+ft_read_fill	libft/get_next_line.c	/^int			ft_read_fill(char **s, int fd)$/
+ft_reverse	libft/ft_reverse.c	/^char	*ft_reverse(char *str)$/
+ft_sort_all	libft/ft_sort_all.c	/^void	ft_sort_all(void *tab, int (*cmp)(void*, void/
+ft_space	libft/ft_space.c	/^int		ft_space(int c)$/
+ft_strcat	libft/ft_strcat.c	/^char	*ft_strcat(char *dest, const char *src)$/
+ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/
+ft_strclr	libft/ft_strclr.c	/^void	ft_strclr(char *s)$/
+ft_strcmp	libft/ft_strcmp.c	/^int		ft_strcmp(const char *s1, const char *s2)$/
+ft_strcmp_void	libft/ft_strcmp_void.c	/^int		ft_strcmp_void(void *a, void *b)$/
+ft_strcpy	libft/ft_strcpy.c	/^char	*ft_strcpy(char *dest, const char *src)$/
+ft_strdel	libft/ft_strdel.c	/^void	ft_strdel(char **as)$/
+ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/
+ft_strequ	libft/ft_strequ.c	/^int		ft_strequ(char const *s1, char const *s2)$/
+ft_strfjoin	libft/ft_strfjoin.c	/^char	*ft_strfjoin(char const *s1, char const *s2)$/
+ft_striter	libft/ft_striter.c	/^void	ft_striter(char *s, void (*f)(char *))$/
+ft_striteri	libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, /
+ft_strjoin	libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/
+ft_strjoin_c	libft/ft_strjoin_c.c	/^char	*ft_strjoin_c(char const *s1, char c)$/
+ft_strjoinfree	libft/ft_strjoinfree.c	/^char	*ft_strjoinfree(char *s1, char *s2, int i)$/
+ft_strlcat	libft/ft_strlcat.c	/^size_t		ft_strlcat(char *dst, const char *src, siz/
+ft_strlen	libft/ft_strlen.c	/^size_t		ft_strlen(const char *s)$/
+ft_strmap	libft/ft_strmap.c	/^char	*ft_strmap(char const *s, char (*f)(char))$/
+ft_strmapi	libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned/
+ft_strncat	libft/ft_strncat.c	/^char	*ft_strncat(char *dest, const char *src, size/
+ft_strnchr	libft/ft_parse.c	/^static char		*ft_strnchr(const char *s, int c, siz/
+ft_strncmp	libft/ft_strncmp.c	/^int		ft_strncmp(const char *s1, const char *s2, si/
+ft_strncpy	libft/ft_strncpy.c	/^char	*ft_strncpy(char *dest, const char *src, size/
+ft_strnequ	libft/ft_strnequ.c	/^int		ft_strnequ(char const *s1, char const *s2, si/
+ft_strnew	libft/ft_strnew.c	/^char	*ft_strnew(size_t size)$/
+ft_strnstr	libft/ft_strnstr.c	/^char	*ft_strnstr(const char *s1, const char *s2, s/
+ft_strnword	libft/ft_strnword.c	/^int		ft_strnword(char *s1, char *s2)$/
+ft_strrchr	libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/
+ft_strrev	libft/ft_strrev.c	/^char		*ft_strrev(char *str)$/
+ft_strsplit	libft/ft_strsplit.c	/^char				**ft_strsplit(const char *s, char c)$/
+ft_strstr	libft/ft_strstr.c	/^char	*ft_strstr(const char *str, const char *needl/
+ft_strsub	libft/ft_strsub.c	/^char	*ft_strsub(char const *s, unsigned int start,/
+ft_strtrim	libft/ft_strtrim.c	/^char				*ft_strtrim(char const *s)$/
+ft_swap	libft/ft_swap.c	/^void	ft_swap(char *a, char *b)$/
+ft_swap_all	libft/ft_swap_all.c	/^void	ft_swap_all(void *a, void *b, size_t type)$/
+ft_tolower	libft/ft_tolower.c	/^int		ft_tolower(int c)$/
+ft_toupper	libft/ft_toupper.c	/^int		ft_toupper(int c)$/
+ft_touppercase	libft/ft_touppercase.c	/^char		*ft_touppercase(char *str)$/
+get_host_byte_sex	nm/byte_sex.c	/^enum byte_sex get_host_byte_sex(void)$/
+get_next_line	libft/get_next_line.c	/^int			get_next_line(const int fd, char **line)$/
+get_varg	libft/ft_parse.c	/^void			get_varg(t_format *data)$/
+heck_Mach_O	ofile.c	/^check_Mach_O($/
+heck_archive	ofile.c	/^check_archive($/
+heck_extend_format_1	ofile.c	/^check_extend_format_1($/
+heck_fat	ofile.c	/^check_fat($/
+heck_fat_object_in_archive	ofile.c	/^check_fat_object_in_archive($/
+if	op.c	/^if(ofile.file_type == OFILE_FAT){$/
+main_loop	libft/get_next_line.c	/^int			main_loop(char **s, char **line, char **tmp)/
+make_symbol_32	nm.c	/^make_symbol_32($/
+make_symbol_64	nm.c	/^make_symbol_64($/
+nm	nm.c	/^nm($/
+nm_err	nm/err_file.c	/^int		nm_err(t_nm *nm_t, int err)$/
+nm_lto	nm.c	/^nm_lto($/
+nm_routine	nm/nm_routine.c	/^int		nm_routine(t_nm *nm_t, void *addr)$/
+ofile_first_arch	nm/get_arch.c	/^int		ofile_first_arch(t_ofile *of)$/
+ofile_first_member	nm/ofile_member.c	/^int		ofile_first_member(t_ofile *of)$/
+ofile_flood_mach_o	nm/get_arch.c	/^static int	ofile_flood_mach_o(t_ofile *of)$/
+ofile_get_arch	nm/get_arch.c	/^static int	ofile_get_arch(t_ofile *of, unsigned lo/
+ofile_map	ofile.c	/^ofile_map($/
+ofile_print	ofile.c	/^ofile_print($/
+ofile_process	ofile.c	/^ofile_process($/
+ofile_type	nm/ofile_process.c	/^static int	ofile_type(t_ofile *of, uint32_t size, /
+ofile_unmap	ofile.c	/^ofile_unmap($/
+print_fat_headers	nm/print_fat.c	/^void	print_fat_headers(struct fat_header *hdr, str/
+print_header	nm.c	/^print_header($/
+print_mach_symbols	nm.c	/^print_mach_symbols($/
+print_symbols	nm.c	/^print_symbols($/
+process_archive	nm/ft_archive.c	/^int		process_archive(t_nm *nm_t, t_ofile *of)$/
+process_flags	nm.c	/^struct process_flags {$/
+select_symbols	nm.c	/^select_symbols($/
+size_ar_name	ofile.c	/^size_ar_name($/
+stab	nm.c	/^stab($/
+stabnames	nm.c	/^struct stabnames {$/
+swap_fat_arch	nm/swap_header.c	/^void	swap_fat_arch(struct fat_arch *arch, unsigned/
+swap_fat_header	nm/swap_header.c	/^void	swap_fat_header(struct fat_header *hdr)$/
+swap_int16	nm/swap_bytes.c	/^int16_t swap_int16(int16_t val) $/
+swap_int32	nm/swap_bytes.c	/^int32_t swap_int32(int32_t val)$/
+swap_uint16	nm/swap_bytes.c	/^uint16_t swap_uint16(uint16_t val) $/
+swap_uint32	nm/swap_bytes.c	/^uint32_t swap_uint32(uint32_t val)$/
+symbol	nm.c	/^struct symbol {$/
+usage	nm.c	/^usage($/
+value_diff	nm.c	/^struct value_diff {$/
+value_diff_compare	nm.c	/^value_diff_compare($/

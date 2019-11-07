@@ -6,7 +6,7 @@
 #    By: mmonier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 10:47:53 by mmonier           #+#    #+#              #
-#    Updated: 2019/06/27 19:29:26 by mmonier          ###   ########.fr        #
+#    Updated: 2019/11/03 22:18:12 by dbaffier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,6 +135,7 @@ SRCS = 	ft_memset.c										\
 		ft_strfjoin.c									\
 		ft_rand.c										\
 		ft_isnumber.c									\
+		ft_round.c										\
 
 OBJS = $(SRCS:.c=.o)
 

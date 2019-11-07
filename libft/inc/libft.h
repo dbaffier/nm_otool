@@ -6,7 +6,7 @@
 /*   By: mmonier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:07:36 by mmonier           #+#    #+#             */
-/*   Updated: 2019/06/27 19:30:00 by mmonier          ###   ########.fr       */
+/*   Updated: 2019/11/03 22:18:27 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ int					get_next_line(const int fd, char **line);
 char				*ft_strfjoin(char const *s1, char const *s2);
 int					ft_rand(int min, int max, void *random);
 int					ft_isnumber(char *str);
+long				ft_round(long v, unsigned long r);
 
 #endif
