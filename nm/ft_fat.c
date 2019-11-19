@@ -6,18 +6,18 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 01:58:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/04 22:48:17 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/14 13:48:07 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 #include <mach-o/fat.h>
 
-uint32_t	process_fat(t_nm *nm_t, t_ofile *of)
+uint32_t	process_fat(t_prg *prg, t_ofile *of)
 {
 	unsigned long		i;
 
-	(void)nm_t;
+	(void)prg;
 	i = 0;
 	while (i < of->fat_header->nfat_arch)
 	{

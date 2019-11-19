@@ -6,11 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 22:21:46 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/04 23:21:30 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/14 13:49:49 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 
 void	ofile_member_clear(t_ofile *of)
 {

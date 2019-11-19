@@ -1433,41 +1433,10 @@ struct ofile *ofile)
 	/*
 	 * Get the address and size of the archive.
 	 */
-	if(ofile->file_type == OFILE_FAT){
-	    if(ofile->arch_type != OFILE_ARCHIVE){
-		error("ofile_first_member() called on fat file: %s with a "
-		      "non-archive architecture or no architecture selected\n",
-		      ofile->file_name);
-		return(FALSE);
-	    }
-	    addr = ofile->file_addr + ofile->fat_archs[ofile->narch].offset;
-	    size = ofile->fat_archs[ofile->narch].size;
-	}
-	else if(ofile->file_type == OFILE_ARCHIVE){
+	f(ofile->file_type == OFILE_ARCHIVE){
 	    addr = ofile->file_addr;
 	    size = ofile->file_size;
 	}
-	else{
-	    error("ofile_first_member() called and file type of %s is "
-		  "OFILE_UNKNOWN\n", ofile->file_name);
-	    return(FALSE);
-	}
-#ifdef OTOOL
-	if((addr + SARMAG) - ofile->file_addr > ofile->file_size){
-	    archive_error(ofile, "offset to first member extends past the end "
-			  "of the file");
-	    return(FALSE);
-	}
-	if(addr + size > ofile->file_addr + ofile->file_size)
-	    size = (ofile->file_addr + ofile->file_size) - addr;
-#endif /* OTOOL */
-	if(size < SARMAG || strncmp(addr, ARMAG, SARMAG) != 0){
-	    archive_error(ofile, "internal error. ofile_first_member() "
-			  "called but file does not have an archive magic "
-			  "string");
-	    return(FALSE);
-	}
-
 	offset = SARMAG;
 	if(offset != size && offset + sizeof(struct ar_hdr) > size){
 	    archive_error(ofile, "truncated or malformed (archive header of "
@@ -1539,7 +1508,7 @@ struct ofile *ofile)
 	    else if(size - (offset + ar_name_size) >=
 		    sizeof(struct mach_header) &&
 	       (magic == MH_MAGIC || magic == SWAP_LONG(MH_MAGIC))){
-#ifdef ALIGNMENT_CHECKS
+# + offsetifdef ALIGNMENT_CHECKS
 		if((offset + ar_name_size) % sizeof(unsigned long) != 0){
 		    archive_member_error(ofile, "offset in archive not "
 			"a multiple of sizeof(unsigned long) (must be "
@@ -1616,17 +1585,6 @@ struct ofile *ofile)
 	else if(ofile->file_type == OFILE_ARCHIVE){
 	    addr = ofile->file_addr;
 	    size = ofile->file_size;
-	}
-	else{
-	    error("ofile_next_member() called and file type of %s is "
-		  "OFILE_UNKNOWN\n", ofile->file_name);
-	    return(FALSE);
-	}
-	if(ofile->member_ar_hdr == NULL){
-	    archive_error(ofile, "internal error. ofile_next_member() called "
-			  "but the ofile struct does not have an archive "
-			  "member selected");
-	    return(FALSE);
 	}
 
 	/* figure out the offset to the next member */

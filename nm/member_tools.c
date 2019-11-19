@@ -6,11 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 14:29:55 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/07 15:44:25 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/14 13:50:03 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 
 unsigned long	size_ar_name(struct ar_hdr *ar_hdr)
 {

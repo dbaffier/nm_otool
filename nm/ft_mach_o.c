@@ -6,11 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 18:50:16 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/04 22:50:47 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/14 13:48:26 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 
 
 static int		ft_mach_o_64(t_ofile *ofile, void *addr, uint32_t magic, enum byte_sex e)

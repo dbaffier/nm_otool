@@ -6,11 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 22:04:03 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/10/28 21:46:32 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/16 17:07:03 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 
 enum byte_sex get_host_byte_sex(void)
 {

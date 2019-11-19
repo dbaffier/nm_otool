@@ -6,11 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/07 16:51:09 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/19 16:34:11 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 
 static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 {
@@ -24,11 +24,12 @@ static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 	ft_fat(of, addr, magic, host_byte_sex);
 	ft_mach_o(of, addr, magic, host_byte_sex);
 	ft_archive(of, addr, magic, host_byte_sex);
+	//of->file_addr += sizeof(uint32_t);
 	//ofile_get_arch(of, of->fat_header, of->fat_archs, 0);
 	return (0);
 }
 
-static int	ofile_map(t_nm *nm_t, t_ofile *of)
+static int	ofile_map(t_prg *nm_t, t_ofile *of)
 {
 	void			*addr;
 	int				fd;
@@ -50,7 +51,7 @@ static int	ofile_map(t_nm *nm_t, t_ofile *of)
 	return (0);
 }
 
-int			ofile_create(t_nm *nm_t)
+int			ofile_create(t_prg *nm_t)
 {
 	int			ret;
 	t_ofile		of;

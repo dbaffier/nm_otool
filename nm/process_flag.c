@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_round.c                                         :+:      :+:    :+:   */
+/*   process_flag.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/03 22:17:22 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/11 21:13:05 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/11/19 17:37:48 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/11/19 18:11:33 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long		ft_round(long v, unsigned long r)
+#include "ft_nm.h"
+
+void		process_flg_sect(t_nm *nm, t_process_flg *f, struct load_command *lc)
 {
-	r--;
-	v += r;
-	v &= ~(long)r;
-	return (v);
+	
 }

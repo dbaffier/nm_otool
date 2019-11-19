@@ -6,7 +6,7 @@
 #    By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 00:18:28 by dbaffier          #+#    #+#              #
-#    Updated: 2019/11/07 15:24:01 by dbaffier         ###   ########.fr        #
+#    Updated: 2019/11/19 16:30:23 by dbaffier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,11 @@ SRCS_NM = main.c					\
 		  swap_header.c				\
 		  byte_sex.c				\
 		  member_debug.c			\
+		  nm.c						\
+		  swap_bytes_h.c			\
+		  symbol.c					\
+		  print.c					\
+		  symbol_type.c				\
 
 SRCS_OT_DIR = otool/
 SRCS_OT = 
@@ -62,7 +67,7 @@ $(LIBFT_LIB):
 	@make -C $(LIBFT_PATH)
 
 $(NM): $(OBJS_NM)
-	gcc $^ -o $@ $(LIBFT_LINK)
+	gcc -fsanitize=address $^ -o $@ $(LIBFT_LINK)
 
 $(OBJS_NM_DIR)%.o: $(SRCS_NM_DIR)%.c
 	gcc $(CFLAGS) -o $@ -c $< $(INCS)

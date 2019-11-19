@@ -1,14 +1,15 @@
+Mlol	lol.c	/^main($/
 Mmain	nm/main.c	/^int main(int ac, char **av)$/
 Mnm	nm.c	/^main($/
 apply_flag	libft/ft_parse.c	/^void			apply_flag(t_format *data)$/
 archive_error	ofile.c	/^archive_error($/
 archive_member_error	ofile.c	/^archive_member_error($/
 check_type	ofile.c	/^enum check_type {$/
-cmd_flags	nm.c	/^struct cmd_flags {$/
+cmd_flags	lol.c	/^struct cmd_flags {$/
 cnt_line	libft/get_next_line.c	/^int			cnt_line(char *s)$/
-compare	nm.c	/^compare($/
+compare	lol.c	/^compare($/
 count_dec	libft/ft_itoa.c	/^static int		count_dec(int *n, int *sign)$/
-elect_symbol	nm.c	/^select_symbol($/
+elect_symbol	lol.c	/^select_symbol($/
 file_first_arch	ofile.c	/^ofile_first_arch($/
 file_first_member	ofile.c	/^ofile_first_member($/
 file_first_module	ofile.c	/^ofile_first_module($/
@@ -44,7 +45,8 @@ ft_lstdelone	libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list **alst, void (*del)
 ft_lstiter	libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(t_list *ele/
 ft_lstmap	libft/ft_lstmap.c	/^t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_lis/
 ft_lstnew	libft/ft_lstnew.c	/^t_list		*ft_lstnew(void const *content, size_t con/
-ft_mach_o	nm/ft_mach_o.c	/^int		ft_mach_o(t_ofile *of, void *addr, uint32_t m/
+ft_mach_o	nm/ft_mach_o.c	/^int		ft_mach_o(t_ofile *ofile, void *addr, uint32_/
+ft_mach_o_64	nm/ft_mach_o.c	/^static int		ft_mach_o_64(t_ofile *ofile, void *add/
 ft_mallocd2	libft/ft_strsplit.c	/^char				*ft_mallocd2(const char *s, char c, int *i/
 ft_memalloc	libft/ft_memalloc.c	/^void	*ft_memalloc(size_t size)$/
 ft_memccpy	libft/ft_memccpy.c	/^void	*ft_memccpy(void *dst, const void *src, int c/
@@ -71,6 +73,7 @@ ft_puttab	libft/ft_puttab.c	/^void	ft_puttab(char **tab)$/
 ft_rand	libft/ft_rand.c	/^int			ft_rand(int min, int max, void *random)$/
 ft_read_fill	libft/get_next_line.c	/^int			ft_read_fill(char **s, int fd)$/
 ft_reverse	libft/ft_reverse.c	/^char	*ft_reverse(char *str)$/
+ft_round	libft/ft_round.c	/^long		ft_round(long v, unsigned long r)$/
 ft_sort_all	libft/ft_sort_all.c	/^void	ft_sort_all(void *tab, int (*cmp)(void*, void/
 ft_space	libft/ft_space.c	/^int		ft_space(int c)$/
 ft_strcat	libft/ft_strcat.c	/^char	*ft_strcat(char *dest, const char *src)$/
@@ -105,6 +108,7 @@ ft_strrev	libft/ft_strrev.c	/^char		*ft_strrev(char *str)$/
 ft_strsplit	libft/ft_strsplit.c	/^char				**ft_strsplit(const char *s, char c)$/
 ft_strstr	libft/ft_strstr.c	/^char	*ft_strstr(const char *str, const char *needl/
 ft_strsub	libft/ft_strsub.c	/^char	*ft_strsub(char const *s, unsigned int start,/
+ft_strtoul	nm/member_tools.c	/^unsigned long	ft_strtoul(const char *ptr, char **e/
 ft_strtrim	libft/ft_strtrim.c	/^char				*ft_strtrim(char const *s)$/
 ft_swap	libft/ft_swap.c	/^void	ft_swap(char *a, char *b)$/
 ft_swap_all	libft/ft_swap_all.c	/^void	ft_swap_all(void *a, void *b, size_t type)$/
@@ -121,38 +125,47 @@ heck_fat	ofile.c	/^check_fat($/
 heck_fat_object_in_archive	ofile.c	/^check_fat_object_in_archive($/
 if	op.c	/^if(ofile.file_type == OFILE_FAT){$/
 main_loop	libft/get_next_line.c	/^int			main_loop(char **s, char **line, char **tmp)/
-make_symbol_32	nm.c	/^make_symbol_32($/
-make_symbol_64	nm.c	/^make_symbol_64($/
-nm	nm.c	/^nm($/
-nm_err	nm/err_file.c	/^int		nm_err(t_nm *nm_t, int err)$/
-nm_lto	nm.c	/^nm_lto($/
+make_symbol_32	lol.c	/^make_symbol_32($/
+make_symbol_64	lol.c	/^make_symbol_64($/
+nm	lol.c	/^nm($/
+nm_err	nm/err_file.c	/^int		nm_err(t_prg *prg, int err)$/
+nm_lto	lol.c	/^nm_lto($/
 nm_routine	nm/nm_routine.c	/^int		nm_routine(t_nm *nm_t, void *addr)$/
+ofile_create	nm/ofile_process.c	/^int			ofile_create(t_prg *nm_t)$/
+ofile_ext_format	nm/ofile_member.c	/^static int		ofile_ext_format(t_ofile *ofile, void /
 ofile_first_arch	nm/get_arch.c	/^int		ofile_first_arch(t_ofile *of)$/
 ofile_first_member	nm/ofile_member.c	/^int		ofile_first_member(t_ofile *of)$/
 ofile_flood_mach_o	nm/get_arch.c	/^static int	ofile_flood_mach_o(t_ofile *of)$/
 ofile_get_arch	nm/get_arch.c	/^static int	ofile_get_arch(t_ofile *of, unsigned lo/
 ofile_map	ofile.c	/^ofile_map($/
+ofile_member_clear	nm/ofile_member_clear.c	/^void	ofile_member_clear(t_ofile *of)$/
+ofile_member_debug	nm/member_debug.c	/^void	ofile_member_debug(t_ofile *of)$/
+ofile_next_member	nm/ofile_member.c	/^int		ofile_next_member(t_ofile *ofile)$/
+ofile_object_clear	nm/ofile_member_clear.c	/^void	ofile_object_clear(t_ofile *of)$/
 ofile_print	ofile.c	/^ofile_print($/
 ofile_process	ofile.c	/^ofile_process($/
+ofile_set_fat	nm/ofile_member.c	/^static int		ofile_set_fat(t_ofile *ofile)$/
+ofile_set_mach_o	nm/ofile_member.c	/^static int		ofile_set_mach_o(t_ofile *of, unsigned/
 ofile_type	nm/ofile_process.c	/^static int	ofile_type(t_ofile *of, uint32_t size, /
 ofile_unmap	ofile.c	/^ofile_unmap($/
 print_fat_headers	nm/print_fat.c	/^void	print_fat_headers(struct fat_header *hdr, str/
-print_header	nm.c	/^print_header($/
-print_mach_symbols	nm.c	/^print_mach_symbols($/
-print_symbols	nm.c	/^print_symbols($/
-process_archive	nm/ft_archive.c	/^int		process_archive(t_nm *nm_t, t_ofile *of)$/
-process_flags	nm.c	/^struct process_flags {$/
-select_symbols	nm.c	/^select_symbols($/
+print_header	lol.c	/^print_header($/
+print_mach_symbols	lol.c	/^print_mach_symbols($/
+print_symbols	lol.c	/^print_symbols($/
+process_archive	nm/ft_archive.c	/^int		process_archive(t_prg *prg, t_ofile *of)$/
+process_fat	nm/ft_fat.c	/^uint32_t	process_fat(t_prg *prg, t_ofile *of)$/
+process_flags	lol.c	/^struct process_flags {$/
+select_symbols	lol.c	/^select_symbols($/
 size_ar_name	ofile.c	/^size_ar_name($/
-stab	nm.c	/^stab($/
-stabnames	nm.c	/^struct stabnames {$/
+stab	lol.c	/^stab($/
+stabnames	lol.c	/^struct stabnames {$/
 swap_fat_arch	nm/swap_header.c	/^void	swap_fat_arch(struct fat_arch *arch, unsigned/
 swap_fat_header	nm/swap_header.c	/^void	swap_fat_header(struct fat_header *hdr)$/
 swap_int16	nm/swap_bytes.c	/^int16_t swap_int16(int16_t val) $/
 swap_int32	nm/swap_bytes.c	/^int32_t swap_int32(int32_t val)$/
 swap_uint16	nm/swap_bytes.c	/^uint16_t swap_uint16(uint16_t val) $/
 swap_uint32	nm/swap_bytes.c	/^uint32_t swap_uint32(uint32_t val)$/
-symbol	nm.c	/^struct symbol {$/
-usage	nm.c	/^usage($/
-value_diff	nm.c	/^struct value_diff {$/
-value_diff_compare	nm.c	/^value_diff_compare($/
+symbol	lol.c	/^struct symbol {$/
+usage	lol.c	/^usage($/
+value_diff	lol.c	/^struct value_diff {$/
+value_diff_compare	lol.c	/^value_diff_compare($/

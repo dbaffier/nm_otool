@@ -6,15 +6,15 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 19:30:41 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/10/25 22:59:34 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/14 13:50:10 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 
-int		nm_err(t_nm *nm_t, int err)
+int		nm_err(t_prg *prg, int err)
 {
-	(void)nm_t;
+	(void)prg;
 	(void)err;
 	return (1);
 }

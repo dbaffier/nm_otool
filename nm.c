@@ -437,10 +437,6 @@ nm(
 	process_flags.lib_names = NULL;
 
 	if(ofile->mh == NULL && ofile->mh64 == NULL){
-#ifdef LTO_SUPPORT
-		if(ofile->lto != NULL)
-			nm_lto(ofile, arch_name, cmd_flags);
-#endif /* LTO_SUPPORT */
 		return;
 	}
 	st = NULL;
@@ -551,30 +547,6 @@ nm(
 					}
 					process_flags.sections64[k++] = s64 + j;
 				}
-			}
-			lc = (struct load_command *)
-				((char *)lc + lc->cmdsize);
-		}
-	}
-	if((mh_flags & MH_TWOLEVEL) == MH_TWOLEVEL &&
-			process_flags.nlibs > 0){
-		process_flags.lib_names = (char **)
-			malloc(sizeof(char *) * process_flags.nlibs);
-		j = 0;
-		lc = ofile->load_commands;
-		for (i = 0; i < ncmds; i++){
-			if(lc->cmd == LC_LOAD_DYLIB ||
-					lc->cmd == LC_LOAD_WEAK_DYLIB ||
-					lc->cmd == LC_LAZY_LOAD_DYLIB ||
-					lc->cmd == LC_REEXPORT_DYLIB){
-				dl = (struct dylib_command *)lc;
-				process_flags.lib_names[j] =
-					(char *)dl + dl->dylib.name.offset;
-				short_name = guess_short_name(process_flags.lib_names[j],
-						&is_framework, &has_suffix);
-				if(short_name != NULL)
-					process_flags.lib_names[j] = short_name;
-				j++;
 			}
 			lc = (struct load_command *)
 				((char *)lc + lc->cmdsize);
@@ -845,120 +817,6 @@ select_symbols(
 			swap_nlist_64(all_symbols64, st->nsyms, get_host_byte_sex());
 	}
 
-	if(ofile->dylib_module != NULL){
-		if(ofile->mh != NULL){
-			m = *ofile->dylib_module;
-			if(ofile->object_byte_sex != get_host_byte_sex())
-				swap_dylib_module(&m, 1, get_host_byte_sex());
-			irefsym = m.irefsym;
-			nrefsym = m.nrefsym;
-			nextdefsym = m.nextdefsym;
-			iextdefsym = m.iextdefsym;
-			nlocalsym = m.nlocalsym;
-			ilocalsym = m.ilocalsym;
-		}
-		else{
-			m64 = *ofile->dylib_module64;
-			if(ofile->object_byte_sex != get_host_byte_sex())
-				swap_dylib_module_64(&m64, 1, get_host_byte_sex());
-			irefsym = m64.irefsym;
-			nrefsym = m64.nrefsym;
-			nextdefsym = m64.nextdefsym;
-			iextdefsym = m64.iextdefsym;
-			nlocalsym = m64.nlocalsym;
-			ilocalsym = m64.ilocalsym;
-		}
-		refs = (struct dylib_reference *)(ofile->object_addr +
-				dyst->extrefsymoff);
-		if(ofile->object_byte_sex != get_host_byte_sex()){
-			swap_dylib_reference(refs + irefsym, nrefsym,
-					get_host_byte_sex());
-		}
-		for(i = 0; i < nrefsym; i++){
-			flags = refs[i + irefsym].flags;
-			if(flags == REFERENCE_FLAG_UNDEFINED_NON_LAZY ||
-					flags == REFERENCE_FLAG_UNDEFINED_LAZY ||
-					flags == REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY ||
-					flags == REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY){
-				if(ofile->mh != NULL)
-					make_symbol_32(&symbol,
-							all_symbols + refs[i + irefsym].isym);
-				else
-					make_symbol_64(&symbol,
-							all_symbols64 + refs[i + irefsym].isym);
-				if(flags == REFERENCE_FLAG_UNDEFINED_NON_LAZY ||
-						flags == REFERENCE_FLAG_UNDEFINED_LAZY ||
-						cmd_flags->m == TRUE)
-					symbol.nl.n_type = N_UNDF | N_EXT;
-				else
-					symbol.nl.n_type = N_UNDF;
-				symbol.nl.n_desc = (symbol.nl.n_desc &~ REFERENCE_TYPE) |
-					flags;
-				symbol.nl.n_value = 0;
-				if(select_symbol(&symbol, cmd_flags, process_flags))
-					selected_symbols[(*nsymbols)++] = symbol;
-			}
-		}
-		for(i = 0; i < nextdefsym && iextdefsym + i < st->nsyms; i++){
-			if(ofile->mh != NULL)
-				make_symbol_32(&symbol, all_symbols + iextdefsym + i);
-			else
-				make_symbol_64(&symbol, all_symbols64 + iextdefsym + i);
-			if(select_symbol(&symbol, cmd_flags, process_flags))
-				selected_symbols[(*nsymbols)++] = symbol;
-		}
-		for(i = 0; i < nlocalsym && ilocalsym + i < st->nsyms; i++){
-			if(ofile->mh != NULL)
-				make_symbol_32(&symbol, all_symbols + ilocalsym + i);
-			else
-				make_symbol_64(&symbol, all_symbols64 + ilocalsym + i);
-			if(select_symbol(&symbol, cmd_flags, process_flags))
-				selected_symbols[(*nsymbols)++] = symbol;
-		}
-	}
-	else if(cmd_flags->b == TRUE){
-		found = FALSE;
-		strings = ofile->object_addr + st->stroff;
-		if(cmd_flags->i == TRUE)
-			i = cmd_flags->index;
-		else
-			i = 0;
-		for( ; i < st->nsyms; i++){
-			if(ofile->mh != NULL)
-				make_symbol_32(&symbol, all_symbols + i);
-			else
-				make_symbol_64(&symbol, all_symbols64 + i);
-			if(symbol.nl.n_type == N_BINCL &&
-					symbol.nl.n_un.n_strx != 0 &&
-					(uint32_t)symbol.nl.n_un.n_strx < st->strsize &&
-					strcmp(cmd_flags->bincl_name,
-						strings + symbol.nl.n_un.n_strx) == 0){
-				selected_symbols[(*nsymbols)++] = symbol;
-				found = TRUE;
-				nest = 0;
-				for(i = i + 1 ; i < st->nsyms; i++){
-					if(ofile->mh != NULL)
-						make_symbol_32(&symbol, all_symbols + i);
-					else
-						make_symbol_64(&symbol, all_symbols64 + i);
-					if(symbol.nl.n_type == N_BINCL)
-						nest++;
-					else if(symbol.nl.n_type == N_EINCL){
-						if(nest == 0){
-							selected_symbols[(*nsymbols)++] = symbol;
-							break;
-						}
-						nest--;
-					}
-					else if(nest == 0)
-						selected_symbols[(*nsymbols)++] = symbol;
-				}
-			}
-			if(found == TRUE)
-				break;
-		}
-	}
-	else{
 		for(i = 0; i < st->nsyms; i++){
 			if(ofile->mh != NULL)
 				make_symbol_32(&symbol, all_symbols + i);
@@ -967,7 +825,6 @@ select_symbols(
 			if(select_symbol(&symbol, cmd_flags, process_flags))
 				selected_symbols[(*nsymbols)++] = symbol;
 		}
-	}
 	if(ofile->object_byte_sex != get_host_byte_sex()){
 		if(ofile->mh != NULL)
 			swap_nlist(all_symbols, st->nsyms, ofile->object_byte_sex);

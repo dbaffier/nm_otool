@@ -6,11 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 23:21:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/10/28 03:30:22 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/11/14 13:48:36 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_ofile.h"
 #include <mach-o/fat.h>
 
 void	print_fat_headers(struct fat_header *hdr, struct fat_arch *arc, unsigned long size)

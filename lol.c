@@ -1537,8 +1537,7 @@ print_symbols(
 			printf(cmd_flags->format, symbols[i].nl.n_value);
 			printf(" 0\n"); /* the 0 is the size for conformance */
 			continue;
-		}
-		c = symbols[i].nl.n_type;
+		} c = symbols[i].nl.n_type;
 		if(c & N_STAB){
 			if(cmd_flags->o == TRUE || cmd_flags->A == TRUE){
 				if(arch_name != NULL)

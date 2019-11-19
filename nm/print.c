@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 00:35:15 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/16 23:41:16 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/11/16 23:35:23 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/11/19 17:33:45 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
-#include "ft_ofile.h"
+#include "ft_nm.h"
 
-int main(int ac, char **av)
+void	print_header(t_ofile *of, char *cmd)
 {
-	t_prg		prg;
-	int			err;
+	(void)cmd;
+	if (of->member_ar_hdr)
+		ft_printf("\n%s(%.*s):\n", of->file_name, (int)of->member_name_size, of->member_name);
+}
+
+void	print_symbols(t_ofile *of, t_nm *nm)
+{
 	size_t		i;
 
-	ft_memset(&prg, 0, sizeof(prg));
-	i = 1;
-	prg.target = ac > 1 ? av[i] : "a.out";
-	prg.proc = &nm;
-	while (prg.target)
+	i = 0;
+	(void)of;
+	ft_printf("%u\n", nm->nsymbs);
+	while (i < nm->nsymbs)
 	{
-		err = ofile_create(&prg);
+		ft_printf("%016llx", nm->select_sym[i].nl.n_value);
+		ft_printf("%c ", type_symbol(nm->f, nm->select_sym[i]));
 		i++;
-		prg.target = av[i];
 	}
-	return (err);
 }
