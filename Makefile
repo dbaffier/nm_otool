@@ -49,6 +49,7 @@ SRCS_NM = main.c					\
 		  symbol.c					\
 		  print.c					\
 		  symbol_type.c				\
+		  process_flag.c			\
 
 SRCS_OT_DIR = otool/
 SRCS_OT = 
@@ -68,6 +69,7 @@ $(LIBFT_LIB):
 
 $(NM): $(OBJS_NM)
 	gcc -fsanitize=address $^ -o $@ $(LIBFT_LINK)
+	sh test.sh
 
 $(OBJS_NM_DIR)%.o: $(SRCS_NM_DIR)%.c
 	gcc $(CFLAGS) -o $@ -c $< $(INCS)

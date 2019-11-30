@@ -588,14 +588,6 @@ nm(
 					else if(strcmp((s + j)->sectname, SECT_BSS) == 0 &&
 							strcmp((s + j)->segname, SEG_DATA) == 0)
 						process_flags.bss_nsect = k + 1;
-					if(cmd_flags->segname != NULL){
-						if(strncmp((s + j)->sectname, cmd_flags->sectname,
-									sizeof(s->sectname)) == 0 &&
-								strncmp((s + j)->segname, cmd_flags->segname,
-									sizeof(s->segname)) == 0){
-							process_flags.nsect = k + 1;
-							process_flags.sect_addr = (s + j)->addr;
-							process_flags.sect_size = (s + j)->size;
 						}
 					}
 					process_flags.sections[k++] = s + j;

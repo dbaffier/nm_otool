@@ -68,7 +68,7 @@ static int	nm_set(t_nm *nm, t_ofile *ofile, t_process_flg *f)
 	}
 	if (nm->st == NULL || nm->st->nsyms == 0)
 		return (1);
-	process_flg_sect(nm, f);
+	process_flg_sect(nm, ofile, f, ofile->load_commands);
 	select_symbols(nm, ofile);
 	select_print_symbols(nm, ofile->object_addr + nm->st->symoff, nm->st->strsize);
 	return (0);
