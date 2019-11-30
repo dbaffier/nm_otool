@@ -56,5 +56,6 @@ void	select_print_symbols(t_nm *nm, char *str, int size);
 int		type_symbol(t_process_flg *f, struct symbol sl);
 void	print_header(t_ofile *of, char *cmd);
 void	print_symbols(t_ofile *of, t_nm *nm);
+void		process_flg_sect(t_nm *nm, t_ofile *of,  t_process_flg *f, struct load_command *lc);
 
 #endif
