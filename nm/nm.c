@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:50:02 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/29 20:19:05 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/03 01:45:07 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void		select_symbols(t_nm *nm, t_ofile *of)
 	else
 		nm->nl64 = (struct nlist_64 *)(of->object_addr + nm->st->symoff);
 	nm->select_sym = malloc(sizeof(struct symbol) * nm->st->nsyms);
-	if (of->object_byte_sex != get_host_byte_sex())
-		(of->mh != NULL) ? swap_nlist(nm->nl, nm->st->nsyms) :
-			swap_nlist_64(nm->nl64, nm->st->nsyms);
 	while (i < nm->st->nsyms)
 	{
 		(of->mh != NULL) ? make_symbol_32(&symbol, nm->nl + i) :
@@ -39,9 +36,6 @@ void		select_symbols(t_nm *nm, t_ofile *of)
 			nm->select_sym[nsymbols++] = symbol;
 		i++;
 	}
-	if (of->object_byte_sex != get_host_byte_sex())
-		(of->mh != NULL) ? swap_nlist(nm->nl, nm->st->nsyms) :
-			swap_nlist_64(nm->nl64, nm->st->nsyms);
 	nm->nsymbs = nsymbols;
 }
 
@@ -63,14 +57,14 @@ static int	nm_set(t_nm *nm, t_ofile *ofile, t_process_flg *f)
 			f->nsects += ((struct segment_command*)lc)->nsects;
 		else if (lc->cmd == LC_SEGMENT_64)
 			f->nsects += ((struct segment_command_64 *)lc)->nsects;
-		i++;
 		lc = (struct load_command *)((char *)lc + lc->cmdsize);
+		i++;
 	}
 	if (nm->st == NULL || nm->st->nsyms == 0)
 		return (1);
 	process_flg_sect(nm, ofile, f, ofile->load_commands);
 	select_symbols(nm, ofile);
-	select_print_symbols(nm, ofile->object_addr + nm->st->symoff, nm->st->strsize);
+	select_print_symbols(nm, ofile, nm->st->strsize);
 	return (0);
 }
 

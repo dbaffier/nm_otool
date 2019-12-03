@@ -561,7 +561,6 @@ nm(
 	if(process_flags.nsects > 0){
 		if(ofile->mh != NULL){
 			process_flags.sections = (struct section **)
-				malloc(sizeof(struct section *) *
 						process_flags.nsects);
 			process_flags.sections64 = NULL;
 		}
@@ -592,7 +591,6 @@ nm(
 					}
 					process_flags.sections[k++] = s + j;
 				}
-			}
 			else if(lc->cmd == LC_SEGMENT_64){
 				sg64 = (struct segment_command_64 *)lc;
 				s64 = (struct section_64 *)

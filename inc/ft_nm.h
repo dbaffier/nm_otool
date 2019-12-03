@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:52:31 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/19 17:35:28 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/03 01:41:07 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,29 @@
 
 #include "ft_ofile.h"
 
+# define ARGS0 "	-a\tDisplay all symbol table entries.\n"
+# define ARGS1 "	-g\tDisplay only global (external) symbols.\n"
+# define ARGS2 "	-n\tSort numerically rather than alphabetically.\n"
+# define ARGS3 "	-o\tPrepend file or archive element name to each line.\n"
+# define ARGS4 "	-p\tDon't sort; display in symbol-table order.\n"
+# define ARGS5 "	-r\tSort in reverse order.\n"
+# define ARGS6 "	-u\tDisplay only undefined symbols.\n"
+# define ARGS7 "	-U\tDon't display undefined symbols.\n"
+# define ARGS8 "	-j\tJust display the symbol names (no value or type).\n"
+# define ARGS9 "	-A\tWrite the pathname or library name on each line.\n"
+
 typedef struct		s_flags
 {
-	int				a;
+	unsigned int			a : 1;
+	unsigned int			g : 1;
+	unsigned int			n : 1;
+	unsigned int			o : 1;
+	unsigned int			p : 1;
+	unsigned int			r : 1;
+	unsigned int			u : 1;
+	unsigned int			U : 1;
+	unsigned int			j : 1;
+	unsigned int			A : 1;
 }					t_flags;
 
 struct symbol {
@@ -36,6 +56,11 @@ typedef struct		s_process_flg
 	struct section_64			**sections64;
 }					t_process_flg;
 
+struct stabnames {
+	unsigned char n_type;
+	char *name;
+};
+
 typedef struct		s_nm
 {
 	uint32_t					ncmds;
@@ -49,10 +74,12 @@ typedef struct		s_nm
 	struct s_process_flg		*f;
 }					t_nm;
 
+
+int		parse_flag(t_flags *f, char **av, int ac, int i);
 void	make_symbol_64(struct symbol *symbol, struct nlist_64 *nl);
 void	make_symbol_32(struct symbol *symbol, struct nlist *nl);
 int		select_symbol(struct symbol *symbol, char *flg, char *proc_flg);
-void	select_print_symbols(t_nm *nm, char *str, int size);
+void	select_print_symbols(t_nm *nm, t_ofile *of, int size);
 int		type_symbol(t_process_flg *f, struct symbol sl);
 void	print_header(t_ofile *of, char *cmd);
 void	print_symbols(t_ofile *of, t_nm *nm);

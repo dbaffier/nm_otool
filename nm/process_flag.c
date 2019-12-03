@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 17:37:48 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/19 18:11:33 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/01 02:14:17 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void		manage_sect_32(t_process_flg *f, struct load_command *lc, size_t *k
 				!ft_strcmp((s + j)->segname, SEG_DATA))
 			f->bss_nsect = *k + 1;
 		j++;
+		f->sections[(*k)++] = s + j;
 	}
-	f->sections[*k++] = s + j;
 }
 
 static void		manage_sect_64(t_process_flg *f, struct load_command *lc, size_t *k)
@@ -58,8 +58,8 @@ static void		manage_sect_64(t_process_flg *f, struct load_command *lc, size_t *k
 				!ft_strcmp((s + j)->segname, SEG_DATA))
 			f->bss_nsect = *k + 1;
 		j++;
+		f->sections64[(*k)++] = s + j;
 	}
-	f->sections64[*k++] = s + j;
 }
 
 void		process_flg_sect(t_nm *nm, t_ofile *of, t_process_flg *f, struct load_command *lc)

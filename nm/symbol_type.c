@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:16:29 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/19 16:41:59 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/01 02:57:13 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ static int	symbol_n_type(t_process_flg *f, char c, int nl_value, int nl_sect)
 
 int		type_symbol(t_process_flg *f, struct symbol sl)
 {
+	char	c;
+
 	if (sl.nl.n_type & N_STAB)
 		return (1);
-	else if (sl.nl.n_type & N_TYPE)
-		return (symbol_n_type(f, sl.nl.n_type & N_TYPE, sl.nl.n_value, sl.nl.n_sect));
 	else
-		return ('?');
+		c = symbol_n_type(f, sl.nl.n_type & N_TYPE, sl.nl.n_value, sl.nl.n_sect);
+	if (sl.nl.n_type & N_EXT && c != '?')
+		return (ft_toupper(c));
+	return (c);
 }

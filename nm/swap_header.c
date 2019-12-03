@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 23:45:40 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/16 23:40:41 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/01 01:13:53 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	swap_nlist_64(struct nlist_64 *symbols, uint32_t nsymbols)
 	i = 0;
 	while (i < nsymbols)
 	{
-		symbols[i].n_un.n_strx = swap_int32(symbols[i].n_un.n_strx);
-	//	symbols[i].n_un.n_strx = SWAP_INT(symbols[i].n_un.n_strx);
+		symbols[i].n_un.n_strx = SWAP_INT(symbols[i].n_un.n_strx);
 		symbols[i].n_desc = swap_short(symbols[i].n_desc);
 		symbols[i].n_value = swap_long_long(symbols[i].n_value);
 		i++;

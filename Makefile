@@ -6,7 +6,7 @@
 #    By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 00:18:28 by dbaffier          #+#    #+#              #
-#    Updated: 2019/11/19 16:30:23 by dbaffier         ###   ########.fr        #
+#    Updated: 2019/12/01 18:03:38 by dbaffier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS_NM = main.c					\
 		  print.c					\
 		  symbol_type.c				\
 		  process_flag.c			\
+		  parse_flag.c				\
 
 SRCS_OT_DIR = otool/
 SRCS_OT = 

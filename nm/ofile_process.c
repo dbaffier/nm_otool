@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/19 16:34:11 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/01 01:29:57 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int			ofile_create(t_prg *nm_t)
 		return (ret);
 	if (of.file_type == OFILE_ARCHIVE)
 		process_archive(nm_t, &of);
+	if (of.file_type == OFILE_Mach_O)
+		nm_t->proc(&of, NULL, NULL);
+
+	//if (of->file_type == OFILE_MACH_O)
+
 	//nm_routine(nm_t, nm_t->addr);
 	// free ofile;
 	ofile_unmap(nm_t, &of);
