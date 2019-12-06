@@ -1202,21 +1202,6 @@ print_mach_symbols(
 		}
 
 		if(symbols[i].nl.n_type & N_STAB){
-			if(cmd_flags->o == TRUE || cmd_flags->A == TRUE){
-				if(arch_name != NULL)
-					printf("(for architecture %s):", arch_name);
-				if(ofile->dylib_module_name != NULL){
-					printf("%s:%s: ", ofile->file_name,
-							ofile->dylib_module_name);
-				}
-				else if(ofile->member_ar_hdr != NULL){
-					printf("%s:%.*s: ", ofile->file_name,
-							(int)ofile->member_name_size,
-							ofile->member_name);
-				}
-				else
-					printf("%s: ", ofile->file_name);
-			}
 			printf(ta_xfmt, symbols[i].nl.n_value);
 			printf(" - %02x %04x %5.5s %s\n",
 					(unsigned int)symbols[i].nl.n_sect & 0xff,
@@ -1422,155 +1407,14 @@ print_symbols(
 	}
 
 	for(i = 0; i < nsymbols; i++){
-		if(cmd_flags->x == TRUE){
-			printf(ta_xfmt, symbols[i].nl.n_value);
-			printf(" %02x %02x %04x ",
-					(unsigned int)(symbols[i].nl.n_type & 0xff),
-					(unsigned int)(symbols[i].nl.n_sect & 0xff),
-					(unsigned int)(symbols[i].nl.n_desc & 0xffff));
-			if(symbols[i].nl.n_un.n_strx == 0){
-				printf(i_xfmt, symbols[i].nl.n_un.n_strx);
-				if(ofile->lto != NULL)
-					printf(" %s", symbols[i].name);
-				else
-					printf(" (null)");
-			}
-			else if((uint32_t)symbols[i].nl.n_un.n_strx > strsize){
-				printf(i_xfmt, symbols[i].nl.n_un.n_strx);
-				printf(" (bad string index)");
-			}
-			else{
-				printf(i_xfmt, symbols[i].nl.n_un.n_strx);
-				printf(" %s", symbols[i].nl.n_un.n_strx + strings);
-			}
-			if((symbols[i].nl.n_type & N_STAB) == 0 &&
-					(symbols[i].nl.n_type & N_TYPE) == N_INDR){
-				if(symbols[i].nl.n_value == 0){
-					printf(" (indirect for ");
-					printf(ta_xfmt, symbols[i].nl.n_value);
-					printf(" (null))\n");
-				}
-				else if(symbols[i].nl.n_value > strsize){
-					printf(" (indirect for ");
-					printf(ta_xfmt, symbols[i].nl.n_value);
-					printf(" (bad string index))\n");
-				}
-				else{
-					printf(" (indirect for ");
-					printf(ta_xfmt, symbols[i].nl.n_value);
-					printf(" %s)\n", symbols[i].indr_name);
-				}
-			}
-			else
-				printf("\n");
-			continue;
-		}
-		if(cmd_flags->P == TRUE){
-			if(cmd_flags->A == TRUE){
-				if(arch_name != NULL)
-					printf("(for architecture %s): ", arch_name);
-				if(ofile->dylib_module_name != NULL){
-					printf("%s[%s]: ", ofile->file_name,
-							ofile->dylib_module_name);
-				}
-				else if(ofile->member_ar_hdr != NULL){
-					printf("%s[%.*s]: ", ofile->file_name,
-							(int)ofile->member_name_size,
-							ofile->member_name);
-				}
-				else
-					printf("%s: ", ofile->file_name);
-			}
-			printf("%s ", symbols[i].name);
-
-			/* type */
-			c = symbols[i].nl.n_type;
-			if(c & N_STAB)
-				c = '-';
-			else{
-				switch(c & N_TYPE){
-					case N_UNDF:
-						c = 'u';
-						if(symbols[i].nl.n_value != 0)
-							c = 'c';
-						break;
-					case N_PBUD:
-						c = 'u';
-						break;
-					case N_ABS:
-						c = 'a';
-						break;
-					case N_SECT:
-						if(symbols[i].nl.n_sect ==
-								process_flags->text_nsect)
-							c = 't';
-						else if(symbols[i].nl.n_sect ==
-								process_flags->data_nsect)
-							c = 'd';
-						else if(symbols[i].nl.n_sect ==
-								process_flags->bss_nsect)
-							c = 'b';
-						else
-							c = 's';
-						break;
-					case N_INDR:
-						c = 'i';
-						break;
-					default:
-						c = '?';
-						break;
-				}
-			}
-			if((symbols[i].nl.n_type & N_EXT) && c != '?')
-				c = toupper(c);
-			printf("%c ", c);
-			printf(cmd_flags->format, symbols[i].nl.n_value);
-			printf(" 0\n"); /* the 0 is the size for conformance */
-			continue;
-		} c = symbols[i].nl.n_type;
+		c = symbols[i].nl.n_type;
 		if(c & N_STAB){
-			if(cmd_flags->o == TRUE || cmd_flags->A == TRUE){
-				if(arch_name != NULL)
-					printf("(for architecture %s):", arch_name);
-				if(ofile->dylib_module_name != NULL){
-					printf("%s:%s: ", ofile->file_name,
-							ofile->dylib_module_name);
-				}
-				else if(ofile->member_ar_hdr != NULL){
-					printf("%s:%.*s: ", ofile->file_name,
-							(int)ofile->member_name_size,
-							ofile->member_name);
-				}
-				else
-					printf("%s: ", ofile->file_name);
-			}
 			printf(ta_xfmt, symbols[i].nl.n_value);
 			printf(" - %02x %04x %5.5s ",
 					(unsigned int)symbols[i].nl.n_sect & 0xff,
 					(unsigned int)symbols[i].nl.n_desc & 0xffff,
 					stab(symbols[i].nl.n_type));
-			if(cmd_flags->b == TRUE){
-				for(p = symbols[i].name; *p != '\0'; p++){
-					printf("%c", *p);
-					if(*p == '('){
-						p++;
-						while(isdigit((unsigned char)*p))
-							p++;
-						p--;
-					}
-					if(*p == '.' && p[1] != '\0' && p[1] == '_'){
-						p++; /* one for the '.' */
-						p++; /* and one for the '_' */
-						while(isdigit((unsigned char)*p))
-							p++;
-						p--;
-					}
-				}
-				printf("\n");
-			}
-			else{
 				printf("%s\n", symbols[i].name);
-			}
 			continue;
 		}
 		switch(c & N_TYPE){
@@ -1759,3 +1603,4 @@ value_diff_compare(
 	/* if p1->size == p2->size */
 	return(0);
 }
+

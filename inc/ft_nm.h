@@ -6,13 +6,14 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:52:31 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/03 01:41:07 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 21:47:30 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_NM_H
 # define FT_NM_H
 
+#include <stdbool.h>
 #include "ft_ofile.h"
 
 # define ARGS0 "	-a\tDisplay all symbol table entries.\n"
@@ -28,16 +29,16 @@
 
 typedef struct		s_flags
 {
-	unsigned int			a : 1;
-	unsigned int			g : 1;
-	unsigned int			n : 1;
-	unsigned int			o : 1;
-	unsigned int			p : 1;
-	unsigned int			r : 1;
-	unsigned int			u : 1;
-	unsigned int			U : 1;
-	unsigned int			j : 1;
-	unsigned int			A : 1;
+	unsigned int			a;
+	unsigned int			g;
+	unsigned int			n;
+	unsigned int			o;
+	unsigned int			p;
+	unsigned int			r;
+	unsigned int			u;
+	unsigned int			U;
+	unsigned int			j;
+	unsigned int			A;
 }					t_flags;
 
 struct symbol {
@@ -82,7 +83,7 @@ int		select_symbol(struct symbol *symbol, char *flg, char *proc_flg);
 void	select_print_symbols(t_nm *nm, t_ofile *of, int size);
 int		type_symbol(t_process_flg *f, struct symbol sl);
 void	print_header(t_ofile *of, char *cmd);
-void	print_symbols(t_ofile *of, t_nm *nm);
+void	print_symbols(t_ofile *of, t_nm *nm, t_flags *f);
 void		process_flg_sect(t_nm *nm, t_ofile *of,  t_process_flg *f, struct load_command *lc);
 
 #endif

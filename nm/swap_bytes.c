@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 23:55:58 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/01 00:44:48 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 22:36:01 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,11 @@ uint32_t swap_uint32(uint32_t val)
 int32_t swap_int32(int32_t val)
 {
 	return (((val & 0xFF00FF00) >> 8) | ((val & 0xFF00FF) << 8));
+}
+
+unsigned long	swap_long(unsigned int val)
+{
+	return (((val) << 24) | (((val << 8) & 0x00ff0000) |
+				(((val) >> 8) & 0x0000ff00) |
+				((unsigned long)(val) >> 24)));
 }

@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:31:53 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/03 01:45:05 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 20:07:25 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,57 +37,6 @@ int		select_symbol(struct symbol *symbol, char *flg, char *proc_flg)
 	return (1);
 }
 
-struct stabnames *get_stab(void)
-{
-	static const struct stabnames stabnames[] = {
-	{ N_GSYM,  "GSYM" },
-	{ N_FNAME, "FNAME" },
-	{ N_FUN,   "FUN" },
-	{ N_STSYM, "STSYM" },
-	{ N_LCSYM, "LCSYM" },
-	{ N_BNSYM, "BNSYM" },
-	{ N_OPT,   "OPT" },
-	{ N_RSYM,  "RSYM" },
-	{ N_SLINE, "SLINE" },
-	{ N_ENSYM, "ENSYM" },
-	{ N_SSYM,  "SSYM" },
-	{ N_SO,    "SO" },
-	{ N_OSO,   "OSO" },
-	{ N_LSYM,  "LSYM" },
-	{ N_BINCL, "BINCL" },
-	{ N_SOL,   "SOL" },
-	{ N_PARAMS,"PARAM" },
-	{ N_VERSION,"VERS" },
-	{ N_OLEVEL,"OLEV" },
-	{ N_PSYM,  "PSYM" },
-	{ N_EINCL, "EINCL" },
-	{ N_ENTRY, "ENTRY" },
-	{ N_LBRAC, "LBRAC" },
-	{ N_EXCL,  "EXCL" },
-	{ N_RBRAC, "RBRAC" },
-	{ N_BCOMM, "BCOMM" },
-	{ N_ECOMM, "ECOMM" },
-	{ N_ECOML, "ECOML" },
-	{ N_LENG,  "LENG" },
-	{ N_PC,    "PC" },
-	{ 0, 0 }};
-
-	return (stabnames);
-}
-
-static char	*stab(unsigned char n_type)
-{
-	const struct stabnames *p;
-
-	p = get_stab();
-	while (p->name)
-	{
-		if (p->n_type == n_type)
-			return (p->name);
-		p++;
-	}
-}
-
 void	select_print_symbols(t_nm *nm, t_ofile *of, int size)
 {
 	char		*str;
@@ -98,12 +47,17 @@ void	select_print_symbols(t_nm *nm, t_ofile *of, int size)
 	str = of->object_addr + nm->st->stroff;
 	while (i < nm->nsymbs)
 	{
-		// stab
 		if(nm->select_sym[i].nl.n_un.n_strx == 0)
 			nm->select_sym[i].name = "";
 		else
-		{
 			nm->select_sym[i].name = nm->select_sym[i].nl.n_un.n_strx + str;
+		if ((nm->select_sym[i].nl.n_type & N_STAB) == 0 &&
+				(nm->select_sym[i].nl.n_type & N_TYPE) == N_INDR)
+		{
+			if (nm->select_sym[i].nl.n_value == 0)
+				nm->select_sym[i].indr_name = "";
+			else
+				nm->select_sym[i].indr_name = str + nm->select_sym[i].nl.n_value;
 		}
 		i++;
 	}

@@ -6,14 +6,14 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 00:35:15 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/01 18:05:20 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 21:48:28 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_nm.h"
 #include "ft_printf.h"
 #include "ft_ofile.h"
+#include "ft_nm.h"
 
 int main(int ac, char **av)
 {
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 	prg.proc = &nm;
 	while (prg.target)
 	{
-		err = ofile_create(&prg);
+		err = ofile_create(&prg, &f);
 		i++;
 		prg.target = av[i];
 	}

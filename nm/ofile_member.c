@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 23:45:51 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/19 16:34:02 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 22:50:56 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int		ofile_set_fat(t_ofile *ofile)
 	uint32_t		magic;
 
 	ft_memcpy(&magic, ofile->member_addr, sizeof(unsigned long));
-	if (magic == FAT_MAGIC || magic == swap_uint32(FAT_MAGIC))
+	if (magic == FAT_MAGIC || magic == swap_long(FAT_MAGIC))
 	{
 		ofile->member_type = OFILE_FAT;
 		ofile->fat_header = (struct fat_header *)(ofile->member_addr);

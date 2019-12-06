@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:50:02 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/03 01:45:07 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 22:54:51 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	nm(t_ofile *ofile, char *arch_name, void *cookie)
 	t_nm			nm;
 	t_process_flg	process_flag;
 
-	(void)cookie;
 	(void)arch_name;
+	printf("Enter\n");
 	if (ofile->mh == NULL && ofile->mh64 == NULL)
 		return ;
 	ft_memset(&nm, 0, sizeof(t_nm));
@@ -82,8 +82,8 @@ void	nm(t_ofile *ofile, char *arch_name, void *cookie)
 	process_flag.text_nsect = NO_SECT;
 	process_flag.data_nsect = NO_SECT;
 	process_flag.bss_nsect = NO_SECT;
-	nm.f = &process_flag;
+	nm.f = cookie;
 	nm_set(&nm, ofile, &process_flag);
 	print_header(ofile, NULL);
-	print_symbols(ofile, &nm);
+	print_symbols(ofile, &nm, cookie);
 }

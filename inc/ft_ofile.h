@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 01:03:24 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/01 17:20:32 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 22:36:04 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,14 +140,14 @@ void				ofile_object_clear(t_ofile *of);
 unsigned long		size_ar_name(struct ar_hdr *ar_hdr);
 unsigned long		ft_strtoul(const char *ptr, char **endptr, int base);
 
-int					process_archive(t_prg *nm_t, t_ofile *of);
+int					process_archive(t_prg *nm_t, t_ofile *of, void *cookie);
 void				nm(t_ofile *ofile, char *arch_name, void *cookie);
 
 
 uint32_t			process_fat(t_prg *nm_t, t_ofile *of);
 
 //uint32_t	fat(void *file);
-int			ofile_create(t_prg *nm_t);
+int			ofile_create(t_prg *nm_t, void *cookie);
 int			nm_routine(t_prg *nm_t, void *addr);
 int			nm_err(t_prg *nm, int err);
 
@@ -155,6 +155,7 @@ uint16_t	swap_uint16(uint16_t val);
 uint32_t	swap_uint32(uint32_t val);
 int16_t		swap_int16(int16_t val);
 int32_t		swap_int32(int32_t val);
+unsigned long		swap_long(unsigned int val);
 long long	swap_long_long(long long ll);
 short		swap_short(short s);
 

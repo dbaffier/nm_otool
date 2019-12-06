@@ -6,11 +6,12 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/01 01:29:57 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/06 22:48:05 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ofile.h"
+#include "ft_nm.h"
 
 static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 {
@@ -24,8 +25,6 @@ static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 	ft_fat(of, addr, magic, host_byte_sex);
 	ft_mach_o(of, addr, magic, host_byte_sex);
 	ft_archive(of, addr, magic, host_byte_sex);
-	//of->file_addr += sizeof(uint32_t);
-	//ofile_get_arch(of, of->fat_header, of->fat_archs, 0);
 	return (0);
 }
 
@@ -51,7 +50,7 @@ static int	ofile_map(t_prg *nm_t, t_ofile *of)
 	return (0);
 }
 
-int			ofile_create(t_prg *nm_t)
+int			ofile_create(t_prg *nm_t, void *cookie)
 {
 	int			ret;
 	t_ofile		of;
@@ -59,14 +58,11 @@ int			ofile_create(t_prg *nm_t)
 	ft_memset(&of, 0, sizeof(t_ofile));
 	if ((ret = ofile_map(nm_t, &of)) > 0)
 		return (ret);
-	if (of.file_type == OFILE_ARCHIVE)
-		process_archive(nm_t, &of);
+	if (of.file_type == OFILE_ARCHIVE || of.file_type == OFILE_FAT)
+		process_archive(nm_t, &of, cookie);
 	if (of.file_type == OFILE_Mach_O)
-		nm_t->proc(&of, NULL, NULL);
+		nm_t->proc(&of, NULL, cookie);
 
-	//if (of->file_type == OFILE_MACH_O)
-
-	//nm_routine(nm_t, nm_t->addr);
 	// free ofile;
 	ofile_unmap(nm_t, &of);
 	return (0);
