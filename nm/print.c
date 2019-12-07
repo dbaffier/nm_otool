@@ -6,24 +6,28 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 23:35:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/06 21:58:23 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:46:52 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-#include <mach-o/stab.h>
 
-void	print_header(t_ofile *of, char *cmd)
+void			print_header(t_ofile *of, t_flags *f)
 {
-	(void)cmd;
-	if (of->member_ar_hdr)
-		ft_printf("\n%s(%.*s):\n", of->file_name, (int)of->member_name_size, of->member_name);
+	if (of->member_ar_hdr && (f->o == 0 && f->aa == 0))
+	{
+		if (of->member_ar_hdr != NULL)
+			ft_printf("\n%s(%.*s):\n", of->file_name,
+					(int)of->member_name_size, of->member_name);
+		else
+			ft_printf("\n%s:\n", of->file_name);
+	}
 }
 
-static void	quicksort(struct symbol *symbol, int size)
+static void		quicksort(struct s_symbol *symbol, int size)
 {
-	struct symbol tmp;
-	int		i;
+	struct s_symbol	tmp;
+	int				i;
 
 	i = 0;
 	while (i < size)
@@ -40,83 +44,42 @@ static void	quicksort(struct symbol *symbol, int size)
 	}
 }
 
-static const struct stabnames stabnames[] = {
-	{ N_GSYM,  "GSYM" },
-	{ N_FNAME, "FNAME" },
-	{ N_FUN,   "FUN" },
-	{ N_STSYM, "STSYM" },
-	{ N_LCSYM, "LCSYM" },
-	{ N_BNSYM, "BNSYM" },
-	{ N_OPT,   "OPT" },
-	{ N_RSYM,  "RSYM" },
-	{ N_SLINE, "SLINE" },
-	{ N_ENSYM, "ENSYM" },
-	{ N_SSYM,  "SSYM" },
-	{ N_SO,    "SO" },
-	{ N_OSO,   "OSO" },
-	{ N_LSYM,  "LSYM" },
-	{ N_BINCL, "BINCL" },
-	{ N_SOL,   "SOL" },
-	{ N_PARAMS,"PARAM" },
-	{ N_VERSION,"VERS" },
-	{ N_OLEVEL,"OLEV" },
-	{ N_PSYM,  "PSYM" },
-	{ N_EINCL, "EINCL" },
-	{ N_ENTRY, "ENTRY" },
-	{ N_LBRAC, "LBRAC" },
-	{ N_EXCL,  "EXCL" },
-	{ N_RBRAC, "RBRAC" },
-	{ N_BCOMM, "BCOMM" },
-	{ N_ECOMM, "ECOMM" },
-	{ N_ECOML, "ECOML" },
-	{ N_LENG,  "LENG" },
-	{ N_PC,    "PC" },
-	{ 0, 0 }};
-
-static char	*stab(unsigned char n_type)
+void			print_classic(t_nm *nm, char c, size_t i)
 {
-	const struct stabnames *p;
-
-	p = stabnames;
-	while (p->name)
-	{
-		if (p->n_type == n_type)
-			return (p->name);
-		p++;
-	}
-	return (NULL);
+	if (nm->select_sym[i].nl.n_type & N_EXT && c != '?')
+		c = ft_toupper(c);
+	if (c == 'u' || c == 'U' || c == 'i' || c == 'I')
+		ft_printf("%*s ", 16, "");
+	else
+		ft_printf("%016llx ", nm->select_sym[i].nl.n_value);
+	ft_printf("%c ", c);
 }
 
-void	print_symbols(t_ofile *of, t_nm *nm, t_flags *f)
+void			print_symbols(t_ofile *of, t_nm *nm, t_flags *f)
 {
 	char		c;
 	size_t		i;
 
-	i = 0;
-	quicksort(nm->select_sym, nm->nsymbs);
-	(void)of;
-	while (i < nm->nsymbs)
+	i = -1;
+	if (f->p == 0)
+		quicksort(nm->select_sym, nm->nsymbs);
+	while (++i < nm->nsymbs)
 	{
-		if (nm->select_sym[i].nl.n_type & N_STAB)
+		if (print_stab(nm, i))
+			continue ;
+		c = type_symbol(nm->flg, nm->select_sym[i]);
+		if (f->u && c != 'u')
+			continue ;
+		if (f->o || f->aa)
 		{
-			ft_printf("%016llx ", nm->select_sym[i].nl.n_value);
-			ft_printf(" - %02x %04x %5.5s",
-					(unsigned int)nm->select_sym[i].nl.n_sect & 0xff,
-					(unsigned int)nm->select_sym[i].nl.n_desc & 0xffff,
-					stab(nm->select_sym[i].nl.n_type));
-			ft_printf("%s\n", nm->select_sym[i].name);
+			if (of->member_ar_hdr)
+				ft_printf("%s:%.*s: ", of->file_name,
+						(int)of->member_name_size, of->member_name);
+			else
+				ft_printf("%s: ", of->file_name);
 		}
 		if (f->u == 0 && f->j == 0)
-		{
-			printf("Enter\n");
-			c = type_symbol(nm->f, nm->select_sym[i]);
-			if (c == 'u' || c == 'U' || c == 'i' || c == 'I')
-				ft_printf("%*s ", 16, "");
-			else
-				ft_printf("%016llx ", nm->select_sym[i].nl.n_value);
-			ft_printf("%c ", c);
-		}
+			print_classic(nm, c, i);
 		ft_printf("%s\n", nm->select_sym[i].name);
-		i++;
 	}
 }

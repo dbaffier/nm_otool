@@ -6,21 +6,19 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 22:04:03 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/16 17:07:03 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:34:18 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ofile.h"
 
-enum byte_sex get_host_byte_sex(void)
+enum e_byte_sex		get_host_byte_sex(void)
 {
 	uint32_t	s;
 
 	s = (BIG_ENDIAN_BYTE_SEX << 24) | LITTLE_ENDIAN_BYTE_SEX;
-	// print value;
-	return ((enum byte_sex)*((char *)&s));
+	return ((enum e_byte_sex)*((char *)&s));
 }
-
 
 int					ft_ar_name(struct ar_hdr *hdr, char **name, size_t *len)
 {

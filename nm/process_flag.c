@@ -6,13 +6,14 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 17:37:48 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/01 02:14:17 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 18:35:01 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static void		manage_sect_32(t_process_flg *f, struct load_command *lc, size_t *k)
+static void		manage_sect_32(t_process_flg *f,
+		struct load_command *lc, size_t *k)
 {
 	struct segment_command	*sc;
 	struct section			*s;
@@ -37,7 +38,8 @@ static void		manage_sect_32(t_process_flg *f, struct load_command *lc, size_t *k
 	}
 }
 
-static void		manage_sect_64(t_process_flg *f, struct load_command *lc, size_t *k)
+static void		manage_sect_64(t_process_flg *f,
+		struct load_command *lc, size_t *k)
 {
 	struct segment_command_64	*sc;
 	struct section_64			*s;
@@ -62,7 +64,8 @@ static void		manage_sect_64(t_process_flg *f, struct load_command *lc, size_t *k
 	}
 }
 
-void		process_flg_sect(t_nm *nm, t_ofile *of, t_process_flg *f, struct load_command *lc)
+void			process_flg_sect(t_nm *nm, t_ofile *of,
+		t_process_flg *f, struct load_command *lc)
 {
 	size_t		i;
 	size_t		k;
@@ -70,9 +73,11 @@ void		process_flg_sect(t_nm *nm, t_ofile *of, t_process_flg *f, struct load_comm
 	i = 0;
 	k = 0;
 	if (of->mh)
-		f->sections = (struct section **)malloc(sizeof(struct section *) * f->nsects);
+		f->sections = (struct section **)
+			malloc(sizeof(struct section *) * f->nsects);
 	else
-		f->sections64 = (struct section_64 **)malloc(sizeof(struct section_64 *) * f->nsects);
+		f->sections64 = (struct section_64 **)
+			malloc(sizeof(struct section_64 *) * f->nsects);
 	while (i < nm->ncmds)
 	{
 		if (lc->cmd == LC_SEGMENT)

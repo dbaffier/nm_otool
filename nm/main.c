@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 00:35:15 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/06 21:48:28 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:25:00 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_ofile.h"
 #include "ft_nm.h"
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_prg		prg;
 	t_flags		f;

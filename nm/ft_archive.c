@@ -6,13 +6,13 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 18:58:20 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/06 21:14:10 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:33:31 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ofile.h"
 
-int		ft_archive(t_ofile *of, void *addr, uint32_t magic, enum byte_sex e)
+int		ft_archive(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)
 {
 	(void)e;
 	(void)magic;

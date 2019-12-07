@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:16:29 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/06 20:54:36 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:47:02 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ static int	symbol_n_type(t_process_flg *f, char c, int nl_value, int nl_sect)
 	return ('?');
 }
 
-int		type_symbol(t_process_flg *f, struct symbol sl)
+int			type_symbol(t_process_flg *f, struct s_symbol sl)
 {
 	char	c;
 
 	c = symbol_n_type(f, sl.nl.n_type & N_TYPE, sl.nl.n_value, sl.nl.n_sect);
-	if (sl.nl.n_type & N_EXT && c != '?')
-		return (ft_toupper(c));
 	return (c);
 }

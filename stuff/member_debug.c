@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:22:17 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/14 14:22:02 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:34:50 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ void	ofile_member_debug(t_ofile *ofile)
 	printf("file_type = 0x%x\n", (unsigned int)ofile->file_type);
 	printf("fat_header = 0x%x\n", (unsigned int)ofile->fat_header);
 	printf("fat_archs = 0x%x\n", (unsigned int)ofile->fat_archs);
-	printf("narch = 0x%x\n", (unsigned int)ofile->narch);
-	printf("arch_type = 0x%x\n", (unsigned int)ofile->arch_type);
-	printf("arch_flag.name = %s\n", ofile->arch_flag.name);
-	printf("arch_flag.cputype = 0x%x\n",
-		(unsigned int)ofile->arch_flag.cputype);
-	printf("arch_flag.cpusubtype = 0x%x\n",
-		(unsigned int)ofile->arch_flag.cpusubtype);
 	printf("member_offset = 0x%x\n", (unsigned int)ofile->member_offset);
 	printf("member_name = %s\n", ofile->member_name);
 	printf("member_addr = 0x%x\n", (unsigned int)ofile->member_addr);
