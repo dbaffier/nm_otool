@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 23:21:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/07 20:22:54 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/08 18:39:10 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	print_fat_headers(struct fat_header *hdr,
 	long		i;
 
 	i = -1;
+	ft_printf("Fat headers\n");
 	ft_printf("fat magic %#x\n", (unsigned long)(hdr->magic));
 	ft_printf("nfat_arch %lu", hdr->nfat_arch);
 	ft_printf("\n");

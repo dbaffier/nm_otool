@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 01:58:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/07 20:49:10 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/08 18:38:27 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ uint32_t	ft_fat(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)
 		of->fat_archs = (struct fat_arch *)(addr + sizeof(struct fat_header));
 		(magic == FAT_MAGIC) ? 0 : swap_fat_header(of->fat_header);
 		(magic == FAT_MAGIC) ? 0 : swap_fat_arch(of->fat_archs, of->fat_header->nfat_arch);
-		// if flag otools)
-		//	print_fat_headers(of->fat_header, of->fat_archs, of->file_size);
+		if (of->prog)
+			print_fat_headers(of->fat_header, of->fat_archs, of->file_size);
 		return (process_fat(of));
 	}
 	return (0);

@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_otool.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 00:35:15 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/08 17:52:46 by dbaffier         ###   ########.fr       */
+/*   Created: 2019/12/08 17:31:26 by dbaffier          #+#    #+#             */
+/*   Updated: 2019/12/08 18:03:30 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
-#include "ft_ofile.h"
-#include "ft_nm.h"
+#ifndef FT_OTOOL_H
+# define FT_OTOOL_H
 
-int		main(int ac, char **av)
+typedef struct		s_flags
 {
-	t_prg		prg;
-	t_flags		f;
-	int			err;
-	size_t		i;
+	unsigned int	a;
+}					t_flags;
 
-	ft_memset(&prg, 0, sizeof(prg));
-	i = parse_flag(&f, av, ac, 1);
-	prg.target = av[i] ? av[i] : "a.out";
-	prg.proc = &nm;
-	while (prg.target)
-	{
-		err = ofile_create(&prg, &f);
-		i++;
-		prg.target = av[i];
-	}
-	return (err);
-}
+void		processor(t_ofile *of, char *arch_name, void *cookie);
+
+#endif

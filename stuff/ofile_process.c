@@ -6,12 +6,11 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/07 20:36:13 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/08 18:43:23 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ofile.h"
-#include "ft_nm.h"
 
 static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 {
@@ -48,6 +47,8 @@ static int	ofile_map(t_prg *nm_t, t_ofile *of)
 	close(fd);
 	if ((of->file_name = ft_strdup(nm_t->target)) == NULL)
 		return (ERR_MALLOC);
+	if (!ft_strcmp(nm_t->pnam, "./ft_otool"))
+		of->prog = 1;
 	ofile_type(of, sb.st_size, addr);
 	return (0);
 }
