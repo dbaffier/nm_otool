@@ -6,7 +6,7 @@
 #    By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 00:18:28 by dbaffier          #+#    #+#              #
-#    Updated: 2019/12/08 18:33:25 by dbaffier         ###   ########.fr        #
+#    Updated: 2019/12/08 23:19:58 by dbaffier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,9 @@ SRCS_NM = main.c					\
 SRCS_OT_DIR = otool/
 SRCS_OT = main.c					\
 		  processor.c				\
+		  parse_flag.c				\
+		  print_header.c			\
+		  print_loadcmds.c			\
 
 all: $(OBJS_NM_DIR) $(OBJS_STUFF_DIR) $(OBJS_OT_DIR) $(LIBFT_LIB) $(NM) $(OTOOL)
 
