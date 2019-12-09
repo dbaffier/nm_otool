@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:43:05 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/08 23:22:30 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/09 23:59:39 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ static void	process_set(t_ofile *of, t_flags *f)
 	t_data				data;
 
 	init_data(&data, of);
-	if (f->h)
+	if (f->h || f->l)
 		(of->mh) ? print_mach_header(of->mh) : print_mach_header_64(of->mh64);
 	if (f->l)
 		print_loadcmds(of, &data);
+	if (f->ll || f->dd)
+		print_libraries(of->load_commands, &data);
 }
 
 void		processor(t_ofile *of, char *arch_name, void *cookie)

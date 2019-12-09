@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:52:31 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/08 21:07:48 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/09 23:59:39 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@
 
 typedef struct		s_flags
 {
-	unsigned int			a;
-	unsigned int			g;
-	unsigned int			o;
-	unsigned int			p;
-	unsigned int			u;
-	unsigned int			uu;
-	unsigned int			j;
-	unsigned int			aa;
+	unsigned int			a : 1;
+	unsigned int			g : 1;
+	unsigned int			o : 1;
+	unsigned int			p : 1;
+	unsigned int			u : 1;
+	unsigned int			uu : 1;
+	unsigned int			j : 1;
+	unsigned int			aa : 1;
 }					t_flags;
 
 struct				s_symbol

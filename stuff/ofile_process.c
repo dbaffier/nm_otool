@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/08 22:34:28 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/09 23:41:06 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static int	ofile_map(t_prg *nm_t, t_ofile *of)
 	close(fd);
 	if ((of->file_name = ft_strdup(nm_t->target)) == NULL)
 		return (ERR_MALLOC);
-	if (!ft_strcmp(nm_t->pnam, "./ft_otool"))
-		of->prog = 1;
 	ofile_type(of, sb.st_size, addr);
 	return (0);
 }
@@ -59,6 +57,8 @@ int			ofile_create(t_prg *nm_t, void *cookie)
 	t_ofile		of;
 
 	ft_memset(&of, 0, sizeof(t_ofile));
+	if (!ft_strcmp(nm_t->pnam, "./ft_otool") && *((int *)cookie))
+		of.prog = 1;
 	if ((ret = ofile_map(nm_t, &of)) > 0)
 		return (ret);
 	if (of.file_type == OFILE_ARCHIVE)

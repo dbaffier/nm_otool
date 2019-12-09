@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 21:44:32 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/08 23:20:19 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/09 23:58:04 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 
 typedef struct		s_flags
 {
-	unsigned int	f;
-	unsigned int	l;
-	unsigned int	h;
-	unsigned int	ll;
-	unsigned int	dd;
-	unsigned int	t;
-	unsigned int	d;
-	unsigned int	ss;
-	int				object_process;
+	unsigned int	f : 1;
+	unsigned int	l : 1;
+	unsigned int	h : 1;
+	unsigned int	ll : 1;
+	unsigned int	dd : 1;
+	unsigned int	t : 1;
+	unsigned int	d : 1;
+	unsigned int	ss : 1;
+	int				object_process : 1;
 }					t_flags;
 
 
@@ -44,11 +44,16 @@ typedef struct		s_data
 }					t_data;
 
 int					parse_flag(t_flags *f, char **av, int ac, int i);
+
 void				processor(t_ofile *of, char *arch_name, void *cookie);
 
 void				print_header(t_ofile *of);
-void				print_mach_header_64(struct mach_header_64 *mh64);
-void				print_mach_header(struct mach_header *mh);
 void				print_loadcmds(t_ofile *of, t_data *data);
+void				print_mach_header(struct mach_header *mh);
+void				print_mach_header_64(struct mach_header_64 *mh64);
+void				print_libraries(struct load_command *load_c, t_data *data);
+void				print_lc_symtab(t_ofile *of, t_data *data, struct load_command *lc);
+void				print_lc_segment32(t_ofile *of, t_data *data, struct load_command *lc);
+void				print_lc_segment64(t_ofile *of, t_data *data, struct load_command *lc);
 
 #endif
