@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 23:41:06 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:07:23 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int			ofile_create(t_prg *nm_t, void *cookie)
 	t_ofile		of;
 
 	ft_memset(&of, 0, sizeof(t_ofile));
-	if (!ft_strcmp(nm_t->pnam, "./ft_otool") && *((int *)cookie))
+	if (!ft_strcmp(nm_t->pnam, "./ft_otool") && *((int *)cookie) & 0x1)
 		of.prog = 1;
 	if ((ret = ofile_map(nm_t, &of)) > 0)
 		return (ret);

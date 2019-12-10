@@ -2393,42 +2393,18 @@ get_sect_info(
 		memcpy((char *)&l, (char *)lc, sizeof(struct load_command));
 		if(swapped)
 			swap_load_command(&l, host_byte_sex);
-		if(l.cmdsize % sizeof(int32_t) != 0)
-			printf("load command %u size not a multiple of "
-					"sizeof(int32_t)\n", i);
-		if((char *)lc + l.cmdsize >
-				(char *)load_commands + sizeofcmds)
-			printf("load command %u extends past end of load "
-					"commands\n", i);
-		left = sizeofcmds - ((char *)lc - (char *)load_commands);
 
 		switch(l.cmd){
 			case LC_SEGMENT:
-				memset((char *)&sg, '\0', sizeof(struct segment_command));
-				size = left < sizeof(struct segment_command) ?
-					left : sizeof(struct segment_command);
+					//sizeof(struct segment_command);
 				memcpy((char *)&sg, (char *)lc, size);
-				if(swapped)
-					swap_segment_command(&sg, host_byte_sex);
-
 				if((filetype == MH_OBJECT && sg.segname[0] == '\0') ||
 						strncmp(sg.segname, segname, sizeof(sg.segname)) == 0){
 					*seg_addr = sg.vmaddr;
 					p = (char *)lc + sizeof(struct segment_command);
 					for(j = 0 ; found == FALSE && j < sg.nsects ; j++){
-						if(p + sizeof(struct section) >
-								(char *)load_commands + sizeofcmds){
-							printf("section structure command extends past "
-									"end of load commands\n");
-						}
-						left = sizeofcmds - (p - (char *)load_commands);
-						memset((char *)&s, '\0', sizeof(struct section));
-						size = left < sizeof(struct section) ?
-							left : sizeof(struct section);
+							//sizeof(struct section);
 						memcpy((char *)&s, p, size);
-						if(swapped)
-							swap_section(&s, 1, host_byte_sex);
-
 						if(strncmp(s.sectname, sectname,
 									sizeof(s.sectname)) == 0 &&
 								strncmp(s.segname, segname,
@@ -2437,11 +2413,7 @@ get_sect_info(
 							cmd = LC_SEGMENT;
 							break;
 						}
-
-						if(p + sizeof(struct section) >
-								(char *)load_commands + sizeofcmds)
-							return(FALSE);
-						p += size;
+						p += sizeof(struct segment_command);
 					}
 				}
 				break;
@@ -2488,14 +2460,7 @@ get_sect_info(
 				}
 				break;
 		}
-		if(l.cmdsize == 0){
-			printf("load command %u size zero (can't advance to other "
-					"load commands)\n", i);
-			break;
-		}
 		lc = (struct load_command *)((char *)lc + l.cmdsize);
-		if((char *)lc > (char *)load_commands + sizeofcmds)
-			break;
 	}
 	if(found == FALSE)
 		return(FALSE);

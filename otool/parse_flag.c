@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 21:31:06 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 23:54:05 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/10 17:48:43 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 int		ft_err(char *err)
 {
 	ft_dprintf(2, "error: ./ft_otool %s\n", err);
+	ft_dprintf(2,
+			"Usage: %s [-hlLDtdfS] "
+			"<object file> ...\n", "./ft_otool");
+	ft_dprintf(2, "\t-f print the fat headers\n");
+	ft_dprintf(2, "\t-h print the mach header\n");
+	ft_dprintf(2, "\t-l print the load commands\n");
+	ft_dprintf(2, "\t-L print shared libraries used\n");
+	ft_dprintf(2, "\t-D print shared library id name\n");
+	ft_dprintf(2, "\t-t print the text section\n");
+	ft_dprintf(2, "\t-d print the data section\n");
 	exit(1);
 }
 

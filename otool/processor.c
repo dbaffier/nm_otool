@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:43:05 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 23:59:39 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:37:19 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	init_data(t_data *data, t_ofile *o)
 {
+	ft_memset(data, 0, sizeof(t_data));
 	data->addr = o->object_addr;
 	data->size = o->object_size;
 	data->mh_magic = o->mh ? o->mh->magic : o->mh64->magic;
@@ -37,6 +38,8 @@ static void	process_set(t_ofile *of, t_flags *f)
 		print_loadcmds(of, &data);
 	if (f->ll || f->dd)
 		print_libraries(of->load_commands, &data);
+	if (f->t)
+		get_sect_info(of, &data);
 }
 
 void		processor(t_ofile *of, char *arch_name, void *cookie)

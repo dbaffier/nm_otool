@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 21:44:32 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 23:58:04 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:36:03 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct		s_data
 	uint32_t		mh_ncmds;
 	uint32_t		mh_sizeofcmds;
 	uint32_t		sizeof_mach_header;
+	char			*sect;
+	uint32_t		sect_nrelocs;
+	uint32_t		sect_flags;
+	uint64_t		sect_addr;
+	uint64_t		sect_size;
+	struct relocation_info	*sect_relocs;
 }					t_data;
 
 int					parse_flag(t_flags *f, char **av, int ac, int i);
