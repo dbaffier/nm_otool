@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 22:27:57 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 19:14:58 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/11 19:27:08 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		print_header(t_ofile *of)
 {
 	ft_printf("%s", of->file_name);
 	if (of->member_ar_hdr)
-		ft_printf("(%.*s)\n", (int)of->member_name_size, of->member_name);
+		ft_printf("(%.*s):\n", (int)of->member_name_size, of->member_name);
 	else
 		ft_printf(":\n");
 }

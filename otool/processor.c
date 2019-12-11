@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:43:05 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/10 18:37:19 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/11 19:22:00 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	process_set(t_ofile *of, t_flags *f)
 		print_libraries(of->load_commands, &data);
 	if (f->t)
 		get_sect_info(of, &data);
+	print_text(of, &data);
 }
 
 void		processor(t_ofile *of, char *arch_name, void *cookie)

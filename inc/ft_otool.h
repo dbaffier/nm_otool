@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 21:44:32 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/10 18:36:03 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:13:14 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_flags
 
 typedef struct		s_data
 {
+	uint32_t		cmd;
+	int				found;
 	char			*addr;
 	unsigned long	size;
 	cpu_type_t		mh_cputype;
@@ -46,7 +48,10 @@ typedef struct		s_data
 	uint32_t		sect_flags;
 	uint64_t		sect_addr;
 	uint64_t		sect_size;
+	uint64_t		seg_addr;
 	struct relocation_info	*sect_relocs;
+	struct section_64		*s64;
+	struct segment_command_64	*sg64;
 }					t_data;
 
 int					parse_flag(t_flags *f, char **av, int ac, int i);
@@ -61,5 +66,7 @@ void				print_libraries(struct load_command *load_c, t_data *data);
 void				print_lc_symtab(t_ofile *of, t_data *data, struct load_command *lc);
 void				print_lc_segment32(t_ofile *of, t_data *data, struct load_command *lc);
 void				print_lc_segment64(t_ofile *of, t_data *data, struct load_command *lc);
+void				get_sect_info(t_ofile *of, t_data *data);
+void				print_text(t_ofile *of, t_data *data);
 
 #endif

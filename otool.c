@@ -2418,31 +2418,13 @@ get_sect_info(
 				}
 				break;
 			case LC_SEGMENT_64:
-				memset((char *)&sg64, '\0', sizeof(struct segment_command_64));
-				size = left < sizeof(struct segment_command_64) ?
-					left : sizeof(struct segment_command_64);
 				memcpy((char *)&sg64, (char *)lc, size);
-				if(swapped)
-					swap_segment_command_64(&sg64, host_byte_sex);
-
 				if((filetype == MH_OBJECT && sg64.segname[0] == '\0') ||
 						strncmp(sg64.segname, segname, sizeof(sg64.segname)) == 0){
 					*seg_addr = sg.vmaddr;
 					p = (char *)lc + sizeof(struct segment_command_64);
 					for(j = 0 ; found == FALSE && j < sg64.nsects ; j++){
-						if(p + sizeof(struct section_64) >
-								(char *)load_commands + sizeofcmds){
-							printf("section structure command extends past "
-									"end of load commands\n");
-						}
-						left = sizeofcmds - (p - (char *)load_commands);
-						memset((char *)&s64, '\0', sizeof(struct section_64));
-						size = left < sizeof(struct section_64) ?
-							left : sizeof(struct section_64);
 						memcpy((char *)&s64, p, size);
-						if(swapped)
-							swap_section_64(&s64, 1, host_byte_sex);
-
 						if(strncmp(s64.sectname, sectname,
 									sizeof(s64.sectname)) == 0 &&
 								strncmp(s64.segname, segname,
@@ -2496,15 +2478,7 @@ get_sect_info(
 		else{
 			*sect_relocs = (struct relocation_info *)(object_addr +
 					s.reloff);
-			if(s.reloff + s.nreloc * sizeof(struct relocation_info) >
-					object_size){
-				printf("relocation entries for section (%.16s,%.16s) "
-						"extends past end of file\n", s.segname, s.sectname);
-				*sect_nrelocs = (object_size - s.reloff) /
-					sizeof(struct relocation_info);
-			}
-			else
-				*sect_nrelocs = s.nreloc;
+			*sect_nrelocs = s.nreloc;
 		}
 		*sect_addr = s.addr;
 		*sect_flags = s.flags;
@@ -2517,20 +2491,8 @@ get_sect_info(
 			*sect_size = s64.size;
 		}
 		else{
-			if(s64.offset > object_size){
-				printf("section offset for section (%.16s,%.16s) is past "
-						"end of file\n", s64.segname, s64.sectname);
-			}
-			else{
-				*sect_pointer = object_addr + s64.offset;
-				if(s64.size > object_size ||
-						s64.offset + s64.size > object_size){
-					printf("section (%.16s,%.16s) extends past end of "
-							"file\n", s64.segname, s64.sectname);
-				}
-				else
-					*sect_size = s64.size;
-			}
+			*sect_pointer = object_addr + s64.offset;
+			*sect_size = s64.size;
 		}
 		if(s64.reloff >= object_size){
 			printf("relocation entries offset for (%.16s,%.16s): is past "
@@ -2538,16 +2500,7 @@ get_sect_info(
 		}
 		else{
 			*sect_relocs = (struct relocation_info *)(object_addr +
-					s64.reloff);
-			if(s64.reloff + s64.nreloc * sizeof(struct relocation_info) >
-					object_size){
-				printf("relocation entries for section (%.16s,%.16s) "
-						"extends past end of file\n", s64.segname,
-						s64.sectname);
-				*sect_nrelocs = (object_size - s64.reloff) /
-					sizeof(struct relocation_info);
-			}
-			else
+			s64.reloff);
 				*sect_nrelocs = s64.nreloc;
 		}
 		*sect_addr = s64.addr;
@@ -3021,325 +2974,12 @@ print_text(
 	if(sect == NULL)
 		return;
 
-	if(disassemble == TRUE){
-		if(pflag){
-			for(i = 0; i < nsorted_symbols; i++){
-				if(strcmp(sorted_symbols[i].name, pflag) == 0)
-					break;
-			}
-			if(i == nsorted_symbols){
-				printf("Can't find -p symbol: %s\n", pflag);
-				return;
-			}
-			if(sorted_symbols[i].n_value < addr ||
-					sorted_symbols[i].n_value >= addr + size){
-				printf("-p symbol: %s not in text section\n", pflag);
-				return;
-			}
-			offset = sorted_symbols[i].n_value - addr;
-			sect += offset;
-			cur_addr = sorted_symbols[i].n_value;
-			sect_start = sect;
-		}
-		else{
-			offset = 0;
-			cur_addr = addr;
-			sect_start = sect;
-		}
-		if(cputype == CPU_TYPE_ARM &&
-				(cpusubtype == CPU_SUBTYPE_ARM_V7 ||
-				 cpusubtype == CPU_SUBTYPE_ARM_V7F ||
-				 cpusubtype == CPU_SUBTYPE_ARM_V7S ||
-				 cpusubtype == CPU_SUBTYPE_ARM_V7K)){
-			if(sect_flags & S_SYMBOL_STUBS)
-				in_thumb = FALSE;
-			else
-				in_thumb = TRUE;
-		}
-		else
-			in_thumb = FALSE;
-		if((qflag || gflag) && cputype == CPU_TYPE_ARM){
-			arm_dc = create_arm_llvm_disassembler(cpusubtype);
-			if(arm_dc == NULL){
-				printf("can't create arm llvm disassembler\n");
-				return;
-			}
-			thumb_dc = create_thumb_llvm_disassembler(cpusubtype);
-			if(thumb_dc == NULL){
-				printf("can't create thumb llvm disassembler\n");
-				return;
-			}
-			llvm_disasm_set_options(arm_dc,
-					LLVMDisassembler_Option_PrintImmHex);
-			llvm_disasm_set_options(arm_dc,
-					LLVMDisassembler_Option_PrintLatency);
-			llvm_disasm_set_options(thumb_dc,
-					LLVMDisassembler_Option_PrintImmHex);
-			llvm_disasm_set_options(thumb_dc,
-					LLVMDisassembler_Option_PrintLatency);
-			if(eflag){
-				llvm_disasm_set_options(arm_dc,
-						LLVMDisassembler_Option_UseMarkup);
-				llvm_disasm_set_options(thumb_dc,
-						LLVMDisassembler_Option_UseMarkup);
-			}
-		}
-		if((qflag || gflag) && cputype == CPU_TYPE_I386){
-			i386_dc = create_i386_llvm_disassembler();
-			if(i386_dc == NULL){
-				printf("can't create i386 llvm disassembler\n");
-				return;
-			}
-			llvm_disasm_set_options(i386_dc,
-					LLVMDisassembler_Option_PrintImmHex);
-			llvm_disasm_set_options(i386_dc,
-					LLVMDisassembler_Option_SetInstrComments);
-			llvm_disasm_set_options(i386_dc,
-					LLVMDisassembler_Option_PrintLatency);
-			if(eflag)
-				llvm_disasm_set_options(i386_dc,
-						LLVMDisassembler_Option_UseMarkup);
-		}
-		if((qflag || gflag) && cputype == CPU_TYPE_X86_64){
-			x86_64_dc = create_x86_64_llvm_disassembler();
-			if(x86_64_dc == NULL){
-				printf("can't create x86_64 llvm disassembler\n");
-				return;
-			}
-			llvm_disasm_set_options(x86_64_dc,
-					LLVMDisassembler_Option_PrintImmHex);
-			llvm_disasm_set_options(x86_64_dc,
-					LLVMDisassembler_Option_SetInstrComments);
-			llvm_disasm_set_options(x86_64_dc,
-					LLVMDisassembler_Option_PrintLatency);
-			if(eflag)
-				llvm_disasm_set_options(x86_64_dc,
-						LLVMDisassembler_Option_UseMarkup);
-		}
-		if(cputype == CPU_TYPE_ARM64 || cputype == CPU_TYPE_ARM64_32){
-			arm64_dc = create_arm64_llvm_disassembler(cpusubtype);
-			if(arm64_dc == NULL){
-				printf("can't create arm64 llvm disassembler\n");
-				return;
-			}
-			llvm_disasm_set_options(arm64_dc,
-					LLVMDisassembler_Option_PrintImmHex);
-			llvm_disasm_set_options(arm64_dc,
-					LLVMDisassembler_Option_PrintLatency);
-		}
-		if(gflag){
-			ninsts = 100;
-			insts = allocate(sizeof(struct inst) * ninsts);
-		}
-		label_offset = 0;
-		for(i = offset ; i < size ; ){
-			if(gflag &&
-					(cputype == CPU_TYPE_X86_64 ||
-					 cputype == CPU_TYPE_I386 ||
-					 cputype == CPU_TYPE_ARM)){
-				if(n > ninsts){
-					ninsts += ninsts;
-					insts = reallocate(insts, sizeof(struct inst) * ninsts);
-				}
-				memset(&(insts[n]), '\0', sizeof(struct inst));
-				insts[n].address = cur_addr;
-				insts[n].label = get_label(cur_addr, sorted_symbols,
-						nsorted_symbols);;
-			}
-			else{
-				if(print_label(cur_addr, TRUE, sorted_symbols,
-							nsorted_symbols) == TRUE)
-					label_offset = i;
-				if(function_offsets)
-					printf("%+6d ", (int)(i - label_offset));
-				if(Xflag == FALSE){
-					if(cputype & CPU_ARCH_ABI64)
-						printf("%016llx", cur_addr);
-					else
-						printf("%08x", (uint32_t)cur_addr);
-					if((qflag == FALSE ||
-								(cputype == CPU_TYPE_POWERPC)) &&
-							(cputype != CPU_TYPE_ARM64 &&
-							 cputype != CPU_TYPE_ARM64_32))
-						printf("\t");
-				}
-			}
-			if(cputype == CPU_TYPE_POWERPC64)
-				j = ppc_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						symbols64, nsymbols, sorted_symbols,
-						nsorted_symbols, strings, strings_size,
-						indirect_symbols, nindirect_symbols,
-						load_commands, ncmds, sizeofcmds, verbose);
-			else if(cputype == CPU_TYPE_X86_64)
-				j = i386_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, ext_relocs,
-						next_relocs, loc_relocs, nloc_relocs, dbi, ndbi,
-						NULL, symbols64, nsymbols, sorted_symbols,
-						nsorted_symbols, strings, strings_size,
-						indirect_symbols, nindirect_symbols, cputype,
-						load_commands, ncmds, sizeofcmds, verbose,
-						llvm_mc, i386_dc, x86_64_dc , object_addr,
-						object_size, &(insts[n]), NULL, 0);
-			else if(cputype == CPU_TYPE_MC680x0)
-				j = m68k_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						nsymbols, sorted_symbols, nsorted_symbols,
-						strings, strings_size, indirect_symbols,
-						nindirect_symbols, load_commands, ncmds,
-						sizeofcmds, verbose);
-			else if(cputype == CPU_TYPE_I860)
-				j = i860_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						nsymbols, sorted_symbols, nsorted_symbols,
-						strings, strings_size, verbose);
-			else if(cputype == CPU_TYPE_I386)
-				j = i386_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, ext_relocs,
-						next_relocs, loc_relocs, nloc_relocs, dbi, ndbi,
-						symbols, NULL, nsymbols, sorted_symbols,
-						nsorted_symbols, strings, strings_size,
-						indirect_symbols, nindirect_symbols, cputype,
-						load_commands, ncmds, sizeofcmds, verbose,
-						llvm_mc, i386_dc, x86_64_dc, object_addr,
-						object_size, &(insts[n]), NULL, 0);
-			else if(cputype == CPU_TYPE_MC88000)
-				j = m88k_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						nsymbols, sorted_symbols, nsorted_symbols,
-						strings, strings_size, verbose);
-			else if(cputype == CPU_TYPE_POWERPC ||
-					cputype == CPU_TYPE_VEO)
-				j = ppc_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						symbols64, nsymbols, sorted_symbols,
-						nsorted_symbols, strings, strings_size,
-						indirect_symbols, nindirect_symbols,
-						load_commands, ncmds, sizeofcmds, verbose);
-			else if(cputype == CPU_TYPE_HPPA)
-				j = hppa_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						nsymbols, sorted_symbols, nsorted_symbols,
-						strings, strings_size, verbose);
-			else if(cputype == CPU_TYPE_SPARC)
-				j = sparc_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						nsymbols, sorted_symbols, nsorted_symbols,
-						strings, strings_size, indirect_symbols,
-						nindirect_symbols, load_commands, ncmds,
-						sizeofcmds, verbose);
-			else if(cputype == CPU_TYPE_ARM)
-				j = arm_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, symbols,
-						nsymbols, sorted_symbols, nsorted_symbols,
-						strings, strings_size, indirect_symbols,
-						nindirect_symbols, load_commands, ncmds,
-						sizeofcmds, cpusubtype, verbose, arm_dc,
-						thumb_dc, object_addr, object_size, dices,
-						ndices, seg_addr, &(insts[n]), NULL, 0);
-			else if(cputype == CPU_TYPE_ARM64 || cputype == CPU_TYPE_ARM64_32)
-				j = arm64_disassemble(sect, size - i, cur_addr, addr,
-						object_byte_sex, relocs, nrelocs, ext_relocs,
-						next_relocs, loc_relocs, nloc_relocs, dbi, ndbi,
-						ThreadedRebaseBind, symbols, symbols64, nsymbols,
-						sorted_symbols, nsorted_symbols, strings,
-						strings_size, indirect_symbols, nindirect_symbols,
-						cputype, load_commands, ncmds, sizeofcmds,
-						object_addr, object_size, verbose, arm64_dc);
-
-			else{
-				printf("Can't disassemble unknown cputype %d\n", cputype);
-				return;
-			}
-			sect += j;
-			cur_addr += j;
-			i += j;
-			if(gflag)
-				n++;
-		}
-		if(gflag &&
-				(cputype == CPU_TYPE_X86_64 ||
-				 cputype == CPU_TYPE_I386 ||
-				 cputype == CPU_TYPE_ARM)){
-			char dst[4096];
-			dst[4095] = '\0';
-
-			/* Look for inits that need tmp labels. */
-			for(i = 0 ; i < n ; i++){
-				if(insts[i].has_raw_target_address){
-					for(j = 0; j < n; j++){
-						if(insts[i].raw_target_address == insts[j].address)
-							insts[j].needs_tmp_label = TRUE;
-					}
-				}
-			}
-
-			/* Create the needed tmp labels. */
-			j = 1;
-			for(i = 0 ; i < n ; i++){
-				if(insts[i].needs_tmp_label == TRUE){
-					insts[i].tmp_label = allocate(20);
-					sprintf(insts[i].tmp_label, "L%d", j++);
-				}
-			}
-
-			/* Now finally print the inits. */
-			for(i = 0 ; i < n ; i++){
-				if(insts[i].label != NULL)
-					printf("%s:\n", insts[i].label);
-				else if(insts[i].tmp_label != NULL)
-					printf("%s:", insts[i].tmp_label);
-				insts[i].print = TRUE;
-				cur_addr = insts[i].address;
-				offset = cur_addr - addr;
-				sect = sect_start + offset;
-				if(cputype == CPU_TYPE_X86_64 || cputype == CPU_TYPE_I386)
-					j = i386_disassemble(sect, size - offset, cur_addr,
-							addr, object_byte_sex, relocs, nrelocs,
-							ext_relocs, next_relocs, loc_relocs,
-							nloc_relocs, dbi, ndbi, symbols, NULL,
-							nsymbols, sorted_symbols, nsorted_symbols,
-							strings, strings_size, indirect_symbols,
-							nindirect_symbols, cputype, load_commands, 
-							ncmds, sizeofcmds, verbose, llvm_mc, i386_dc,
-							x86_64_dc, object_addr, object_size,
-							&(insts[i]), insts, n);
-				else if(cputype == CPU_TYPE_ARM)
-					j = arm_disassemble(sect, size - offset, cur_addr, addr,
-							object_byte_sex, relocs, nrelocs, symbols,
-							nsymbols, sorted_symbols, nsorted_symbols,
-							strings, strings_size, indirect_symbols,
-							nindirect_symbols, load_commands, ncmds,
-							sizeofcmds, cpusubtype, verbose, arm_dc,
-							thumb_dc, object_addr, object_size, dices,
-							ndices, seg_addr, &(insts[i]), insts, n);
-			}
-
-			/* Free up allocated space */
-			for(i = 0 ; i < n ; i++){
-				if(insts[i].tmp_label != NULL)
-					free(insts[i].tmp_label);
-			}
-			free(insts);
-		}
-		if(i386_dc != NULL)
-			delete_arm_llvm_disassembler(i386_dc);
-		if(x86_64_dc != NULL)
-			delete_arm_llvm_disassembler(x86_64_dc);
-		if(arm_dc != NULL)
-			delete_arm_llvm_disassembler(arm_dc);
-		if(thumb_dc != NULL)
-			delete_arm_llvm_disassembler(thumb_dc);
-		if(arm64_dc != NULL)
-			delete_arm64_llvm_disassembler(arm64_dc);
-	}
-	else{
 		if(cputype == CPU_TYPE_I386 || cputype == CPU_TYPE_X86_64){
 			for(i = 0 ; i < size ; i += j , addr += j){
 				if(cputype & CPU_ARCH_ABI64)
-					printf("%016llx ", addr);
+					printf("%016llx \t", addr);
 				else
-					printf("%08x ", (uint32_t)addr);
+					printf("%08x \t", (uint32_t)addr);
 				for(j = 0;
 						j < 16 * sizeof(char) && i + j < size;
 						j += sizeof(char)){
