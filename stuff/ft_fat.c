@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 01:58:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/12 18:48:43 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:55:53 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static uint32_t	process_fat(t_ofile *of)
 	return (0);
 }
 
-uint32_t	ft_fat(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)
+uint32_t		ft_fat(t_ofile *of, void *addr,
+		uint32_t magic, enum e_byte_sex e)
 {
 	(void)e;
 	if (of->file_size >= sizeof(struct fat_header) && (magic == FAT_MAGIC
@@ -38,7 +39,8 @@ uint32_t	ft_fat(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)
 		of->fat_header = (struct fat_header *)addr;
 		of->fat_archs = (struct fat_arch *)(addr + sizeof(struct fat_header));
 		(magic == FAT_MAGIC) ? 0 : swap_fat_header(of->fat_header);
-		(magic == FAT_MAGIC) ? 0 : swap_fat_arch(of->fat_archs, of->fat_header->nfat_arch);
+		(magic == FAT_MAGIC) ? 0 :
+			swap_fat_arch(of->fat_archs, of->fat_header->nfat_arch);
 		if (of->prog)
 			print_fat_headers(of->fat_header, of->fat_archs, of->file_size);
 		return (process_fat(of));

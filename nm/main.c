@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 00:35:15 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/12 18:28:41 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:50:38 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		main(int ac, char **av)
 	size_t		i;
 
 	ft_memset(&prg, 0, sizeof(prg));
+	prg.pnam = av[0];
 	i = parse_flag(&f, av, ac, 1);
 	prg.target = av[i] ? av[i] : "a.out";
 	prg.proc = &nm;

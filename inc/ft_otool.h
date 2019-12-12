@@ -6,15 +6,15 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 21:44:32 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/12 18:30:45 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/13 00:13:09 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OTOOL_H
 # define FT_OTOOL_H
 
-#include "ft_ofile.h"
-#include "libft.h"
+# include "ft_ofile.h"
+# include "libft.h"
 
 typedef struct		s_flags
 {
@@ -29,28 +29,27 @@ typedef struct		s_flags
 	int				object_process : 1;
 }					t_flags;
 
-
 typedef struct		s_data
 {
-	uint32_t		cmd;
-	int				found;
-	char			*addr;
-	unsigned long	size;
-	cpu_type_t		mh_cputype;
-	cpu_subtype_t	mh_cpusubtype;
-	uint32_t		mh_magic;
-	uint32_t		mh_filetype;
-	uint32_t		mh_ncmds;
-	uint32_t		mh_sizeofcmds;
-	uint32_t		sizeof_mach_header;
-	char			*sect;
-	uint32_t		sect_nrelocs;
-	uint32_t		sect_flags;
-	uint64_t		sect_addr;
-	uint64_t		sect_size;
-	uint64_t		seg_addr;
-	struct relocation_info	*sect_relocs;
-	struct section_64		*s64;
+	uint32_t					cmd;
+	int							found;
+	char						*addr;
+	unsigned long				size;
+	cpu_type_t					mh_cputype;
+	cpu_subtype_t				mh_cpusubtype;
+	uint32_t					mh_magic;
+	uint32_t					mh_filetype;
+	uint32_t					mh_ncmds;
+	uint32_t					mh_sizeofcmds;
+	uint32_t					sizeof_mach_header;
+	char						*sect;
+	uint32_t					sect_nrelocs;
+	uint32_t					sect_flags;
+	uint64_t					sect_addr;
+	uint64_t					sect_size;
+	uint64_t					seg_addr;
+	struct relocation_info		*sect_relocs;
+	struct section_64			*s64;
 	struct segment_command_64	*sg64;
 }					t_data;
 
@@ -63,10 +62,13 @@ void				print_loadcmds(t_ofile *of, t_data *data);
 void				print_mach_header(struct mach_header *mh);
 void				print_mach_header_64(struct mach_header_64 *mh64);
 void				print_libraries(struct load_command *load_c, t_data *data);
-void				print_lc_symtab(t_ofile *of, t_data *data, struct load_command *lc);
-void				print_lc_segment32(t_ofile *of, t_data *data, struct load_command *lc);
-void				print_lc_segment64(t_ofile *of, t_data *data, struct load_command *lc);
+void				print_lc_symtab(t_ofile *of,
+		t_data *data, struct load_command *lc);
+void				print_lc_segment32(t_ofile *of,
+		t_data *data, struct load_command *lc);
+void				print_lc_segment64(t_ofile *of,
+		t_data *data, struct load_command *lc);
 void				get_sect_info(t_ofile *of, t_data *data);
-void				print_text(t_ofile *of, t_data *data);
+void				print_text(t_data *data);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 21:01:47 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 21:23:15 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/13 00:20:07 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-static void		print_segment_command(struct segment_command_64 *sg)
+static void	print_segment_command(struct segment_command_64 *sg)
 {
 	ft_printf("      cmd LC_SEGMENT\n");
 	ft_printf("  cmdsize %u\n", sg->cmdsize);
@@ -27,7 +27,7 @@ static void		print_segment_command(struct segment_command_64 *sg)
 	ft_printf("    flags 0x%x\n", (unsigned int)sg->flags);
 }
 
-static void		print_section(struct section_64 *s)
+static void	print_section(struct section_64 *s)
 {
 	ft_printf("Section\n");
 	ft_printf("  sectname %.16s\n", s->sectname);
@@ -43,7 +43,8 @@ static void		print_section(struct section_64 *s)
 	ft_printf(" reserved2 %u\n", s->reserved2);
 }
 
-void		print_lc_segment64(t_ofile *of, t_data *data, struct load_command *lc)
+void		print_lc_segment64(t_ofile *of,
+		t_data *data, struct load_command *lc)
 {
 	uint32_t					j;
 	char						*p;

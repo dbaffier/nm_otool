@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/12 18:38:43 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:49:03 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int			ofile_create(t_prg *nm_t, void *cookie)
 		return (ret);
 	if (of.file_type == OFILE_ARCHIVE)
 		process_archive(nm_t, &of, cookie);
-	if (of.file_type == OFILE_Mach_O)
+	else if (of.file_type == OFILE_Mach_O)
 		nm_t->proc(&of, NULL, cookie);
+	else
+		ft_dprintf(2, "%s is not an object file\n", of.file_name);
 	ofile_unmap(nm_t, &of);
 	return (0);
 }

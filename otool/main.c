@@ -6,14 +6,14 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:30:23 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/12 20:07:53 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/13 00:22:17 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_otool.h"
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_prg		prg;
 	t_flags		f;

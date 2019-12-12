@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:50:02 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/09 21:48:27 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:53:38 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void		select_symbols(t_nm *nm, t_ofile *of, t_flags *f)
 		nm->nl = (struct nlist *)(of->object_addr + nm->st->symoff);
 	else
 		nm->nl64 = (struct nlist_64 *)(of->object_addr + nm->st->symoff);
-	nm->select_sym = malloc(sizeof(struct s_symbol) * nm->st->nsyms);
+	if (!(nm->select_sym = malloc(sizeof(struct s_symbol) * nm->st->nsyms)))
+		return ;
 	while (i < nm->st->nsyms)
 	{
 		(of->mh != NULL) ? make_symbol_32(&symbol, nm->nl + i) :
@@ -85,4 +86,7 @@ void		nm(t_ofile *ofile, char *arch_name, void *cookie)
 	nm_set(&nm, ofile, &process_flag, cookie);
 	print_header(ofile, cookie);
 	print_symbols(ofile, &nm, cookie);
+	free(nm.select_sym);
+	process_flag.sections ? free(process_flag.sections)
+		: free(process_flag.sections64);
 }

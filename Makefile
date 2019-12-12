@@ -6,7 +6,7 @@
 #    By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 00:18:28 by dbaffier          #+#    #+#              #
-#    Updated: 2019/12/11 18:12:58 by dbaffier         ###   ########.fr        #
+#    Updated: 2019/12/12 23:56:22 by dbaffier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ OBJS_STUFF = $(addprefix $(OBJS_STUFF_DIR), $(SRCS_STUFF:.c=.o))
 
 STUFF_DIR = stuff/
 SRCS_STUFF = byte_sex.c				\
-			 member_debug.c			\
 			 member_tools.c			\
 		  	 ft_archive.c			\
 		  	 ft_mach_o.c			\
@@ -91,10 +90,10 @@ $(LIBFT_LIB):
 	@make -C $(LIBFT_PATH)
 
 $(OTOOL): $(OBJS_STUFF) $(OBJS_OT)
-	gcc -fsanitize=address $^ -o $@ $(LIBFT_LINK)
+	gcc $^ -o $@ $(LIBFT_LINK)
 
 $(NM): $(OBJS_NM) $(OBJS_STUFF)
-	gcc -fsanitize=address $^ -o $@ $(LIBFT_LINK)
+	gcc $^ -o $@ $(LIBFT_LINK)
 
 $(OBJS_OT_DIR)%.o: $(SRCS_OT_DIR)%.c
 	gcc $(CFLAGS) -o $@ -c $< $(INCS)

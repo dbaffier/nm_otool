@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 22:04:22 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/06/06 23:28:07 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:48:45 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@ static void	ft_dprintf_buff(t_format *data)
 {
 	data->ret += data->pos;
 	write(*(int *)data->fd, data->buff, data->pos);
+}
+
+static void		free_lst(t_va_list *head)
+{
+	if (head)
+	{
+		free_lst(head->next);
+		free(head);
+	}
 }
 
 int			ft_dprintf(int fd, const char *str, ...)
@@ -35,5 +44,6 @@ int			ft_dprintf(int fd, const char *str, ...)
 	data.tail = (char *)str;
 	ft_parse(&data);
 	va_end(data.arg);
+	free_lst(data.lst);
 	return (nb_char);
 }

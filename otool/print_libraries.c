@@ -6,13 +6,25 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 22:05:12 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/11 18:54:21 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/13 00:09:47 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-void	print_libraries(struct load_command *load_c, t_data *data)
+static void	print_extend(char *p, struct dylib_command *dl)
+{
+	ft_printf("\t%s (compatibility version %u.%u.%u, "
+			"current version %u.%u.%u)\n", p,
+			dl->dylib.compatibility_version >> 16,
+			(dl->dylib.compatibility_version >> 8) & 0xff,
+			dl->dylib.compatibility_version & 0xff,
+			dl->dylib.current_version >> 16,
+			(dl->dylib.current_version >> 8) & 0xff,
+			dl->dylib.current_version & 0xff);
+}
+
+void		print_libraries(struct load_command *load_c, t_data *data)
 {
 	uint32_t				i;
 	struct load_command		*lc;
@@ -31,16 +43,9 @@ void	print_libraries(struct load_command *load_c, t_data *data)
 			if (dl.dylib.name.offset < dl.cmdsize)
 			{
 				p = (char *)lc + dl.dylib.name.offset;
-				ft_printf("\t%s (compatibility version %u.%u.%u, "
-			   "current version %u.%u.%u)\n", p,
-			   dl.dylib.compatibility_version >> 16,
-			   (dl.dylib.compatibility_version >> 8) & 0xff,
-			   dl.dylib.compatibility_version & 0xff,
-			   dl.dylib.current_version >> 16,
-			   (dl.dylib.current_version >> 8) & 0xff,
-			   dl.dylib.current_version & 0xff);
+				print_extend(p, &dl);
 			}
 		}
-		lc = (struct load_command *)((char *)lc + l.cmdsize); 
+		lc = (struct load_command *)((char *)lc + l.cmdsize);
 	}
 }

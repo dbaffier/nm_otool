@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 12:33:31 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/11/10 23:49:21 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:48:45 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_print_buff(t_format *data)
 	data->pos = 0;
 }
 
-void		free_lst(t_va_list *head)
+static void		free_lst(t_va_list *head)
 {
 	if (head)
 	{

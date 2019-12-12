@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:38:41 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/10 18:41:10 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/13 00:20:57 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,13 @@ void			print_lc_segment32(t_ofile *of,
 
 	(void)of;
 	(void)data;
-	//ft_memset((char *)&sg, '\0', sizeof(struct segment_command));
 	ft_memcpy((char *)&sg, (char *)lc, sizeof(struct segment_command));
-	//if (swapped)
-	//	swap_segment_command(&sg, get_host_byte_sex());
 	print_segment_command(&sg);
 	p = (char *)lc + sizeof(struct segment_command);
 	j = -1;
 	while (++j < sg.nsects)
 	{
 		ft_memcpy((char *)&s, p, sizeof(struct section));
-	//	if (swapped)
-	//		swap_section()
 		print_section(&s);
 		p += sizeof(struct section);
 	}
