@@ -6,12 +6,13 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:43:05 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/11 19:22:00 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:17:43 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ofile.h"
 #include "ft_otool.h"
+#include <mach-o/ranlib.h>
 
 static void	init_data(t_data *data, t_ofile *o)
 {
@@ -39,15 +40,22 @@ static void	process_set(t_ofile *of, t_flags *f)
 	if (f->ll || f->dd)
 		print_libraries(of->load_commands, &data);
 	if (f->t)
+	{
 		get_sect_info(of, &data);
-	print_text(of, &data);
+		print_text(of, &data);
+	}
 }
 
 void		processor(t_ofile *of, char *arch_name, void *cookie)
 {
 	//if (((t_flags *)cookie)->a)
 	//	print_ar_hdr(of, cookie);
-	
+	if(of->member_ar_hdr != NULL &&
+	   (ft_strncmp(of->member_name, SYMDEF, sizeof(SYMDEF)-1) == 0 ||
+	    ft_strncmp(of->member_name, "/ ", sizeof("/ ")-1) == 0))
+			return;
+	if (of->member_ar_hdr && ft_strncmp(of->member_name, "// ", sizeof("// ") -1) == 0)
+	    return ;
 	if (((t_flags *)cookie)->object_process == 0)
 		return ;
 	print_header(of);

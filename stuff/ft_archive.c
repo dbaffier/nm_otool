@@ -6,7 +6,7 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 18:58:20 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/11 19:27:08 by dbaffier         ###   ########.fr       */
+/*   Updated: 2019/12/12 18:47:54 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int		ft_archive(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)
 int		process_archive(t_prg *prg, t_ofile *of, void *cookie)
 {
 	if (ofile_first_member(of) == 0)
+	{
+		if (!ft_strcmp(prg->pnam, "./ft_otool"))
+			ft_printf("Archive : %s\n", of->file_name);
 		prg->proc(of, NULL, cookie);
+	}
 	while (ofile_next_member(of) == 0)
 		prg->proc(of, NULL, cookie);
 	return (1);

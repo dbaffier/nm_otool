@@ -1,171 +1,83 @@
-Mlol	lol.c	/^main($/
-Mmain	nm/main.c	/^int main(int ac, char **av)$/
-Mnm	nm.c	/^main($/
-apply_flag	libft/ft_parse.c	/^void			apply_flag(t_format *data)$/
-archive_error	ofile.c	/^archive_error($/
-archive_member_error	ofile.c	/^archive_member_error($/
-check_type	ofile.c	/^enum check_type {$/
-cmd_flags	lol.c	/^struct cmd_flags {$/
-cnt_line	libft/get_next_line.c	/^int			cnt_line(char *s)$/
-compare	lol.c	/^compare($/
-count_dec	libft/ft_itoa.c	/^static int		count_dec(int *n, int *sign)$/
-elect_symbol	lol.c	/^select_symbol($/
-file_first_arch	ofile.c	/^ofile_first_arch($/
-file_first_member	ofile.c	/^ofile_first_member($/
-file_first_module	ofile.c	/^ofile_first_module($/
-file_next_arch	ofile.c	/^ofile_next_arch($/
-file_next_member	ofile.c	/^ofile_next_member($/
-file_next_module	ofile.c	/^ofile_next_module($/
-file_specific_arch	ofile.c	/^ofile_specific_arch($/
-file_specific_member	ofile.c	/^ofile_specific_member($/
-file_specific_module	ofile.c	/^ofile_specific_module($/
-free_lst	libft/ft_printf.c	/^void		free_lst(t_va_list *head)$/
-ft_ar_name	nm/byte_sex.c	/^int					ft_ar_name(struct ar_hdr *hdr, char **name/
-ft_archive	nm/ft_archive.c	/^int		ft_archive(t_ofile *of, void *addr, uint32_t /
-ft_atoi	libft/ft_atoi.c	/^int		ft_atoi(const char *str)$/
-ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/
-ft_count_occ	libft/ft_count_occ.c	/^int		ft_count_occ(char *s, char c)$/
-ft_count_word	libft/ft_count_word.c	/^int		ft_count_word(char *str)$/
-ft_count_words	libft/ft_strsplit.c	/^static int			ft_count_words(const char *s, char c)/
-ft_dprintf	libft/ft_dprintf.c	/^int			ft_dprintf(int fd, const char *str, ...)$/
-ft_dprintf_buff	libft/ft_dprintf.c	/^static void	ft_dprintf_buff(t_format *data)$/
-ft_fat	nm/ft_fat.c	/^int	ft_fat(t_ofile *of, void *addr, uint32_t magic/
-ft_intcmp_void	libft/ft_intcmp_void.c	/^int		ft_intcmp_void(void *a, void *b)$/
-ft_isalnum	libft/ft_isalnum.c	/^int		ft_isalnum(int c)$/
-ft_isalpha	libft/ft_isalpha.c	/^int		ft_isalpha(int c)$/
-ft_isascii	libft/ft_isascii.c	/^int		ft_isascii(int c)$/
-ft_isdigit	libft/ft_isdigit.c	/^int		ft_isdigit(int c)$/
-ft_isnumber	libft/ft_isnumber.c	/^int		ft_isnumber(char *str)$/
-ft_isprint	libft/ft_isprint.c	/^int		ft_isprint(int c)$/
-ft_isspace	libft/ft_isspace.c	/^int		ft_isspace(int c)$/
-ft_itoa	libft/ft_itoa.c	/^char			*ft_itoa(int n)$/
-ft_lstadd	libft/ft_lstadd.c	/^void	ft_lstadd(t_list **alst, t_list *new)$/
-ft_lstdel	libft/ft_lstdel.c	/^void	ft_lstdel(t_list **alst, void (*del)(void*, s/
-ft_lstdelone	libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list **alst, void (*del)(void /
-ft_lstiter	libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(t_list *ele/
-ft_lstmap	libft/ft_lstmap.c	/^t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_lis/
-ft_lstnew	libft/ft_lstnew.c	/^t_list		*ft_lstnew(void const *content, size_t con/
-ft_mach_o	nm/ft_mach_o.c	/^int		ft_mach_o(t_ofile *ofile, void *addr, uint32_/
-ft_mach_o_64	nm/ft_mach_o.c	/^static int		ft_mach_o_64(t_ofile *ofile, void *add/
-ft_mallocd2	libft/ft_strsplit.c	/^char				*ft_mallocd2(const char *s, char c, int *i/
-ft_memalloc	libft/ft_memalloc.c	/^void	*ft_memalloc(size_t size)$/
-ft_memccpy	libft/ft_memccpy.c	/^void	*ft_memccpy(void *dst, const void *src, int c/
-ft_memchr	libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/
-ft_memcmp	libft/ft_memcmp.c	/^int		ft_memcmp(const void *s1, const void *s2, siz/
-ft_memcpy	libft/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *src, size_t/
-ft_memdel	libft/ft_memdel.c	/^void	ft_memdel(void **ap)$/
-ft_memmove	libft/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_/
-ft_memset	libft/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/
-ft_parse	libft/ft_parse.c	/^void			ft_parse(t_format *data)$/
-ft_preparse	libft/ft_parse.c	/^void			ft_preparse(t_format *data)$/
-ft_print_buff	libft/ft_printf.c	/^static void	ft_print_buff(t_format *data)$/
-ft_printf	libft/ft_printf.c	/^int			ft_printf(const char *str, ...)$/
-ft_putchar	libft/ft_putchar.c	/^void	ft_putchar(char c)$/
-ft_putchar_fd	libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/
-ft_putendl	libft/ft_putendl.c	/^void	ft_putendl(char const *s)$/
-ft_putendl_fd	libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char const *s, int fd)$/
-ft_putnbr	libft/ft_putnbr.c	/^void	ft_putnbr(int nb)$/
-ft_putnbr_fd	libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/
-ft_putsnbr	libft/ft_putsnbr.c	/^void	ft_putsnbr(char *s, int n)$/
-ft_putstr	libft/ft_putstr.c	/^void	ft_putstr(char const *s)$/
-ft_putstr_fd	libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char const *s, int fd)$/
-ft_puttab	libft/ft_puttab.c	/^void	ft_puttab(char **tab)$/
-ft_rand	libft/ft_rand.c	/^int			ft_rand(int min, int max, void *random)$/
-ft_read_fill	libft/get_next_line.c	/^int			ft_read_fill(char **s, int fd)$/
-ft_reverse	libft/ft_reverse.c	/^char	*ft_reverse(char *str)$/
-ft_round	libft/ft_round.c	/^long		ft_round(long v, unsigned long r)$/
-ft_sort_all	libft/ft_sort_all.c	/^void	ft_sort_all(void *tab, int (*cmp)(void*, void/
-ft_space	libft/ft_space.c	/^int		ft_space(int c)$/
-ft_strcat	libft/ft_strcat.c	/^char	*ft_strcat(char *dest, const char *src)$/
-ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/
-ft_strclr	libft/ft_strclr.c	/^void	ft_strclr(char *s)$/
-ft_strcmp	libft/ft_strcmp.c	/^int		ft_strcmp(const char *s1, const char *s2)$/
-ft_strcmp_void	libft/ft_strcmp_void.c	/^int		ft_strcmp_void(void *a, void *b)$/
-ft_strcpy	libft/ft_strcpy.c	/^char	*ft_strcpy(char *dest, const char *src)$/
-ft_strdel	libft/ft_strdel.c	/^void	ft_strdel(char **as)$/
-ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/
-ft_strequ	libft/ft_strequ.c	/^int		ft_strequ(char const *s1, char const *s2)$/
-ft_strfjoin	libft/ft_strfjoin.c	/^char	*ft_strfjoin(char const *s1, char const *s2)$/
-ft_striter	libft/ft_striter.c	/^void	ft_striter(char *s, void (*f)(char *))$/
-ft_striteri	libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, /
-ft_strjoin	libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/
-ft_strjoin_c	libft/ft_strjoin_c.c	/^char	*ft_strjoin_c(char const *s1, char c)$/
-ft_strjoinfree	libft/ft_strjoinfree.c	/^char	*ft_strjoinfree(char *s1, char *s2, int i)$/
-ft_strlcat	libft/ft_strlcat.c	/^size_t		ft_strlcat(char *dst, const char *src, siz/
-ft_strlen	libft/ft_strlen.c	/^size_t		ft_strlen(const char *s)$/
-ft_strmap	libft/ft_strmap.c	/^char	*ft_strmap(char const *s, char (*f)(char))$/
-ft_strmapi	libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned/
-ft_strncat	libft/ft_strncat.c	/^char	*ft_strncat(char *dest, const char *src, size/
-ft_strnchr	libft/ft_parse.c	/^static char		*ft_strnchr(const char *s, int c, siz/
-ft_strncmp	libft/ft_strncmp.c	/^int		ft_strncmp(const char *s1, const char *s2, si/
-ft_strncpy	libft/ft_strncpy.c	/^char	*ft_strncpy(char *dest, const char *src, size/
-ft_strnequ	libft/ft_strnequ.c	/^int		ft_strnequ(char const *s1, char const *s2, si/
-ft_strnew	libft/ft_strnew.c	/^char	*ft_strnew(size_t size)$/
-ft_strnstr	libft/ft_strnstr.c	/^char	*ft_strnstr(const char *s1, const char *s2, s/
-ft_strnword	libft/ft_strnword.c	/^int		ft_strnword(char *s1, char *s2)$/
-ft_strrchr	libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/
-ft_strrev	libft/ft_strrev.c	/^char		*ft_strrev(char *str)$/
-ft_strsplit	libft/ft_strsplit.c	/^char				**ft_strsplit(const char *s, char c)$/
-ft_strstr	libft/ft_strstr.c	/^char	*ft_strstr(const char *str, const char *needl/
-ft_strsub	libft/ft_strsub.c	/^char	*ft_strsub(char const *s, unsigned int start,/
-ft_strtoul	nm/member_tools.c	/^unsigned long	ft_strtoul(const char *ptr, char **e/
-ft_strtrim	libft/ft_strtrim.c	/^char				*ft_strtrim(char const *s)$/
-ft_swap	libft/ft_swap.c	/^void	ft_swap(char *a, char *b)$/
-ft_swap_all	libft/ft_swap_all.c	/^void	ft_swap_all(void *a, void *b, size_t type)$/
-ft_tolower	libft/ft_tolower.c	/^int		ft_tolower(int c)$/
-ft_toupper	libft/ft_toupper.c	/^int		ft_toupper(int c)$/
-ft_touppercase	libft/ft_touppercase.c	/^char		*ft_touppercase(char *str)$/
-get_host_byte_sex	nm/byte_sex.c	/^enum byte_sex get_host_byte_sex(void)$/
-get_next_line	libft/get_next_line.c	/^int			get_next_line(const int fd, char **line)$/
-get_varg	libft/ft_parse.c	/^void			get_varg(t_format *data)$/
-heck_Mach_O	ofile.c	/^check_Mach_O($/
-heck_archive	ofile.c	/^check_archive($/
-heck_extend_format_1	ofile.c	/^check_extend_format_1($/
-heck_fat	ofile.c	/^check_fat($/
-heck_fat_object_in_archive	ofile.c	/^check_fat_object_in_archive($/
-if	op.c	/^if(ofile.file_type == OFILE_FAT){$/
-main_loop	libft/get_next_line.c	/^int			main_loop(char **s, char **line, char **tmp)/
-make_symbol_32	lol.c	/^make_symbol_32($/
-make_symbol_64	lol.c	/^make_symbol_64($/
-nm	lol.c	/^nm($/
+Mmain	nm/main.c	/^int		main(int ac, char **av)$/
+ft_ar_name	stuff/byte_sex.c	/^int					ft_ar_name(struct ar_hdr *hdr, char **name/
+ft_archive	stuff/ft_archive.c	/^int		ft_archive(t_ofile *of, void *addr, uint32_t /
+ft_err	nm/parse_flag.c	/^int			ft_err(char *err)$/
+ft_fat	stuff/ft_fat.c	/^uint32_t	ft_fat(t_ofile *of, void *addr, uint32_t /
+ft_mach_o	stuff/ft_mach_o.c	/^int				ft_mach_o(t_ofile *ofile, void *addr,$/
+ft_mach_o_64	stuff/ft_mach_o.c	/^static int		ft_mach_o_64(t_ofile *ofile, void *add/
+ft_strtoul	stuff/member_tools.c	/^unsigned long	ft_strtoul(const char *ptr, char **e/
+ft_swap_bytes	stuff/swap_header.c	/^static uint32_t		ft_swap_bytes(uint32_t num)$/
+get_host_byte_sex	stuff/byte_sex.c	/^enum e_byte_sex		get_host_byte_sex(void)$/
+get_sect_info	otool/get_sect_info.c	/^void		get_sect_info(t_ofile *of, t_data *data)$/
+init_data	otool/processor.c	/^static void	init_data(t_data *data, t_ofile *o)$/
+keep	nm/parse_flag.c	/^int			keep(char c, t_flags *f)$/
+lc_seg_32	otool/get_sect_info.c	/^static void	lc_seg_32(t_data *data, struct load_co/
+lc_seg_64	otool/get_sect_info.c	/^static void	lc_seg_64(t_data *data, struct load_co/
+make_symbol_32	nm/symbol.c	/^void	make_symbol_32(struct s_symbol *symbol, struc/
+make_symbol_64	nm/symbol.c	/^void	make_symbol_64(struct s_symbol *symbol, struc/
+manage_sect_32	nm/process_flag.c	/^static void		manage_sect_32(t_process_flg *f,$/
+manage_sect_64	nm/process_flag.c	/^static void		manage_sect_64(t_process_flg *f,$/
+nm	nm/nm.c	/^void		nm(t_ofile *ofile, char *arch_name, void *co/
 nm_err	nm/err_file.c	/^int		nm_err(t_prg *prg, int err)$/
-nm_lto	lol.c	/^nm_lto($/
-nm_routine	nm/nm_routine.c	/^int		nm_routine(t_nm *nm_t, void *addr)$/
-ofile_create	nm/ofile_process.c	/^int			ofile_create(t_prg *nm_t)$/
-ofile_ext_format	nm/ofile_member.c	/^static int		ofile_ext_format(t_ofile *ofile, void /
-ofile_first_arch	nm/get_arch.c	/^int		ofile_first_arch(t_ofile *of)$/
-ofile_first_member	nm/ofile_member.c	/^int		ofile_first_member(t_ofile *of)$/
-ofile_flood_mach_o	nm/get_arch.c	/^static int	ofile_flood_mach_o(t_ofile *of)$/
-ofile_get_arch	nm/get_arch.c	/^static int	ofile_get_arch(t_ofile *of, unsigned lo/
-ofile_map	ofile.c	/^ofile_map($/
-ofile_member_clear	nm/ofile_member_clear.c	/^void	ofile_member_clear(t_ofile *of)$/
-ofile_member_debug	nm/member_debug.c	/^void	ofile_member_debug(t_ofile *of)$/
-ofile_next_member	nm/ofile_member.c	/^int		ofile_next_member(t_ofile *ofile)$/
-ofile_object_clear	nm/ofile_member_clear.c	/^void	ofile_object_clear(t_ofile *of)$/
-ofile_print	ofile.c	/^ofile_print($/
-ofile_process	ofile.c	/^ofile_process($/
-ofile_set_fat	nm/ofile_member.c	/^static int		ofile_set_fat(t_ofile *ofile)$/
-ofile_set_mach_o	nm/ofile_member.c	/^static int		ofile_set_mach_o(t_ofile *of, unsigned/
-ofile_type	nm/ofile_process.c	/^static int	ofile_type(t_ofile *of, uint32_t size, /
-ofile_unmap	ofile.c	/^ofile_unmap($/
-print_fat_headers	nm/print_fat.c	/^void	print_fat_headers(struct fat_header *hdr, str/
-print_header	lol.c	/^print_header($/
-print_mach_symbols	lol.c	/^print_mach_symbols($/
-print_symbols	lol.c	/^print_symbols($/
-process_archive	nm/ft_archive.c	/^int		process_archive(t_prg *prg, t_ofile *of)$/
-process_fat	nm/ft_fat.c	/^uint32_t	process_fat(t_prg *prg, t_ofile *of)$/
-process_flags	lol.c	/^struct process_flags {$/
-select_symbols	lol.c	/^select_symbols($/
-size_ar_name	ofile.c	/^size_ar_name($/
-stab	lol.c	/^stab($/
-stabnames	lol.c	/^struct stabnames {$/
-swap_fat_arch	nm/swap_header.c	/^void	swap_fat_arch(struct fat_arch *arch, unsigned/
-swap_fat_header	nm/swap_header.c	/^void	swap_fat_header(struct fat_header *hdr)$/
-swap_int16	nm/swap_bytes.c	/^int16_t swap_int16(int16_t val) $/
-swap_int32	nm/swap_bytes.c	/^int32_t swap_int32(int32_t val)$/
-swap_uint16	nm/swap_bytes.c	/^uint16_t swap_uint16(uint16_t val) $/
-swap_uint32	nm/swap_bytes.c	/^uint32_t swap_uint32(uint32_t val)$/
-symbol	lol.c	/^struct symbol {$/
-usage	lol.c	/^usage($/
-value_diff	lol.c	/^struct value_diff {$/
-value_diff_compare	lol.c	/^value_diff_compare($/
+nm_set	nm/nm.c	/^static int	nm_set(t_nm *nm, t_ofile *ofile, t_proc/
+ofile_create	stuff/ofile_process.c	/^int			ofile_create(t_prg *nm_t, void *cookie)$/
+ofile_ext	stuff/ofile_first_member.c	/^static void		ofile_ext(t_ofile *of, unsigned long /
+ofile_ext_format	stuff/ofile_member.c	/^static int		ofile_ext_format(t_ofile *ofile,$/
+ofile_fat	stuff/ofile_first_member.c	/^static void		ofile_fat(t_ofile *of, unsigned long /
+ofile_fat_bis	stuff/ofile_first_member.c	/^static void		ofile_fat_bis(t_ofile *of,$/
+ofile_first_member	stuff/ofile_first_member.c	/^int				ofile_first_member(t_ofile *of)$/
+ofile_map	stuff/ofile_process.c	/^static int	ofile_map(t_prg *nm_t, t_ofile *of)$/
+ofile_member_clear	stuff/ofile_member_clear.c	/^void	ofile_member_clear(t_ofile *of)$/
+ofile_member_debug	stuff/member_debug.c	/^void	ofile_member_debug(t_ofile *ofile)$/
+ofile_next_member	stuff/ofile_member.c	/^int				ofile_next_member(t_ofile *ofile)$/
+ofile_object_clear	stuff/ofile_member_clear.c	/^void	ofile_object_clear(t_ofile *of)$/
+ofile_set	stuff/ofile_first_member.c	/^static void		ofile_set(t_ofile *of)$/
+ofile_set_fat	stuff/ofile_member.c	/^static int		ofile_set_fat(t_ofile *ofile)$/
+ofile_set_mach_o	stuff/ofile_member.c	/^static int		ofile_set_mach_o(t_ofile *of,$/
+ofile_set_mach_o64	stuff/ofile_member.c	/^static int		ofile_set_mach_o64(t_ofile *of,$/
+ofile_type	stuff/ofile_process.c	/^static int	ofile_type(t_ofile *of, uint32_t size, /
+ofile_unmap	stuff/ofile_unmap.c	/^void		ofile_unmap(t_prg *prg, t_ofile *of)$/
+parse_flag	nm/parse_flag.c	/^int			parse_flag(t_flags *f, char **av, int ac, in/
+print_classic	nm/print.c	/^void			print_classic(t_nm *nm, char c, size_t i)$/
+print_fat_headers	stuff/print_fat.c	/^void	print_fat_headers(struct fat_header *hdr,$/
+print_header	nm/print.c	/^void			print_header(t_ofile *of, t_flags *f)$/
+print_lc_segment32	otool/print_lc_seg32.c	/^void			print_lc_segment32(t_ofile *of,$/
+print_lc_segment64	otool/print_lc_seg64.c	/^void		print_lc_segment64(t_ofile *of, t_data *data/
+print_lc_symtab	otool/print_lc_symtab.c	/^void		print_lc_symtab(t_ofile *of, t_data *data, s/
+print_libraries	otool/print_libraries.c	/^void	print_libraries(struct load_command *load_c, /
+print_loadcmds	otool/print_loadcmds.c	/^void	print_loadcmds(t_ofile *of, t_data *data)$/
+print_mach_header	otool/print_header.c	/^void		print_mach_header(struct mach_header *mh)$/
+print_mach_header_64	otool/print_header.c	/^void		print_mach_header_64(struct mach_header_64 */
+print_section	otool/print_lc_seg32.c	/^static void		print_section(struct section *s)$/
+print_segment_command	otool/print_lc_seg32.c	/^static void		print_segment_command(struct segment_/
+print_stab	nm/stab.c	/^int								print_stab(t_nm *nm, size_t i)$/
+print_symbols	nm/print.c	/^void			print_symbols(t_ofile *of, t_nm *nm, t_flag/
+print_symtab_command	otool/print_lc_symtab.c	/^static void	print_symtab_command(struct symtab_com/
+print_text	otool/print_text.c	/^void	print_text(t_ofile *of, t_data *data)$/
+process_archive	stuff/ft_archive.c	/^int		process_archive(t_prg *prg, t_ofile *of, void/
+process_fat	stuff/ft_fat.c	/^static uint32_t	process_fat(t_ofile *of)$/
+process_flg_sect	nm/process_flag.c	/^void			process_flg_sect(t_nm *nm, t_ofile *of,$/
+process_set	otool/processor.c	/^static void	process_set(t_ofile *of, t_flags *f)$/
+processor	otool/processor.c	/^void		processor(t_ofile *of, char *arch_name, void/
+quicksort	nm/print.c	/^static void		quicksort(struct s_symbol *symbol, in/
+sect_more	nm/symbol_type.c	/^static int	sect_more(t_process_flg *f, int n_type)/
+select_print_symbols	nm/symbol.c	/^void	select_print_symbols(t_nm *nm, t_ofile *of, i/
+select_symbol	nm/symbol.c	/^int		select_symbol(struct s_symbol *symbol, t_flag/
+select_symbols	nm/nm.c	/^void		select_symbols(t_nm *nm, t_ofile *of, t_flag/
+set_flag	nm/parse_flag.c	/^int			set_flag(t_flags *f, char *av, int j)$/
+size_ar_name	stuff/member_tools.c	/^unsigned long	size_ar_name(struct ar_hdr *ar_hdr)$/
+stab	nm/stab.c	/^static char						*stab(unsigned char n_type)$/
+swap_fat_arch	stuff/swap_header.c	/^void				swap_fat_arch(struct fat_arch *arch,$/
+swap_fat_header	stuff/swap_header.c	/^void				swap_fat_header(struct fat_header *hdr)$/
+swap_int16	stuff/swap_bytes.c	/^int16_t			swap_int16(int16_t val)$/
+swap_int32	stuff/swap_bytes.c	/^int32_t			swap_int32(int32_t val)$/
+swap_long	stuff/swap_bytes.c	/^unsigned long	swap_long(unsigned int val)$/
+swap_long_long	stuff/swap_bytes_h.c	/^long long	swap_long_long(long long ll)$/
+swap_nlist	stuff/swap_header.c	/^void				swap_nlist(struct nlist *symbols, uint32_t/
+swap_nlist_64	stuff/swap_header.c	/^void				swap_nlist_64(struct nlist_64 *symbols, ui/
+swap_short	stuff/swap_bytes_h.c	/^short		swap_short(short s)$/
+swap_uint16	stuff/swap_bytes.c	/^uint16_t		swap_uint16(uint16_t val)$/
+swap_uint32	stuff/swap_bytes.c	/^uint32_t		swap_uint32(uint32_t val)$/
+symbol_n_type	nm/symbol_type.c	/^static int	symbol_n_type(t_process_flg *f, char c,/
+treat_file	otool/get_sect_info.c	/^void		treat_file(t_ofile *of, t_data *data)$/
+type_symbol	nm/symbol_type.c	/^int			type_symbol(t_process_flg *f, struct s_symbo/
