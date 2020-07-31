@@ -110,6 +110,12 @@ static int		ofile_set_mach_o64(t_ofile *of,
 	return (0);
 }
 
+/*
+** ofile_next_member() set up the ofile structure (the member_* fields and
+** the object file fields if the next member is an object file) for the next
+** member.
+**/
+
 int				ofile_next_member(t_ofile *ofile)
 {
 	void			*addr;

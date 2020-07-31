@@ -24,6 +24,11 @@ int		ft_archive(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)
 	return (0);
 }
 
+/*
+** Process every member if current object is an archive
+** Call associated routine for every member.
+*/
+
 int		process_archive(t_prg *prg, t_ofile *of, void *cookie)
 {
 	if (ofile_first_member(of) == 0)

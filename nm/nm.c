@@ -40,6 +40,10 @@ void		select_symbols(t_nm *nm, t_ofile *of, t_flags *f)
 	nm->nsymbs = nsymbols;
 }
 
+/*
+** Store every struct and process it.
+**/
+
 static int	nm_set(t_nm *nm, t_ofile *ofile, t_process_flg *f, void *cookie)
 {
 	struct load_command	*lc;
@@ -49,7 +53,6 @@ static int	nm_set(t_nm *nm, t_ofile *ofile, t_process_flg *f, void *cookie)
 	nm->ncmds = (ofile->mh) ? ofile->mh->ncmds : ofile->mh64->ncmds;
 	nm->mh_flags = (ofile->mh) ? ofile->mh->flags : ofile->mh64->flags;
 	lc = ofile->load_commands;
-	(void)f;
 	while (i < nm->ncmds)
 	{
 		if (nm->st == NULL && lc->cmd == LC_SYMTAB)
@@ -69,6 +72,12 @@ static int	nm_set(t_nm *nm, t_ofile *ofile, t_process_flg *f, void *cookie)
 	return (0);
 }
 
+/*
+** Processor NM.
+** Print data in ofile struct.
+** Apply is given flag by (void *)cookie.
+*/
+
 void		nm(t_ofile *ofile, char *arch_name, void *cookie)
 {
 	t_nm			nm;
@@ -79,9 +88,9 @@ void		nm(t_ofile *ofile, char *arch_name, void *cookie)
 		return ;
 	ft_memset(&nm, 0, sizeof(t_nm));
 	ft_memset(&process_flag, 0, sizeof(process_flag));
-	process_flag.text_nsect = NO_SECT;
-	process_flag.data_nsect = NO_SECT;
-	process_flag.bss_nsect = NO_SECT;
+	// process_flag.text_nsect = NO_SECT;
+	// process_flag.data_nsect = NO_SECT;
+	// process_flag.bss_nsect = NO_SECT;
 	nm.flg = &process_flag;
 	nm_set(&nm, ofile, &process_flag, cookie);
 	print_header(ofile, cookie);

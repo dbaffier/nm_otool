@@ -6,11 +6,18 @@
 /*   By: dbaffier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 23:28:11 by dbaffier          #+#    #+#             */
-/*   Updated: 2019/12/12 23:49:03 by dbaffier         ###   ########.fr       */
+/*   Updated: 2020/07/29 16:05:32 by dbaffier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ofile.h"
+
+/*
+** Check for magic number and save is byte_sex (byte Sign EXtend)
+** Process the format associated with magic number.
+** FAT_FILE, MACH-O, ARCHIVE
+** If FAT_FILE, process only x86_64 and jump to the beginning of data for this CPU.
+*/
 
 static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 {
@@ -28,6 +35,11 @@ static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 	ft_archive(of, addr, magic, host_byte_sex);
 	return (0);
 }
+
+/*
+** Map the specified filename in memory to read it.
+** Call ofile_type to process the corresponding type.
+*/
 
 static int	ofile_map(t_prg *nm_t, t_ofile *of)
 {
@@ -50,6 +62,12 @@ static int	ofile_map(t_prg *nm_t, t_ofile *of)
 	ofile_type(of, sb.st_size, addr);
 	return (0);
 }
+
+/*
+** ofile_create() processes the specified filename and call the routine proc on the ofiles in it.
+** For each ofile that is to be processed, the routine processor is called with the corresponding
+** ofile struct and cookie correspond to the given struct of flag. 
+*/
 
 int			ofile_create(t_prg *nm_t, void *cookie)
 {

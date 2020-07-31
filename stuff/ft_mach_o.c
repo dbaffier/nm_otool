@@ -29,6 +29,12 @@ static int		ft_mach_o_64(t_ofile *ofile, void *addr,
 	return (0);
 }
 
+/*
+** Store informations if current file is MH_MAGIC or MH_MAGIC_64
+** Store object_address, object_size, filetype, fat_header, fat_arch, mach_header, load_commands
+** Set the byte_sex of the current object.
+*/
+
 int				ft_mach_o(t_ofile *ofile, void *addr,
 		uint32_t magic, enum e_byte_sex e)
 {

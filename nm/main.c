@@ -15,6 +15,15 @@
 #include "ft_ofile.h"
 #include "ft_nm.h"
 
+/*
+** Main entry of nm
+** Initialize t_prg, parse flag in t_flags structure (see ft_nm.h)
+** All options parsed, if no filename specified, do a.out
+** Loop over filename if given,
+** Create an ofile structure containing informations about filename
+** Apply flag and execute is given routine (&nm)
+*/
+
 int		main(int ac, char **av)
 {
 	t_prg		prg;

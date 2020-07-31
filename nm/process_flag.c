@@ -38,6 +38,13 @@ static void		manage_sect_32(t_process_flg *f,
 	}
 }
 
+
+/*
+** Directly following a segment_command data structure
+** is an array of section data structures, with the exact count determined
+** by the nsects field of the segment_command
+*/
+
 static void		manage_sect_64(t_process_flg *f,
 		struct load_command *lc, size_t *k)
 {
@@ -63,6 +70,11 @@ static void		manage_sect_64(t_process_flg *f,
 		f->sections64[(*k)++] = s + j;
 	}
 }
+
+/*
+** Mallocate space for the number of sections in.
+** Store section in the mallocate array.
+*/
 
 void			process_flg_sect(t_nm *nm, t_ofile *of,
 		t_process_flg *f, struct load_command *lc)

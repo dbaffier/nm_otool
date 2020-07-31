@@ -27,6 +27,13 @@ static uint32_t	process_fat(t_ofile *of)
 	return (0);
 }
 
+/*
+** Store informations if current file is FAT_MAGIC or FAT_MAGIC_64
+** return offset to the beginning of the data for this CPU.
+** Store object_address, filetype, fat_header, fat_arch.
+** Swap struct to the current Endianness.
+*/
+
 uint32_t		ft_fat(t_ofile *of, void *addr,
 		uint32_t magic, enum e_byte_sex e)
 {
