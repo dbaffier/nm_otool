@@ -15,6 +15,23 @@
 #include "ft_ofile.h"
 #include "ft_nm.h"
 
+static int ft_error(char *s, int err)
+{
+	static char *tab[] = {NULL, 
+	"%s malloc error",
+	"%s open error",
+	"%s stat error",
+	"%s MMAP error",
+	"%s write error",
+	"%s archive err",
+	"%s archive empty error"};
+	
+	ft_printf("ft_nm: ");
+	ft_printf(tab[err], s);
+	ft_printf("\n");
+	return (err);
+}
+
 /*
 ** Main entry of nm
 ** Initialize t_prg, parse flag in t_flags structure (see ft_nm.h)
@@ -40,6 +57,8 @@ int		main(int ac, char **av)
 	{
 		err = ofile_create(&prg, &f);
 		i++;
+		if (err)
+			return (ft_error(prg.target, err));
 		prg.target = av[i];
 	}
 	return (err);

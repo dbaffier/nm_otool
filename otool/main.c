@@ -23,7 +23,12 @@ int		main(int ac, char **av)
 	ft_memset(&prg, 0, sizeof(prg));
 	i = parse_flag(&f, av, ac, 1);
 	prg.pnam = av[0];
-	prg.target = av[i] ? av[i] : "a.out";
+	prg.target = av[i] ? av[i] : NULL;
+	if (!prg.target)
+	{
+		ft_dprintf(2, "otool <opts> <object file>\n");
+		return (1);
+	}
 	prg.proc = &processor;
 	while (prg.target)
 	{

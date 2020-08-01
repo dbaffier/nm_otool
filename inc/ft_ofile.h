@@ -27,6 +27,10 @@
 # include <sys/mman.h>
 # include <sys/stat.h>
 
+/*
+** Enum that can be used for processor FUNCTION.
+*/
+
 enum {
 	ERR_MALLOC = 1,
 	ERR_OPEN,
@@ -37,6 +41,10 @@ enum {
 	ERR_ARCHIVE_EMPTY,
 };
 
+/*
+** State of Mach-o filetype.
+*/
+
 enum				e_ofile_type
 {
 	OFILE_UNKNOWN,
@@ -45,12 +53,21 @@ enum				e_ofile_type
 	OFILE_Mach_O
 };
 
+/*
+** byte Sign EXtend for Mach-o filetype.
+*/
+
 enum				e_byte_sex
 {
 	UNKNOWN_BYTE_SEX,
 	BIG_ENDIAN_BYTE_SEX,
 	LITTLE_ENDIAN_BYTE_SEX
 };
+
+/*
+** Given structure with informations about Mach-o File.
+** Which can be use for processor ptr function.
+*/
 
 typedef struct		s_ofile
 {
@@ -76,6 +93,11 @@ typedef struct		s_ofile
 	struct mach_header_64		*mh64;
 	struct load_command			*load_commands;
 }					t_ofile;
+
+/*
+** Main struct, with proc ptr which use t_ofile, void *cookie which is an representation of t_flag format.
+** See ft_nm.h, ft_otool.h
+*/
 
 typedef struct		s_prg
 {

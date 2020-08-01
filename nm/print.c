@@ -55,6 +55,10 @@ void			print_classic(t_nm *nm, char c, size_t i)
 	ft_printf("%c ", c);
 }
 
+/*
+** Print symbol stored in select_sym array accordingly to flag
+*/
+
 void			print_symbols(t_ofile *of, t_nm *nm, t_flags *f)
 {
 	char		c;

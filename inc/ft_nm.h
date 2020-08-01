@@ -25,6 +25,18 @@
 # define ARGS8 "	-j\tJust display the symbol names (no value or type).\n"
 # define ARGS9 "	-A\tWrite the pathname or library name on each line.\n"
 
+/*
+** Flag structure padded to 1, given to processor function as a (void *)cookie
+** a - Display all symbol table entries, including those inserted for use by debuggers.
+** g - Display only global (external) symbols.
+** o - Prepend file or archive element name to each output line, rather than only once.
+** p - Don't sort; display in symbol-table order.
+** u - Display only undefined symbols.
+** uu(U) - Don't display undefined symbols.
+** j - Just display the symbol names (no value or type).
+** aa(A) - Write the pathname or library name of an object on each line.
+*/
+
 typedef struct		s_flags
 {
 	unsigned int			a : 1;
@@ -37,12 +49,25 @@ typedef struct		s_flags
 	unsigned int			aa : 1;
 }					t_flags;
 
+/*
+** Structure to store symbol
+** *name of symbol
+** if type of symbol is N_IDNR - The symbol is defined to be the same as another symbol
+** nlist_64 - Describe an entry in the symbol table
+*/
+
 struct				s_symbol
 {
 	char					*name;
 	char					*indr_name;
 	struct nlist_64			nl;
 };
+
+/*
+** nsects - Indicates the number of section data structures following this load command.
+** text_nsect - data_nsect - bss_nsect - For printing symbols types, T, D, and B
+** section - array of symbol from the target in 32 or 64
+*/
 
 typedef struct		s_process_flg
 {
@@ -54,11 +79,19 @@ typedef struct		s_process_flg
 	struct section_64			**sections64;
 }					t_process_flg;
 
+/*
+** See stab.c
+**/
+
 struct				s_stabnames
 {
 	unsigned char				n_type;
 	char						*name;
 };
+
+/*
+** global structure for nm processor.
+*/
 
 typedef struct		s_nm
 {

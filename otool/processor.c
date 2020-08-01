@@ -47,6 +47,12 @@ static void	process_set(t_ofile *of, t_flags *f)
 	}
 }
 
+/*
+** Processor otool.
+** Print data in ofile struct.
+** Apply is given flag by (void *)cookie.
+*/
+
 void		processor(t_ofile *of, char *arch_name, void *cookie)
 {
 	if (of->member_ar_hdr != NULL &&

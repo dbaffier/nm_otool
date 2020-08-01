@@ -16,6 +16,18 @@
 # include "ft_ofile.h"
 # include "libft.h"
 
+/*
+** f - option to display the universal headers is -universal-headers.
+** l - doesn't work
+** h - option to display the  Mach  header  is  -private-header.
+** ll(L) - doesn't work
+** dd(D) - option  to  display  just  the install name of a shared library is -dylib-id.
+** t - option   to   display   the  contents  of  the (__TEXT,__text) section
+** d - doesn't work
+** ss(S) - obsolète, doesn't work anyway
+** object_process boolean to determine if we should process current object or not based on flag.
+*/
+
 typedef struct		s_flags
 {
 	unsigned int	f : 1;
@@ -28,6 +40,10 @@ typedef struct		s_flags
 	unsigned int	ss : 1;
 	int				object_process : 1;
 }					t_flags;
+
+/*
+** Global structure for processor, Otool.
+*/
 
 typedef struct		s_data
 {
