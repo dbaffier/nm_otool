@@ -1,0 +1,223 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ARGS0	inc/ft_nm.h	/^# define ARGS0 /;"	d
+ARGS1	inc/ft_nm.h	/^# define ARGS1 /;"	d
+ARGS3	inc/ft_nm.h	/^# define ARGS3 /;"	d
+ARGS4	inc/ft_nm.h	/^# define ARGS4 /;"	d
+ARGS6	inc/ft_nm.h	/^# define ARGS6 /;"	d
+ARGS7	inc/ft_nm.h	/^# define ARGS7 /;"	d
+ARGS8	inc/ft_nm.h	/^# define ARGS8 /;"	d
+ARGS9	inc/ft_nm.h	/^# define ARGS9 /;"	d
+BIG_ENDIAN_BYTE_SEX	inc/ft_ofile.h	/^	BIG_ENDIAN_BYTE_SEX,$/;"	e	enum:e_byte_sex
+ERR_ARCHIVE	inc/ft_ofile.h	/^	ERR_ARCHIVE,$/;"	e	enum:__anon1
+ERR_ARCHIVE_EMPTY	inc/ft_ofile.h	/^	ERR_ARCHIVE_EMPTY,$/;"	e	enum:__anon1
+ERR_MALLOC	inc/ft_ofile.h	/^	ERR_MALLOC = 1,$/;"	e	enum:__anon1
+ERR_MAP	inc/ft_ofile.h	/^	ERR_MAP,$/;"	e	enum:__anon1
+ERR_OPEN	inc/ft_ofile.h	/^	ERR_OPEN,$/;"	e	enum:__anon1
+ERR_STAT	inc/ft_ofile.h	/^	ERR_STAT,$/;"	e	enum:__anon1
+ERR_WRITE	inc/ft_ofile.h	/^	ERR_WRITE,$/;"	e	enum:__anon1
+FT_NM_H	inc/ft_nm.h	/^# define FT_NM_H$/;"	d
+FT_OFILE_H	inc/ft_ofile.h	/^# define FT_OFILE_H$/;"	d
+FT_OTOOL_H	inc/ft_otool.h	/^# define FT_OTOOL_H$/;"	d
+LITTLE_ENDIAN_BYTE_SEX	inc/ft_ofile.h	/^	LITTLE_ENDIAN_BYTE_SEX$/;"	e	enum:e_byte_sex
+OFILE_ARCHIVE	inc/ft_ofile.h	/^	OFILE_ARCHIVE,$/;"	e	enum:e_ofile_type
+OFILE_FAT	inc/ft_ofile.h	/^	OFILE_FAT,$/;"	e	enum:e_ofile_type
+OFILE_Mach_O	inc/ft_ofile.h	/^	OFILE_Mach_O$/;"	e	enum:e_ofile_type
+OFILE_UNKNOWN	inc/ft_ofile.h	/^	OFILE_UNKNOWN,$/;"	e	enum:e_ofile_type
+UNKNOWN_BYTE_SEX	inc/ft_ofile.h	/^	UNKNOWN_BYTE_SEX,$/;"	e	enum:e_byte_sex
+a	inc/ft_nm.h	/^	unsigned int			a : 1;$/;"	m	struct:s_flags
+aa	inc/ft_nm.h	/^	unsigned int			aa : 1;$/;"	m	struct:s_flags
+addr	inc/ft_otool.h	/^	char						*addr;$/;"	m	struct:s_data
+bss_nsect	inc/ft_nm.h	/^	unsigned char				bss_nsect;$/;"	m	struct:s_process_flg
+cmd	inc/ft_otool.h	/^	uint32_t					cmd;$/;"	m	struct:s_data
+d	inc/ft_otool.h	/^	unsigned int	d : 1;$/;"	m	struct:s_flags
+data_nsect	inc/ft_nm.h	/^	unsigned char				data_nsect;$/;"	m	struct:s_process_flg
+dd	inc/ft_otool.h	/^	unsigned int	dd : 1;$/;"	m	struct:s_flags
+e_byte_sex	inc/ft_ofile.h	/^enum				e_byte_sex$/;"	g
+e_ofile_type	inc/ft_ofile.h	/^enum				e_ofile_type$/;"	g
+f	inc/ft_otool.h	/^	unsigned int	f : 1;$/;"	m	struct:s_flags
+fat_archs	inc/ft_ofile.h	/^	struct fat_arch				*fat_archs;$/;"	m	struct:s_ofile	typeref:struct:s_ofile::fat_arch
+fat_header	inc/ft_ofile.h	/^	struct fat_header			*fat_header;$/;"	m	struct:s_ofile	typeref:struct:s_ofile::fat_header
+file_addr	inc/ft_ofile.h	/^	char						*file_addr;$/;"	m	struct:s_ofile
+file_mtime	inc/ft_ofile.h	/^	uint64_t					file_mtime;$/;"	m	struct:s_ofile
+file_name	inc/ft_ofile.h	/^	char						*file_name;$/;"	m	struct:s_ofile
+file_size	inc/ft_ofile.h	/^	uint32_t					file_size;$/;"	m	struct:s_ofile
+file_type	inc/ft_ofile.h	/^	enum e_ofile_type			file_type;$/;"	m	struct:s_ofile	typeref:enum:s_ofile::e_ofile_type
+flg	inc/ft_nm.h	/^	t_process_flg				*flg;$/;"	m	struct:s_nm
+found	inc/ft_otool.h	/^	int							found;$/;"	m	struct:s_data
+ft_ar_name	stuff/byte_sex.c	/^int					ft_ar_name(struct ar_hdr *hdr, char **name, size_t *len)$/;"	f
+ft_archive	stuff/ft_archive.c	/^int		ft_archive(t_ofile *of, void *addr, uint32_t magic, enum e_byte_sex e)$/;"	f
+ft_err	nm/parse_flag.c	/^int			ft_err(char *err)$/;"	f
+ft_err	otool/parse_flag.c	/^int		ft_err(char *err)$/;"	f
+ft_fat	stuff/ft_fat.c	/^uint32_t		ft_fat(t_ofile *of, void *addr,$/;"	f
+ft_mach_o	stuff/ft_mach_o.c	/^int				ft_mach_o(t_ofile *ofile, void *addr,$/;"	f
+ft_mach_o_64	stuff/ft_mach_o.c	/^static int		ft_mach_o_64(t_ofile *ofile, void *addr,$/;"	f	file:
+ft_strtoul	stuff/member_tools.c	/^unsigned long	ft_strtoul(const char *ptr, char **endptr, int base)$/;"	f
+ft_swap_bytes	stuff/swap_header.c	/^static uint32_t		ft_swap_bytes(uint32_t num)$/;"	f	file:
+g	inc/ft_nm.h	/^	unsigned int			g : 1;$/;"	m	struct:s_flags
+get_host_byte_sex	stuff/byte_sex.c	/^enum e_byte_sex		get_host_byte_sex(void)$/;"	f
+get_sect_info	otool/get_sect_info.c	/^void		get_sect_info(t_ofile *of, t_data *data)$/;"	f
+h	inc/ft_otool.h	/^	unsigned int	h : 1;$/;"	m	struct:s_flags
+indr_name	inc/ft_nm.h	/^	char					*indr_name;$/;"	m	struct:s_symbol
+init_data	otool/processor.c	/^static void	init_data(t_data *data, t_ofile *o)$/;"	f	file:
+j	inc/ft_nm.h	/^	unsigned int			j : 1;$/;"	m	struct:s_flags
+keep	nm/parse_flag.c	/^int			keep(char c, t_flags *f)$/;"	f
+keep	otool/parse_flag.c	/^int		keep(char c, t_flags *f)$/;"	f
+l	inc/ft_otool.h	/^	unsigned int	l : 1;$/;"	m	struct:s_flags
+lc_seg_32	otool/get_sect_info.c	/^static void	lc_seg_32(t_data *data, struct load_command *lc, int *found)$/;"	f	file:
+lc_seg_64	otool/get_sect_info.c	/^static void	lc_seg_64(t_data *data, struct load_command *lc, int *found)$/;"	f	file:
+ll	inc/ft_otool.h	/^	unsigned int	ll : 1;$/;"	m	struct:s_flags
+load_commands	inc/ft_ofile.h	/^	struct load_command			*load_commands;$/;"	m	struct:s_ofile	typeref:struct:s_ofile::load_command
+main	nm/main.c	/^int		main(int ac, char **av)$/;"	f
+main	otool/main.c	/^int		main(int ac, char **av)$/;"	f
+make_symbol_32	nm/symbol.c	/^void	make_symbol_32(struct s_symbol *symbol, struct nlist *nl)$/;"	f
+make_symbol_64	nm/symbol.c	/^void	make_symbol_64(struct s_symbol *symbol, struct nlist_64 *nl)$/;"	f
+manage_sect_32	nm/process_flag.c	/^static void		manage_sect_32(t_process_flg *f,$/;"	f	file:
+manage_sect_64	nm/process_flag.c	/^static void		manage_sect_64(t_process_flg *f,$/;"	f	file:
+member_addr	inc/ft_ofile.h	/^	char						*member_addr;$/;"	m	struct:s_ofile
+member_ar_hdr	inc/ft_ofile.h	/^	struct ar_hdr				*member_ar_hdr;$/;"	m	struct:s_ofile	typeref:struct:s_ofile::ar_hdr
+member_name	inc/ft_ofile.h	/^	char						*member_name;$/;"	m	struct:s_ofile
+member_name_size	inc/ft_ofile.h	/^	uint32_t					member_name_size;$/;"	m	struct:s_ofile
+member_offset	inc/ft_ofile.h	/^	uint32_t					member_offset;$/;"	m	struct:s_ofile
+member_size	inc/ft_ofile.h	/^	uint32_t					member_size;$/;"	m	struct:s_ofile
+member_type	inc/ft_ofile.h	/^	enum e_ofile_type			member_type;$/;"	m	struct:s_ofile	typeref:enum:s_ofile::e_ofile_type
+mh	inc/ft_ofile.h	/^	struct mach_header			*mh;$/;"	m	struct:s_ofile	typeref:struct:s_ofile::mach_header
+mh64	inc/ft_ofile.h	/^	struct mach_header_64		*mh64;$/;"	m	struct:s_ofile	typeref:struct:s_ofile::mach_header_64
+mh_cpusubtype	inc/ft_otool.h	/^	cpu_subtype_t				mh_cpusubtype;$/;"	m	struct:s_data
+mh_cputype	inc/ft_otool.h	/^	cpu_type_t					mh_cputype;$/;"	m	struct:s_data
+mh_filetype	inc/ft_otool.h	/^	uint32_t					mh_filetype;$/;"	m	struct:s_data
+mh_flags	inc/ft_nm.h	/^	uint32_t					mh_flags;$/;"	m	struct:s_nm
+mh_magic	inc/ft_otool.h	/^	uint32_t					mh_magic;$/;"	m	struct:s_data
+mh_ncmds	inc/ft_otool.h	/^	uint32_t					mh_ncmds;$/;"	m	struct:s_data
+mh_sizeofcmds	inc/ft_otool.h	/^	uint32_t					mh_sizeofcmds;$/;"	m	struct:s_data
+n_type	inc/ft_nm.h	/^	unsigned char				n_type;$/;"	m	struct:s_stabnames
+name	inc/ft_nm.h	/^	char						*name;$/;"	m	struct:s_stabnames
+name	inc/ft_nm.h	/^	char					*name;$/;"	m	struct:s_symbol
+ncmds	inc/ft_nm.h	/^	uint32_t					ncmds;$/;"	m	struct:s_nm
+nl	inc/ft_nm.h	/^	struct nlist				*nl;$/;"	m	struct:s_nm	typeref:struct:s_nm::nlist
+nl	inc/ft_nm.h	/^	struct nlist_64			nl;$/;"	m	struct:s_symbol	typeref:struct:s_symbol::nlist_64
+nl64	inc/ft_nm.h	/^	struct nlist_64				*nl64;$/;"	m	struct:s_nm	typeref:struct:s_nm::nlist_64
+nm	nm/nm.c	/^void		nm(t_ofile *ofile, char *arch_name, void *cookie)$/;"	f
+nm_err	nm/err_file.c	/^int		nm_err(t_prg *prg, int err)$/;"	f
+nm_set	nm/nm.c	/^static int	nm_set(t_nm *nm, t_ofile *ofile, t_process_flg *f, void *cookie)$/;"	f	file:
+nsects	inc/ft_nm.h	/^	uint32_t					nsects;$/;"	m	struct:s_process_flg
+nsymbs	inc/ft_nm.h	/^	uint32_t					nsymbs;$/;"	m	struct:s_nm
+o	inc/ft_nm.h	/^	unsigned int			o : 1;$/;"	m	struct:s_flags
+object_addr	inc/ft_ofile.h	/^	char						*object_addr;$/;"	m	struct:s_ofile
+object_byte_sex	inc/ft_ofile.h	/^	enum e_byte_sex				object_byte_sex;$/;"	m	struct:s_ofile	typeref:enum:s_ofile::e_byte_sex
+object_process	inc/ft_otool.h	/^	int				object_process : 1;$/;"	m	struct:s_flags
+object_size	inc/ft_ofile.h	/^	uint32_t					object_size;$/;"	m	struct:s_ofile
+ofile_create	stuff/ofile_process.c	/^int			ofile_create(t_prg *nm_t, void *cookie)$/;"	f
+ofile_ext	stuff/ofile_first_member.c	/^static void		ofile_ext(t_ofile *of, unsigned long offset, void *addr)$/;"	f	file:
+ofile_ext_format	stuff/ofile_member.c	/^static int		ofile_ext_format(t_ofile *ofile,$/;"	f	file:
+ofile_fat	stuff/ofile_first_member.c	/^static void		ofile_fat(t_ofile *of, unsigned long offset,$/;"	f	file:
+ofile_fat_bis	stuff/ofile_first_member.c	/^static void		ofile_fat_bis(t_ofile *of,$/;"	f	file:
+ofile_first_member	stuff/ofile_first_member.c	/^int				ofile_first_member(t_ofile *of)$/;"	f
+ofile_map	stuff/ofile_process.c	/^static int	ofile_map(t_prg *nm_t, t_ofile *of)$/;"	f	file:
+ofile_member_clear	stuff/ofile_member_clear.c	/^void	ofile_member_clear(t_ofile *of)$/;"	f
+ofile_next_member	stuff/ofile_member.c	/^int				ofile_next_member(t_ofile *ofile)$/;"	f
+ofile_object_clear	stuff/ofile_member_clear.c	/^void	ofile_object_clear(t_ofile *of)$/;"	f
+ofile_set	stuff/ofile_first_member.c	/^static void		ofile_set(t_ofile *of)$/;"	f	file:
+ofile_set_fat	stuff/ofile_member.c	/^static int		ofile_set_fat(t_ofile *ofile)$/;"	f	file:
+ofile_set_mach_o	stuff/ofile_member.c	/^static int		ofile_set_mach_o(t_ofile *of,$/;"	f	file:
+ofile_set_mach_o64	stuff/ofile_member.c	/^static int		ofile_set_mach_o64(t_ofile *of,$/;"	f	file:
+ofile_type	stuff/ofile_process.c	/^static int	ofile_type(t_ofile *of, uint32_t size, void *addr)$/;"	f	file:
+ofile_unmap	stuff/ofile_unmap.c	/^void		ofile_unmap(t_prg *prg, t_ofile *of)$/;"	f
+p	inc/ft_nm.h	/^	unsigned int			p : 1;$/;"	m	struct:s_flags
+parse_flag	nm/parse_flag.c	/^int			parse_flag(t_flags *f, char **av, int ac, int i)$/;"	f
+parse_flag	otool/parse_flag.c	/^int		parse_flag(t_flags *f, char **av, int ac, int i)$/;"	f
+pnam	inc/ft_ofile.h	/^	char			*pnam;$/;"	m	struct:s_prg
+print_classic	nm/print.c	/^void			print_classic(t_nm *nm, char c, size_t i)$/;"	f
+print_extend	otool/print_libraries.c	/^static void	print_extend(char *p, struct dylib_command *dl)$/;"	f	file:
+print_fat_headers	stuff/print_fat.c	/^void	print_fat_headers(struct fat_header *hdr,$/;"	f
+print_header	nm/print.c	/^void			print_header(t_ofile *of, t_flags *f)$/;"	f
+print_header	otool/print_header.c	/^void		print_header(t_ofile *of)$/;"	f
+print_lc_segment32	otool/print_lc_seg32.c	/^void			print_lc_segment32(t_ofile *of,$/;"	f
+print_lc_segment64	otool/print_lc_seg64.c	/^void		print_lc_segment64(t_ofile *of,$/;"	f
+print_lc_symtab	otool/print_lc_symtab.c	/^void		print_lc_symtab(t_ofile *of, t_data *data, struct load_command *lc)$/;"	f
+print_libraries	otool/print_libraries.c	/^void		print_libraries(struct load_command *load_c, t_data *data)$/;"	f
+print_loadcmds	otool/print_loadcmds.c	/^void	print_loadcmds(t_ofile *of, t_data *data)$/;"	f
+print_mach_header	otool/print_header.c	/^void		print_mach_header(struct mach_header *mh)$/;"	f
+print_mach_header_64	otool/print_header.c	/^void		print_mach_header_64(struct mach_header_64 *mh64)$/;"	f
+print_section	otool/print_lc_seg32.c	/^static void		print_section(struct section *s)$/;"	f	file:
+print_section	otool/print_lc_seg64.c	/^static void	print_section(struct section_64 *s)$/;"	f	file:
+print_segment_command	otool/print_lc_seg32.c	/^static void		print_segment_command(struct segment_command *sg)$/;"	f	file:
+print_segment_command	otool/print_lc_seg64.c	/^static void	print_segment_command(struct segment_command_64 *sg)$/;"	f	file:
+print_stab	nm/stab.c	/^int								print_stab(t_nm *nm, size_t i)$/;"	f
+print_symbols	nm/print.c	/^void			print_symbols(t_ofile *of, t_nm *nm, t_flags *f)$/;"	f
+print_symtab_command	otool/print_lc_symtab.c	/^static void	print_symtab_command(struct symtab_command *st)$/;"	f	file:
+print_text	otool/print_text.c	/^void				print_text(t_data *data)$/;"	f
+print_text_sup	otool/print_text.c	/^static uint32_t		print_text_sup(uint32_t j,$/;"	f	file:
+proc	inc/ft_ofile.h	/^	void			(*proc)(t_ofile *of,$/;"	m	struct:s_prg
+process_archive	stuff/ft_archive.c	/^int		process_archive(t_prg *prg, t_ofile *of, void *cookie)$/;"	f
+process_fat	stuff/ft_fat.c	/^static uint32_t	process_fat(t_ofile *of)$/;"	f	file:
+process_flg_sect	nm/process_flag.c	/^void			process_flg_sect(t_nm *nm, t_ofile *of,$/;"	f
+process_set	otool/processor.c	/^static void	process_set(t_ofile *of, t_flags *f)$/;"	f	file:
+processor	otool/processor.c	/^void		processor(t_ofile *of, char *arch_name, void *cookie)$/;"	f
+prog	inc/ft_ofile.h	/^	short						prog;$/;"	m	struct:s_ofile
+quicksort	nm/print.c	/^static void		quicksort(struct s_symbol *symbol, int size)$/;"	f	file:
+s64	inc/ft_otool.h	/^	struct section_64			*s64;$/;"	m	struct:s_data	typeref:struct:s_data::section_64
+s_data	inc/ft_otool.h	/^typedef struct		s_data$/;"	s
+s_flags	inc/ft_nm.h	/^typedef struct		s_flags$/;"	s
+s_flags	inc/ft_otool.h	/^typedef struct		s_flags$/;"	s
+s_nm	inc/ft_nm.h	/^typedef struct		s_nm$/;"	s
+s_ofile	inc/ft_ofile.h	/^typedef struct		s_ofile$/;"	s
+s_prg	inc/ft_ofile.h	/^typedef struct		s_prg$/;"	s
+s_process_flg	inc/ft_nm.h	/^typedef struct		s_process_flg$/;"	s
+s_stabnames	inc/ft_nm.h	/^struct				s_stabnames$/;"	s
+s_symbol	inc/ft_nm.h	/^struct				s_symbol$/;"	s
+sect	inc/ft_otool.h	/^	char						*sect;$/;"	m	struct:s_data
+sect_addr	inc/ft_otool.h	/^	uint64_t					sect_addr;$/;"	m	struct:s_data
+sect_flags	inc/ft_otool.h	/^	uint32_t					sect_flags;$/;"	m	struct:s_data
+sect_more	nm/symbol_type.c	/^static int	sect_more(t_process_flg *f, int n_type)$/;"	f	file:
+sect_nrelocs	inc/ft_otool.h	/^	uint32_t					sect_nrelocs;$/;"	m	struct:s_data
+sect_relocs	inc/ft_otool.h	/^	struct relocation_info		*sect_relocs;$/;"	m	struct:s_data	typeref:struct:s_data::relocation_info
+sect_size	inc/ft_otool.h	/^	uint64_t					sect_size;$/;"	m	struct:s_data
+sections	inc/ft_nm.h	/^	struct section				**sections;$/;"	m	struct:s_process_flg	typeref:struct:s_process_flg::section
+sections64	inc/ft_nm.h	/^	struct section_64			**sections64;$/;"	m	struct:s_process_flg	typeref:struct:s_process_flg::section_64
+seg_addr	inc/ft_otool.h	/^	uint64_t					seg_addr;$/;"	m	struct:s_data
+select_print_symbols	nm/symbol.c	/^void	select_print_symbols(t_nm *nm, t_ofile *of, int size)$/;"	f
+select_sym	inc/ft_nm.h	/^	struct s_symbol				*select_sym;$/;"	m	struct:s_nm	typeref:struct:s_nm::s_symbol
+select_symbol	nm/symbol.c	/^int		select_symbol(struct s_symbol *symbol, t_flags *f)$/;"	f
+select_symbols	nm/nm.c	/^void		select_symbols(t_nm *nm, t_ofile *of, t_flags *f)$/;"	f
+set_flag	nm/parse_flag.c	/^int			set_flag(t_flags *f, char *av, int j)$/;"	f
+set_flag	otool/parse_flag.c	/^int		set_flag(t_flags *f, char *av, int j)$/;"	f
+sg64	inc/ft_otool.h	/^	struct segment_command_64	*sg64;$/;"	m	struct:s_data	typeref:struct:s_data::segment_command_64
+size	inc/ft_otool.h	/^	unsigned long				size;$/;"	m	struct:s_data
+size_ar_name	stuff/member_tools.c	/^unsigned long	size_ar_name(struct ar_hdr *ar_hdr)$/;"	f
+sizeof_mach_header	inc/ft_otool.h	/^	uint32_t					sizeof_mach_header;$/;"	m	struct:s_data
+ss	inc/ft_otool.h	/^	unsigned int	ss : 1;$/;"	m	struct:s_flags
+st	inc/ft_nm.h	/^	struct symtab_command		*st;$/;"	m	struct:s_nm	typeref:struct:s_nm::symtab_command
+stab	nm/stab.c	/^static char						*stab(unsigned char n_type)$/;"	f	file:
+stabnames	nm/stab.c	/^static const struct s_stabnames	stabnames[] = {$/;"	v	typeref:struct:s_stabnames	file:
+swap_fat_arch	stuff/swap_header.c	/^void				swap_fat_arch(struct fat_arch *arch,$/;"	f
+swap_fat_header	stuff/swap_header.c	/^void				swap_fat_header(struct fat_header *hdr)$/;"	f
+swap_int16	stuff/swap_bytes.c	/^int16_t			swap_int16(int16_t val)$/;"	f
+swap_int32	stuff/swap_bytes.c	/^int32_t			swap_int32(int32_t val)$/;"	f
+swap_long	stuff/swap_bytes.c	/^unsigned long	swap_long(unsigned int val)$/;"	f
+swap_long_long	stuff/swap_bytes_h.c	/^long long	swap_long_long(long long ll)$/;"	f
+swap_nlist	stuff/swap_header.c	/^void				swap_nlist(struct nlist *symbols, uint32_t nsymbols)$/;"	f
+swap_nlist_64	stuff/swap_header.c	/^void				swap_nlist_64(struct nlist_64 *symbols, uint32_t nsymbols)$/;"	f
+swap_short	stuff/swap_bytes_h.c	/^short		swap_short(short s)$/;"	f
+swap_uint16	stuff/swap_bytes.c	/^uint16_t		swap_uint16(uint16_t val)$/;"	f
+swap_uint32	stuff/swap_bytes.c	/^uint32_t		swap_uint32(uint32_t val)$/;"	f
+sym	inc/ft_nm.h	/^	struct s_symbol				*sym;$/;"	m	struct:s_nm	typeref:struct:s_nm::s_symbol
+symbol_n_type	nm/symbol_type.c	/^static int	symbol_n_type(t_process_flg *f, char c, int nl_value, int nl_sect)$/;"	f	file:
+t	inc/ft_otool.h	/^	unsigned int	t : 1;$/;"	m	struct:s_flags
+t_data	inc/ft_otool.h	/^}					t_data;$/;"	t	typeref:struct:s_data
+t_flags	inc/ft_nm.h	/^}					t_flags;$/;"	t	typeref:struct:s_flags
+t_flags	inc/ft_otool.h	/^}					t_flags;$/;"	t	typeref:struct:s_flags
+t_nm	inc/ft_nm.h	/^}					t_nm;$/;"	t	typeref:struct:s_nm
+t_ofile	inc/ft_ofile.h	/^}					t_ofile;$/;"	t	typeref:struct:s_ofile
+t_prg	inc/ft_ofile.h	/^}					t_prg;$/;"	t	typeref:struct:s_prg
+t_process_flg	inc/ft_nm.h	/^}					t_process_flg;$/;"	t	typeref:struct:s_process_flg
+target	inc/ft_ofile.h	/^	char			*target;$/;"	m	struct:s_prg
+text_nsect	inc/ft_nm.h	/^	unsigned char				text_nsect;$/;"	m	struct:s_process_flg
+treat_file	otool/get_sect_info.c	/^void		treat_file(t_ofile *of, t_data *data)$/;"	f
+type_symbol	nm/symbol_type.c	/^int			type_symbol(t_process_flg *f, struct s_symbol sl)$/;"	f
+u	inc/ft_nm.h	/^	unsigned int			u : 1;$/;"	m	struct:s_flags
+uu	inc/ft_nm.h	/^	unsigned int			uu : 1;$/;"	m	struct:s_flags

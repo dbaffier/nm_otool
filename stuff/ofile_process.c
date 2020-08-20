@@ -19,10 +19,10 @@
 ** If FAT_FILE, process only x86_64 and jump to the beginning of data for this CPU.
 */
 
-static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
+static int ofile_type(t_ofile *of, uint32_t size, void *addr)
 {
-	uint32_t			magic;
-	enum e_byte_sex		host_byte_sex;
+	uint32_t magic;
+	enum e_byte_sex host_byte_sex;
 
 	magic = 0;
 	if (size >= sizeof(unsigned long))
@@ -41,11 +41,11 @@ static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 ** Call ofile_type to process the corresponding type.
 */
 
-static int	ofile_map(t_prg *nm_t, t_ofile *of)
+static int ofile_map(t_prg *nm_t, t_ofile *of)
 {
-	void			*addr;
-	int				fd;
-	struct stat		sb;
+	void *addr;
+	int fd;
+	struct stat sb;
 
 	if ((fd = open(nm_t->target, O_RDONLY)) == -1)
 		return (ERR_OPEN);
@@ -69,10 +69,10 @@ static int	ofile_map(t_prg *nm_t, t_ofile *of)
 ** ofile struct and cookie correspond to the given struct of flag. 
 */
 
-int			ofile_create(t_prg *nm_t, void *cookie)
+int ofile_create(t_prg *nm_t, void *cookie)
 {
-	int			ret;
-	t_ofile		of;
+	int ret;
+	t_ofile of;
 
 	ft_memset(&of, 0, sizeof(t_ofile));
 	if (!ft_strcmp(nm_t->pnam, "./ft_otool") && *((int *)cookie) & 0x1)
