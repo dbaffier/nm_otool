@@ -12,9 +12,10 @@
 
 #include "ft_nm.h"
 
-int			ft_err(char *err)
+int ft_err(char *err)
 {
-	ft_dprintf(2, "error: ./ft_nm %s\n", err);
+	if (ft_strcmp("-t", err))
+		ft_dprintf(2, "error: ./ft_nm %s\n", err);
 	ft_dprintf(2, "usage: ./ft_nm [-agopuUjA] [file ...]\n");
 	ft_dprintf(2, ARGS0);
 	ft_dprintf(2, ARGS1);
@@ -27,7 +28,7 @@ int			ft_err(char *err)
 	exit(1);
 }
 
-int			keep(char c, t_flags *f)
+int keep(char c, t_flags *f)
 {
 	if (c == 'u')
 	{
@@ -50,7 +51,7 @@ int			keep(char c, t_flags *f)
 	return (1);
 }
 
-int			set_flag(t_flags *f, char *av, int j)
+int set_flag(t_flags *f, char *av, int j)
 {
 	while (av[j])
 	{
@@ -72,9 +73,9 @@ int			set_flag(t_flags *f, char *av, int j)
 	return (1);
 }
 
-int			parse_flag(t_flags *f, char **av, int ac, int i)
+int parse_flag(t_flags *f, char **av, int ac, int i)
 {
-	int		j;
+	int j;
 
 	j = 0;
 	ft_memset(f, 0, sizeof(t_flags));
@@ -90,7 +91,7 @@ int			parse_flag(t_flags *f, char **av, int ac, int i)
 				set_flag(f, av[i], 1);
 		}
 		else
-			break ;
+			break;
 		i++;
 	}
 	return (i);

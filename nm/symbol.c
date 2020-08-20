@@ -13,7 +13,7 @@
 #include "ft_nm.h"
 #include "ft_ofile.h"
 
-void	make_symbol_32(struct s_symbol *symbol, struct nlist *nl)
+void make_symbol_32(struct s_symbol *symbol, struct nlist *nl)
 {
 	symbol->nl.n_un.n_strx = nl->n_un.n_strx;
 	symbol->nl.n_type = nl->n_type;
@@ -22,17 +22,17 @@ void	make_symbol_32(struct s_symbol *symbol, struct nlist *nl)
 	symbol->nl.n_value = nl->n_value;
 }
 
-void	make_symbol_64(struct s_symbol *symbol, struct nlist_64 *nl)
+void make_symbol_64(struct s_symbol *symbol, struct nlist_64 *nl)
 {
 	symbol->nl = *nl;
 }
 
-int		select_symbol(struct s_symbol *symbol, t_flags *f)
+int select_symbol(struct s_symbol *symbol, t_flags *f)
 {
 	if (f->uu)
 	{
 		if ((symbol->nl.n_type == (N_UNDF | N_EXT) &&
-				symbol->nl.n_value == 0) ||
+			 symbol->nl.n_value == 0) ||
 			symbol->nl.n_type == (N_PBUD | N_EXT))
 			return (0);
 		return (1);
@@ -40,23 +40,23 @@ int		select_symbol(struct s_symbol *symbol, t_flags *f)
 	if (f->u)
 	{
 		if ((symbol->nl.n_type == (N_UNDF | N_EXT) &&
-					symbol->nl.n_value == 0) ||
-					symbol->nl.n_type == (N_PBUD | N_EXT))
+			 symbol->nl.n_value == 0) ||
+			symbol->nl.n_type == (N_PBUD | N_EXT))
 			return (1);
 		return (0);
 	}
 	if (f->g && (symbol->nl.n_type & N_EXT) == 0)
 		return (0);
 	if (symbol->nl.n_type & N_STAB &&
-			(f->a == 0 || f->g == 1 || f->u == 1))
+		(f->a == 0 || f->g == 1 || f->u == 1))
 		return (0);
 	return (1);
 }
 
-void	select_print_symbols(t_nm *nm, t_ofile *of, int size)
+void select_print_symbols(t_nm *nm, t_ofile *of, int size)
 {
-	char		*str;
-	size_t		i;
+	char *str;
+	size_t i;
 
 	i = 0;
 	(void)size;
@@ -68,7 +68,7 @@ void	select_print_symbols(t_nm *nm, t_ofile *of, int size)
 		else
 			nm->select_sym[i].name = nm->select_sym[i].nl.n_un.n_strx + str;
 		if ((nm->select_sym[i].nl.n_type & N_STAB) == 0 &&
-				(nm->select_sym[i].nl.n_type & N_TYPE) == N_INDR)
+			(nm->select_sym[i].nl.n_type & N_TYPE) == N_INDR)
 		{
 			if (nm->select_sym[i].nl.n_value == 0)
 				nm->select_sym[i].indr_name = "";
