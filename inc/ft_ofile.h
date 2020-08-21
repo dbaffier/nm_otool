@@ -101,6 +101,7 @@ typedef struct		s_ofile
 
 typedef struct		s_prg
 {
+	uint32_t		mul;
 	char			*target;
 	char			*pnam;
 	void			(*proc)(t_ofile *of,

@@ -24,6 +24,7 @@ int		main(int ac, char **av)
 	i = parse_flag(&f, av, ac, 1);
 	prg.pnam = av[0];
 	prg.target = av[i] ? av[i] : NULL;
+	prg.mul = av[i] && av[i + 1] ? 1 : 0;
 	if (!prg.target)
 	{
 		ft_dprintf(2, "otool <opts> <object file>\n");
@@ -32,6 +33,8 @@ int		main(int ac, char **av)
 	prg.proc = &processor;
 	while (prg.target)
 	{
+		if (prg.mul)
+			ft_printf("%s:\n", prg.target);
 		err = ofile_create(&prg, &f);
 		i++;
 		prg.target = av[i];

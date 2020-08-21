@@ -17,15 +17,15 @@
 
 static int ft_error(char *s, int err)
 {
-	static char *tab[] = {NULL, 
-	"%s malloc error",
-	"%s open error",
-	"%s stat error",
-	"%s MMAP error",
-	"%s write error",
-	"%s archive err",
-	"%s archive empty error"};
-	
+	static char *tab[] = {NULL,
+						  "%s malloc error",
+						  "%s open error",
+						  "%s stat error",
+						  "%s MMAP error",
+						  "%s write error",
+						  "%s archive err",
+						  "%s archive empty error"};
+
 	ft_printf("ft_nm: ");
 	ft_printf(tab[err], s);
 	ft_printf("\n");
@@ -41,24 +41,30 @@ static int ft_error(char *s, int err)
 ** Apply flag and execute is given routine (&nm)
 */
 
-int		main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_prg		prg;
-	t_flags		f;
-	int			err;
-	size_t		i;
+	t_prg prg;
+	t_flags f;
+	int err;
+	size_t i;
 
 	ft_memset(&prg, 0, sizeof(prg));
 	prg.pnam = av[0];
 	i = parse_flag(&f, av, ac, 1);
 	prg.target = av[i] ? av[i] : "a.out";
 	prg.proc = &nm;
+	prg.mul = av[i] && av[i + 1] ? 1 : 0;
+	ft_printf("%s", prg.mul ? "\n" : "");
 	while (prg.target)
 	{
+		if (prg.mul)
+			ft_printf("%s:\n", prg.target);
 		err = ofile_create(&prg, &f);
+		if (prg.mul && av[i + 1])
+			ft_printf("\n");
 		i++;
 		if (err)
-			return (ft_error(prg.target, err));
+			err = ft_error(prg.target, err);
 		prg.target = av[i];
 	}
 	return (err);
