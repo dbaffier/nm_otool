@@ -38,7 +38,6 @@ static void		manage_sect_32(t_process_flg *f,
 	}
 }
 
-
 /*
 ** Directly following a segment_command data structure
 ** is an array of section data structures, with the exact count determined

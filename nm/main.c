@@ -15,16 +15,12 @@
 #include "ft_ofile.h"
 #include "ft_nm.h"
 
-static int ft_error(char *s, int err)
+static int	ft_error(char *s, int err)
 {
-	static char *tab[] = {NULL,
-						  "%s malloc error",
-						  "%s open error",
-						  "%s stat error",
-						  "%s MMAP error",
-						  "%s write error",
-						  "%s archive err",
-						  "%s archive empty error"};
+	static char *tab[] = {NULL, "malloc error", "open error", S_STAT,
+		S_MMAP, "write error", "archive err", "archive empty error",
+		S_MMAP, S_MH, S_SIZECMDS, S_LC, S_ALIGN, S_CMDSIZE, S_FILEOFF,
+		S_FILEOFF_SIZE, S_SECTION, S_SEC_OFF, S_RELOFF};
 
 	ft_printf("ft_nm: ");
 	ft_printf(tab[err], s);
@@ -41,12 +37,12 @@ static int ft_error(char *s, int err)
 ** Apply flag and execute is given routine (&nm)
 */
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_prg prg;
-	t_flags f;
-	int err;
-	size_t i;
+	t_prg	prg;
+	t_flags	f;
+	int		err;
+	size_t	i;
 
 	ft_memset(&prg, 0, sizeof(prg));
 	prg.pnam = av[0];

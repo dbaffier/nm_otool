@@ -12,22 +12,22 @@
 
 #include "ft_nm.h"
 
-void print_header(t_ofile *of, t_flags *f)
+void		print_header(t_ofile *of, t_flags *f)
 {
 	if (of->member_ar_hdr && (f->o == 0 && f->aa == 0))
 	{
 		if (of->member_ar_hdr != NULL)
 			ft_printf("\n%s(%.*s):\n", of->file_name,
-					  (int)of->member_name_size, of->member_name);
+				(int)of->member_name_size, of->member_name);
 		else
 			ft_printf("\n%s:\n", of->file_name);
 	}
 }
 
-static void quicksort(struct s_symbol *symbol, int size)
+static void	quicksort(struct s_symbol *symbol, int size)
 {
-	struct s_symbol tmp;
-	int i;
+	struct s_symbol	tmp;
+	int				i;
 
 	i = 0;
 	while (i < size)
@@ -44,7 +44,7 @@ static void quicksort(struct s_symbol *symbol, int size)
 	}
 }
 
-void print_classic(t_nm *nm, char c, size_t i)
+void		print_classic(t_nm *nm, char c, size_t i)
 {
 	if (nm->select_sym[i].nl.n_type & N_EXT && c != '?')
 		c = ft_toupper(c);
@@ -59,10 +59,10 @@ void print_classic(t_nm *nm, char c, size_t i)
 ** Print symbol stored in select_sym array accordingly to flag
 */
 
-void print_symbols(t_ofile *of, t_nm *nm, t_flags *f)
+void		print_symbols(t_ofile *of, t_nm *nm, t_flags *f)
 {
-	char c;
-	size_t i;
+	char	c;
+	size_t	i;
 
 	i = -1;
 	if (f->p == 0)
@@ -78,7 +78,7 @@ void print_symbols(t_ofile *of, t_nm *nm, t_flags *f)
 		{
 			if (of->member_ar_hdr)
 				ft_printf("%s:%.*s: ", of->file_name,
-						  (int)of->member_name_size, of->member_name);
+				(int)of->member_name_size, of->member_name);
 			else
 				ft_printf("%s: ", of->file_name);
 		}

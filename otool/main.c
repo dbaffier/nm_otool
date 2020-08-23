@@ -36,6 +36,8 @@ int		main(int ac, char **av)
 		if (prg.mul)
 			ft_printf("%s:\n", prg.target);
 		err = ofile_create(&prg, &f);
+		if (err)
+			err = ft_error(prg.target, err);
 		i++;
 		prg.target = av[i];
 	}

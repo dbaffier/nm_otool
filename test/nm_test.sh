@@ -46,6 +46,7 @@ then
 		fi
 		rm file1 file2
 	done
+	rm file1 file2
 else
 	printf "./ft_nm doesnt exist\n"
 fi

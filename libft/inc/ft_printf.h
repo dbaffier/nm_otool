@@ -20,22 +20,22 @@
 
 # define BUFF_SIZE 1024
 
-# define OPT_MINUS (1 << 0)
-# define OPT_PLUS (1 << 1)
-# define OPT_ZERO (1 << 2)
-# define OPT_SPACE (1 << 3)
-# define OPT_HASH (1 << 4)
-# define OPT_PREC (1 << 5)
-# define OPT_STAR (1 << 6)
-# define OPT_HSTAR (1 << 7)
-# define OPT_APS (1 << 8)
+# define OPT_MINUS 1
+# define OPT_PLUS 2
+# define OPT_ZERO 4
+# define OPT_SPACE 8
+# define OPT_HASH 16
+# define OPT_PREC 32
+# define OPT_STAR 64
+# define OPT_HSTAR 128
+# define OPT_APS 256
 
-# define OPT_H (1 << 0)
-# define OPT_HH (1 << 1)
-# define OPT_L (1 << 2)
-# define OPT_LL (1 << 3)
-# define OPT_J (1 << 4)
-# define OPT_Z (1 << 5)
+# define OPT_H 1
+# define OPT_HH 2
+# define OPT_L 4
+# define OPT_LL 8
+# define OPT_J 16
+# define OPT_Z 32
 
 typedef struct			s_flag
 {
@@ -118,7 +118,7 @@ typedef struct			s_getarg
 # define GET_STAR	{'*', getarg_int}
 # define CONVERT_B	{'b', convert_b}
 # define CONVERT_C	{'c', convert_c}
-# define CONVERT_D	{'d', convert_d}
+# define CONVERT_D	{'d', convert_d}	
 # define CONVERT_F	{'f', convert_f}
 # define CONVERT_G	{'g', convert_f}
 # define CONVERT_I	{'i', convert_d}

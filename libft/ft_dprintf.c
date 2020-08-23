@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_dprintf_buff(t_format *data)
+static void		ft_dprintf_buff(t_format *data)
 {
 	data->ret += data->pos;
 	write(*(int *)data->fd, data->buff, data->pos);
@@ -27,7 +27,7 @@ static void		free_lst(t_va_list *head)
 	}
 }
 
-int			ft_dprintf(int fd, const char *str, ...)
+int				ft_dprintf(int fd, const char *str, ...)
 {
 	t_format	data;
 	int			nb_char;

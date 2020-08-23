@@ -39,7 +39,33 @@ enum {
 	ERR_WRITE,
 	ERR_ARCHIVE,
 	ERR_ARCHIVE_EMPTY,
+	ERR_MMAP,
+	ERR_MH,
+	ERR_SIZECMDS,
+	ERR_LC,
+	ERR_ALIGN,
+	ERR_CMDSIZE,
+	ERR_FILEOFF,
+	ERR_FILEOFF_SIZE,
+	ERR_SECTION,
+	ERR_SEC_OFF,
+	ERR_RELOFF
 };
+
+# define S_STAT "Stat error"
+# define S_MMAP "mmap failed"
+# define S_MACHO "Not an Mach-o file"
+# define S_MACHO64 "Not an x64 Mach-O file"
+# define S_MH "Not an x64 Mach-O header"
+# define S_SIZECMDS "sizeofcmds extend past the size of the file"
+# define S_LC "error load command"
+# define S_ALIGN "cmdsize is not an multiple of 8"
+# define S_CMDSIZE "cmdsize extend past the size of the file"
+# define S_FILEOFF "fileoff extend past the size of the file"
+# define S_FILEOFF_SIZE "fileoff + filesize extend past the size of the file"
+# define S_SECTION "section error"
+# define S_SEC_OFF "section offset + size extend past the size of the file"
+# define S_RELOFF "section reloff extend past the size of the file"
 
 /*
 ** State of Mach-o filetype.
@@ -95,7 +121,8 @@ typedef struct		s_ofile
 }					t_ofile;
 
 /*
-** Main struct, with proc ptr which use t_ofile, void *cookie which is an representation of t_flag format.
+** Main struct, with proc ptr which use t_ofile,
+** void *cookie which is an representation of t_flag format.
 ** See ft_nm.h, ft_otool.h
 */
 
@@ -130,6 +157,7 @@ int					process_archive(t_prg *nm_t, t_ofile *of, void *cookie);
 void				nm(t_ofile *ofile, char *arch_name, void *cookie);
 
 int					ofile_create(t_prg *nm_t, void *cookie);
+int					mach_o_integrity(char *path);
 int					nm_routine(t_prg *nm_t, void *addr);
 int					nm_err(t_prg *nm, int err);
 

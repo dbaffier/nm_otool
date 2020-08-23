@@ -46,6 +46,7 @@ SRCS_STUFF = byte_sex.c				\
 			 swap_bytes_h.c			\
 			 swap_header.c			\
 			 print_fat.c			\
+			 macho.c				\
 
 SRCS_NM_DIR = nm/
 SRCS_NM = main.c					\

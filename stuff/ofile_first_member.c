@@ -101,7 +101,7 @@ static void		ofile_fat(t_ofile *of, unsigned long offset,
 ** ofile_first_member() set up the ofile structure (the member_* fields and
 ** the object file fields if the first member is an object file) for the first
 ** member.
-**/
+*/
 
 int				ofile_first_member(t_ofile *of)
 {

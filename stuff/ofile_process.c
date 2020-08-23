@@ -16,13 +16,14 @@
 ** Check for magic number and save is byte_sex (byte Sign EXtend)
 ** Process the format associated with magic number.
 ** FAT_FILE, MACH-O, ARCHIVE
-** If FAT_FILE, process only x86_64 and jump to the beginning of data for this CPU.
+** If FAT_FILE, process only x86_64 and jump to the
+** beginning of data for this CPU.
 */
 
-static int ofile_type(t_ofile *of, uint32_t size, void *addr)
+static int	ofile_type(t_ofile *of, uint32_t size, void *addr)
 {
-	uint32_t magic;
-	enum e_byte_sex host_byte_sex;
+	uint32_t		magic;
+	enum e_byte_sex	host_byte_sex;
 
 	magic = 0;
 	if (size >= sizeof(unsigned long))
@@ -41,11 +42,11 @@ static int ofile_type(t_ofile *of, uint32_t size, void *addr)
 ** Call ofile_type to process the corresponding type.
 */
 
-static int ofile_map(t_prg *nm_t, t_ofile *of)
+static int	ofile_map(t_prg *nm_t, t_ofile *of)
 {
-	void *addr;
-	int fd;
-	struct stat sb;
+	void		*addr;
+	int			fd;
+	struct stat	sb;
 
 	if ((fd = open(nm_t->target, O_RDONLY)) == -1)
 		return (ERR_OPEN);
@@ -64,19 +65,23 @@ static int ofile_map(t_prg *nm_t, t_ofile *of)
 }
 
 /*
-** ofile_create() processes the specified filename and call the routine proc on the ofiles in it.
-** For each ofile that is to be processed, the routine processor is called with the corresponding
-** ofile struct and cookie correspond to the given struct of flag. 
+** ofile_create() processes the specified filename and call the
+** routine proc on the ofiles in it.
+** For each ofile that is to be processed, the routine processor
+** is called with the corresponding
+** ofile struct and cookie correspond to the given struct of flag.
 */
 
-int ofile_create(t_prg *nm_t, void *cookie)
+int			ofile_create(t_prg *nm_t, void *cookie)
 {
-	int ret;
-	t_ofile of;
+	int		ret;
+	t_ofile	of;
 
 	ft_memset(&of, 0, sizeof(t_ofile));
 	if (!ft_strcmp(nm_t->pnam, "./ft_otool") && *((int *)cookie) & 0x1)
 		of.prog = 1;
+	if ((ret = mach_o_integrity(nm_t->target)) > 0)
+		return (ret);
 	if ((ret = ofile_map(nm_t, &of)) > 0)
 		return (ret);
 	if (of.file_type == OFILE_ARCHIVE)
