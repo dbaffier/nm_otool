@@ -4,7 +4,7 @@ count=0
 crash=0
 error=0
 
-if [[ -e "ft_nm" ]];
+if [[ -e "ft_otool" ]];
 then
 	printf "Starting binary diff ...\n"
 	for entry in "/bin/"*
@@ -46,6 +46,7 @@ then
 		fi
 		rm file1 file2
 	done
+	rm file1 file2
 else
-	printf "./ft_nm doesnt exist\n"
+	printf "./ft_otool doesnt exist\n"
 fi

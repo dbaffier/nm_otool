@@ -14,11 +14,9 @@
 
 char	get_char_conv(t_format *data)
 {
-	static	t_convert	converter[] = {CONVERT_C, CONVERT_S, CONVERT_D,
-		CONVERT_P, CONVERT_I, CONVERT_O, CONVERT_U, CONVERT_X, CONVERT_GF,
-		CONVERT_F, CONVERT_G, CONVERT_GX, CONVERT_GC, CONVERT_GS, CONVERT_GX,
-		CONVERT_B, CONVERT_R, CONVERT_GR, CONVERT_K, CONVERT_GU, CONVERT_GD,
-		CONVERT_GO};
+	static t_convert	converter[] = {{'c', convert_c}, {'s', convert_s},
+	{'d', convert_d}, {'p', convert_p}, {'u', convert_u}, {'x', convert_x},
+		{'X', convert_gx}, {'U', convert_u}};
 	size_t				i;
 
 	i = 0;

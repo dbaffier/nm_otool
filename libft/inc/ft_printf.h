@@ -91,65 +91,6 @@ typedef struct			s_getarg
 	void				(*func)(void *ptr, va_list *args);
 }						t_getarg;
 
-# define GET_NULL	{'\0', getarg_null}
-# define GET_B		{'b', getarg_uint}
-# define GET_C		{'c', getarg_int}
-# define GET_D		{'d', getarg_int}
-# define GET_F		{'f', getarg_float}
-# define GET_G		{'g', getarg_float}
-# define GET_I		{'i', getarg_int}
-# define GET_K		{'k', getarg_uint}
-# define GET_O		{'o', getarg_uintmaxt}
-# define GET_PTR	{'p', getarg_uintmaxt}
-# define GET_R		{'r', getarg_ptr}
-# define GET_S		{'s', getarg_ptr}
-# define GET_U		{'u', getarg_uintmaxt}
-# define GET_X		{'x', getarg_uintmaxt}
-# define GET_GC		{'C', getarg_wchar}
-# define GET_GD		{'D', getarg_int}
-# define GET_GF		{'F', getarg_float}
-# define GET_GO		{'O', getarg_uintmaxt}
-# define GET_GR		{'R', getarg_ptr}
-# define GET_GS		{'S', getarg_wstr}
-# define GET_GU		{'U', getarg_uintmaxt}
-# define GET_GX		{'X', getarg_uintmaxt}
-# define GET_M		{'%', getarg_null}
-
-# define GET_STAR	{'*', getarg_int}
-# define CONVERT_B	{'b', convert_b}
-# define CONVERT_C	{'c', convert_c}
-# define CONVERT_D	{'d', convert_d}	
-# define CONVERT_F	{'f', convert_f}
-# define CONVERT_G	{'g', convert_f}
-# define CONVERT_I	{'i', convert_d}
-# define CONVERT_K	{'k', convert_k}
-# define CONVERT_O	{'o', convert_o}
-# define CONVERT_P	{'p', convert_p}
-# define CONVERT_R	{'r', convert_r}
-# define CONVERT_S	{'s', convert_s}
-# define CONVERT_U	{'u', convert_u}
-# define CONVERT_X	{'x', convert_x}
-# define CONVERT_Z	{'z', convert_z}
-# define CONVERT_GC	{'C', convert_gc}
-# define CONVERT_GD	{'D', convert_d}
-# define CONVERT_GF	{'F', convert_f}
-# define CONVERT_GO	{'O', convert_o}
-# define CONVERT_GR	{'R', convert_gr}
-# define CONVERT_GS	{'S', convert_gs}
-# define CONVERT_GU	{'U', convert_u}
-# define CONVERT_GX	{'X', convert_gx}
-# define CONVERT_M	{'%', convert_m}
-
-# define WHITE	{"WHITE",	"\033[0m"}
-# define BLACK	{"BLACK",	"\033[30m"}
-# define RED	{"RED",		"\033[31m"}
-# define GREEN	{"GREEN",	"\033[32m"}
-# define YELLOW	{"YELLOW",	"\033[33m"}
-# define BLUE	{"BLUE",	"\033[34m"}
-# define PINK	{"PINK",	"\033[35m"}
-# define CYAN	{"CYAN",	"\033[36m"}
-# define GREY	{"GREY",	"\033[37m"}
-
 /*
 ** src/converter/ -- convert_{c, s, p, d, i, o, u, x, X, f}.c
 */

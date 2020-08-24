@@ -14,9 +14,10 @@
 
 void			(*get_arg_func(t_format *data))(void *dst, va_list *args)
 {
-	static t_getarg tab[] = {GET_NULL, GET_C, GET_S, GET_F, GET_G, GET_GF,
-		GET_GS, GET_GC, GET_U, GET_X, GET_GX, GET_PTR, GET_O, GET_M, GET_B,
-		GET_I, GET_D, GET_K, GET_STAR, GET_R, GET_GR, GET_GU, GET_GO, GET_GD
+	static t_getarg tab[] = {{'\0', getarg_null}, {'c', getarg_int},
+		{'s', getarg_ptr}, {'u', getarg_uintmaxt}, {'x', getarg_uintmaxt},
+		{'X', getarg_uintmaxt}, {'p', getarg_uintmaxt}, {'i', getarg_int},
+		{'d', getarg_int}, {'*', getarg_int}, {'U', getarg_uintmaxt}
 	};
 	size_t			i;
 

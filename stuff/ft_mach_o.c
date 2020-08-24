@@ -12,6 +12,24 @@
 
 #include "ft_ofile.h"
 
+int				is_macho(uint32_t magic)
+{
+	return (magic == MH_MAGIC || magic == MH_CIGAM ||
+			magic == MH_MAGIC_64 || magic == MH_CIGAM_64);
+}
+
+int				macho_64(uint32_t magic)
+{
+	return (magic == MH_MAGIC_64 || magic == MH_CIGAM_64);
+}
+
+int				integrity_leave(void *file, unsigned long size, int err)
+{
+	if (file)
+		munmap(file, size);
+	return (err);
+}
+
 static int		ft_mach_o_64(t_ofile *ofile, void *addr,
 						uint32_t magic, enum e_byte_sex e)
 {

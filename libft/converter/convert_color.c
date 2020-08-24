@@ -14,8 +14,10 @@
 
 static int	is_color(char *cmp, size_t n)
 {
-	static t_color	tab[] = {WHITE, BLACK, RED, GREEN, YELLOW,
-		BLUE, PINK, CYAN, GREY};
+	static t_color	tab[] = {{"WHITE", "\033[0m"}, {"BLACK", "\033[30m"},
+	{"RED", "\033[31m"}, {"GREEN", "\033[32m"}, {"YELLOW", "\033[33m"},
+		{"BLUE", "\033[34m"}, {"PINK", "\033[35m"}, {"CYAN", "\033[36m"},
+		{"GREY", "\033[37m"}};
 	size_t			i;
 
 	i = 0;
@@ -69,8 +71,10 @@ static char	*get_chunk(t_format *data, char end)
 
 char		*color_specifier(const char *cmp)
 {
-	static t_color	tab[] = {WHITE, BLACK, RED, GREEN, YELLOW,
-		BLUE, PINK, CYAN, GREY};
+	static t_color	tab[] = {{"WHITE", "\033[0m"}, {"BLACK", "\033[30m"},
+	{"RED", "\033[31m"}, {"GREEN", "\033[32m"}, {"YELLOW", "\033[33m"},
+		{"BLUE", "\033[34m"}, {"PINK", "\033[35m"}, {"CYAN", "\033[36m"},
+		{"GREY", "\033[37m"}};
 	size_t			i;
 
 	i = 0;

@@ -157,6 +157,10 @@ int					process_archive(t_prg *nm_t, t_ofile *of, void *cookie);
 void				nm(t_ofile *ofile, char *arch_name, void *cookie);
 
 int					ofile_create(t_prg *nm_t, void *cookie);
+int					is_macho(uint32_t magic);
+int					macho_64(uint32_t magic);
+int					integrity_leave(void *file, unsigned long size, int err);
+
 int					mach_o_integrity(char *path);
 int					nm_routine(t_prg *nm_t, void *addr);
 int					nm_err(t_prg *nm, int err);
